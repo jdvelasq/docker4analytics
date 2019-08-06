@@ -31,10 +31,10 @@ ENV HADOOP_ROOT_LOGGER  "ERROR,console"
 
 RUN apt-get update && \ 
     apt-get install -yq --no-install-recommends curl && \
-    curl -O https://www-eu.apache.org/dist/hadoop/common/hadoop-$HDP_VERSION/hadoop-$HDP_VERSION.tar.gz && \
-    tar -xzf hadoop-$HDP_VERSION.tar.gz && \
-    mv hadoop-$HDP_VERSION /usr/local/hadoop && \
-    rm hadoop-$HDP_VERSION.tar.gz && \
+    curl -O https://www-eu.apache.org/dist/hadoop/common/hadoop-${HDP_VERSION}/hadoop-${HDP_VERSION}.tar.gz && \
+    tar -xzf hadoop-${HDP_VERSION}.tar.gz && \
+    mv hadoop-${HDP_VERSION} /usr/local/hadoop && \
+    rm hadoop-${HDP_VERSION}.tar.gz && \
     chmod 0777 /usr/local/hadoop && \ 
     apt-get purge -yq curl && \
     apt-get autoremove -yq && \
