@@ -32,7 +32,7 @@ hive:
 
 spark:
 	docker build --tag=jdvelasq/jupyterlab:spark  \
-	             --build-arg  SPARK_VERSION=$(spark_version) \	
+	             --build-arg  SPARK_VERSION=$(spark_version) \
 				 spark/	
 colab: 
 	docker build --tag=jdvelasq/jupyterlab:colab  colab/
