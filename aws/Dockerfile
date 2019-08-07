@@ -3,6 +3,7 @@ FROM jdvelasq/jupyterlab:hadoop
 WORKDIR /app
 COPY .  /app
 
+
 ## --------------------------------------------------------
 ##
 ##  Hive
@@ -165,59 +166,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 
-##
-## Data Science
-##
-RUN apt-get update && \
-    apt-get install -yq --no-install-recommends \
-        python3-venv && \
-    rm -rf /var/lib/apt/lists/* && \
-    pip3 install --trusted-host pypi.python.org  \       
-        dask     numba   \
-        sklearn  statsmodels tensorflow  theano \
-        seaborn  altair      bokeh       datashader   holoviews  networkx
-
-##
-## R tidyverse + tensorflow-for-R
-##
-RUN apt-get update && \
-    apt-get install -yq --no-install-recommends \
-        build-essential && \
-    Rscript -e "install.packages(c('tidyverse'), repos = 'http://cran.us.r-project.org')"  && \
-    Rscript -e "install.packages(c('devtools'), repos = 'http://cran.us.r-project.org')"  && \
-    Rscript -e "devtools::install_github('rstudio/tensorflow')"  && \
-    Rscript -e "library(tensorflow); install_tensorflow()"  && \
-    apt-get purge -yq build-essential && \
-    apt-get autoremove -yq && \
-    rm -rf /var/lib/apt/lists/*
-    
-
-##
-## MySql
-##
-RUN apt-get update && \
-    apt-get install -yq --no-install-recommends \
-        mysql-server && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN pip3 install --trusted-host pypi.python.org  \ 
-            ipython-sql   pymysql
-
-##
-## 
-##  Cartopy & GeoPandas
-##
-##
-RUN apt-get update && \
-    apt-get install -yq --no-install-recommends \
-        g++  python3-dev   libproj-dev  proj-data  proj-bin  libgeos-dev  libgeos-c1v5 && \
-    pip3 install --trusted-host pypi.python.org  \ 
-        Cython && \
-    pip3 install --trusted-host pypi.python.org  \ 
-        six  pyshp  shapely  cartopy  geopandas  geoplot && \
-    apt-get purge -yq python3-dev  g++  && \
-    apt-get autoremove -yq && \
-    rm -rf /var/lib/apt/lists/*
 
 RUN rm -rf /app/*
 
