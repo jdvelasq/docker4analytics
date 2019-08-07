@@ -175,7 +175,7 @@ RUN apt-get update && \
     pip3 install --trusted-host pypi.python.org  \       
         dask     numba   \
         sklearn  statsmodels tensorflow  theano \
-        seaborn  altair      bokeh   datashader   holoviews  
+        seaborn  altair      bokeh       datashader   holoviews  networkx
 
 ##
 ## R tidyverse + tensorflow-for-R
