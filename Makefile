@@ -5,7 +5,7 @@ hdp_version = 2.8.5
 pig_version = 0.17.0
 hive_version = 2.3.5
 mahout_version = 0.13.0
-spark_version = 2.3.4
+spark_version = 2.4.3
 
 minimal:
 	docker build --tag=jdvelasq/jupyterlab:minimal  minimal/
