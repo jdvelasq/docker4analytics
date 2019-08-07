@@ -43,5 +43,5 @@ aws:
 				 --build-arg  PIG_VERSION=$(pig_version) \
 				 --build-arg  HIVE_VERSION=$(hive_version) \
 				 --build-arg  MAHOUT_VERSION=$(mahout_version) \
-	             --build-arg  SPARK_VERSION=$(spark_version) \	
-				 spark/	
+	             --build-arg  SPARK_VERSION=$(spark_version) \
+				 spark/
