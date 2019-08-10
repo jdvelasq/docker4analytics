@@ -15,7 +15,12 @@ RUN apt-get update && \
         ssh \
         rsync && \
     rm -rf /var/lib/apt/lists/*
-
+    
+RUN mv ssh/ssh_config  /etc/ssh/ssh_config  && \
+	    rm -f /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key /root/.ssh/id_rsa && \
+	    ssh-keygen  -t rsa -P '' -f /root/.ssh/id_rsa && \
+	    cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys && \
+	    chmod 0600 /root/.ssh/authorized_keys  
 ##
 ##
 ## Python 3
