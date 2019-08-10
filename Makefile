@@ -1,6 +1,7 @@
 .PHONY: minimal  colab
 .PHONY: hadoop  pig  hive  mahout  spark  
-.PHONY: pyspark spark-r-base sparkr sparklyr aws
+.PHONY: pyspark spark-r-base sparkr sparklyr spark-in-r
+.PHONY: aws
 
 hdp_version = 2.8.5
 pig_version = 0.17.0
@@ -51,6 +52,12 @@ sparkr:
 sparklyr:
 	docker build --tag=jdvelasq/jupyterlab:sparklyr  \
 				 sparklyr/	
+
+spark-on-r:
+	docker build --tag=jdvelasq/jupyterlab:spark-on-r  \
+				 spark-on-r/	
+
+
 
 colab: 
 	docker build --tag=jdvelasq/jupyterlab:colab  colab/

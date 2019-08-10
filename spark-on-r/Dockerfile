@@ -1,7 +1,5 @@
 FROM jdvelasq/jupyterlab:spark
 
-ARG SPARK_VERSION
-
 WORKDIR /app
 COPY .  /app
 
@@ -31,16 +29,15 @@ RUN apt-get update && \
     apt-get autoremove -yq && \
     rm -rf /var/lib/apt/lists/*
 
-
 ##
-## Sparklyr
+## SparkR + sparklyr
 ## 
-
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \
         build-essential && \
     Rscript -e "install.packages('sparklyr', repos = 'http://cran.us.r-project.org')" && \
     Rscript -e "library(sparklyr); spark_install(version = '2.4')" && \
+    Rscript -e "install.packages('SparkR', repos = 'http://cran.us.r-project.org')" && \
     apt-get purge -yq build-essential && \
     apt-get autoremove -yq && \
     rm -rf /var/lib/apt/lists/*
