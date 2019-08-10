@@ -19,6 +19,11 @@ RUN pip3 install --trusted-host pypi.python.org  \
 ##
 ## PySpark
 ##
+ENV PYSPARK_DRIVER_PYTHON ipython
+
+ENV PYSPARK_PYTHON python3
+
+
 RUN pip3 install  --trusted-host pypi.python.org \
         findspark  \
         pyspark

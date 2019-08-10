@@ -17,11 +17,7 @@ ENV SPARK_HOME /usr/local/spark
 
 ENV SPARK_DIST_CLASSPATH /usr/local/hadoop/etc/hadoop:/usr/local/hadoop/share/hadoop/common/lib/*:/usr/local/hadoop/share/hadoop/common/*:/usr/local/hadoop/share/hadoop/hdfs:/usr/local/hadoop/share/hadoop/hdfs/lib/*:/usr/local/hadoop/share/hadoop/hdfs/*:/usr/local/hadoop/share/hadoop/yarn/lib/*:/usr/local/hadoop/share/hadoop/yarn/*:/usr/local/hadoop/share/hadoop/mapreduce/lib/*:/usr/local/hadoop/share/hadoop/mapreduce/*:/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/usr/local/hadoop/contrib/capacity-scheduler/*.jar
 
-ENV PYSPARK_DRIVER_PYTHON ipython
-
-ENV PYSPARK_PYTHON python3
-
-ENV PATH $PATH:/usr/local/pig/spark
+ENV PATH $PATH:/usr/local/spark/bin
 
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \
@@ -45,4 +41,4 @@ RUN rm -rf /app/*
 EXPOSE  50070  8088  8888  5000
 EXPOSE  8881   8880  4040  4041
 
-CMD bash hdp-start.sh && jupyter lab --ip=0.0.0.0 --allow-root --no-browser && bash hdp-stop.sh
+# CMD bash hdp-start.sh && jupyter lab --ip=0.0.0.0 --allow-root --no-browser && bash hdp-stop.sh
