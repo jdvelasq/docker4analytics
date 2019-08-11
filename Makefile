@@ -1,7 +1,7 @@
-.PHONY: minimal  colab
+.PHONY: minimal  
 .PHONY: hadoop  pig  hive  mahout  spark  
-.PHONY: pyspark spark-r-base sparkr sparklyr spark-in-r
-.PHONY: aws
+.PHONY: pyspark spark-on-r
+.PHONY: jupyterlab
 
 hdp_version = 2.8.5
 pig_version = 0.17.0
@@ -10,62 +10,41 @@ mahout_version = 0.13.0
 spark_version = 2.4.3
 
 minimal:
-	docker build --tag=jdvelasq/jupyterlab:minimal  minimal/
-
+	docker build --tag=jdvelasq/jupyterlab:minimal-2019-2  minimal/
 
 hadoop:
-	docker build --tag=jdvelasq/jupyterlab:hadoop  \
+	docker build --tag=jdvelasq/hadoop:2019-2  \
 	             --build-arg  HDP_VERSION=$(hdp_version) \
 				 hadoop/	
 
+hive:
+	docker build --tag=jdvelasq/hive:2019-2  \
+	             --build-arg  HIVE_VERSION=$(hive_version) \
+				 hive/	
+mahout:
+	docker build --tag=jdvelasq/mahout:2019-2  \
+	             --build-arg  MAHOUT_VERSION=$(mahout_version) \
+				 mahout/	
+
 pig:
-	docker build --tag=jdvelasq/jupyterlab:pig  \
+	docker build --tag=jdvelasq/pig:2019-2  \
 	             --build-arg  PIG_VERSION=$(pig_version) \
 				 pig/	
 
-mahout:
-	docker build --tag=jdvelasq/jupyterlab:mahout  \
-	             --build-arg  MAHOUT_VERSION=$(mahout_version) \
-				 mahout/	
-hive:
-	docker build --tag=jdvelasq/jupyterlab:hive  \
-	             --build-arg  HIVE_VERSION=$(hive_version) \
-				 hive/	
-
 spark:
-	docker build --tag=jdvelasq/jupyterlab:spark  \
+	docker build --tag=jdvelasq/spark:2019-2  \
 	             --build-arg  SPARK_VERSION=$(spark_version) \
 				 spark/	
 
 pyspark:
-	docker build --tag=jdvelasq/jupyterlab:pyspark  \
+	docker build --tag=jdvelasq/pyspark:2019-2  \
 				 pyspark/	
 
-spark-r-base:
-	docker build --tag=jdvelasq/jupyterlab:spark-r-base  \
-				 spark-r-base/	
-
-sparkr:
-	docker build --tag=jdvelasq/jupyterlab:sparkr  \
-				 sparkR/	
-
-sparklyr:
-	docker build --tag=jdvelasq/jupyterlab:sparklyr  \
-				 sparklyr/	
-
 spark-on-r:
-	docker build --tag=jdvelasq/jupyterlab:spark-on-r  \
+	docker build --tag=jdvelasq/spark-on-r:2019-2  \
 				 spark-on-r/	
 
+jupyterlab: 
+	docker build --tag=jdvelasq/jupyterlab:2019-2  jupyterlab/
 
 
-colab: 
-	docker build --tag=jdvelasq/jupyterlab:colab  colab/
-
-aws:
-	docker build --tag=jdvelasq/jupyterlab:aws  \
-				 --build-arg  PIG_VERSION=$(pig_version) \
-				 --build-arg  HIVE_VERSION=$(hive_version) \
-				 --build-arg  MAHOUT_VERSION=$(mahout_version) \
-	             --build-arg  SPARK_VERSION=$(spark_version) \
-				 aws/

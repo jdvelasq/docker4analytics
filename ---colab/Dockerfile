@@ -1,8 +1,33 @@
-FROM jdvelasq/jupyterlab:minimal
+FROM jdvelasq/jupyterlab:minimal-2019-2
 
 WORKDIR /app
+COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
+
+##
+## Python - base
+##
+RUN pip3 install --trusted-host pypi.python.org  \
+         numpy    pandas   matplotlib   wordcloud
+
+##
+## Data Science 
+##
+RUN apt-get update && \
+    apt-get install -yq --no-install-recommends \
+        python3-venv \
+        libssh2-1-dev && \
+    rm -rf /var/lib/apt/lists/* && \
+    pip3 install --trusted-host pypi.python.org  \       
+        dask        numba \
+        sklearn     statsmodels \
+        tensorflow  mxnet       \
+        seaborn     altair      bokeh       networkx   \
+        rednose     nose        paver && \
+    pip3 install torch==1.2.0+cpu torchvision==0.4.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+
+
 
 ##
 ## R + IRkernel
@@ -10,6 +35,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \
         r-base \
+        r-base-dev \
+        r-recommended \
         libssl-dev \
         libffi-dev \
         libldap2-dev \
@@ -25,23 +52,6 @@ RUN apt-get update && \
     apt-get autoremove -yq && \
     rm -rf /var/lib/apt/lists/*
 
-##
-## Python - base
-##
-RUN pip3 install --trusted-host pypi.python.org  \
-         numpy    pandas   matplotlib   wordcloud
-
-##
-## Data Science
-##
-RUN apt-get update && \
-    apt-get install -yq --no-install-recommends \
-        python3-venv && \
-    rm -rf /var/lib/apt/lists/* && \
-    pip3 install --trusted-host pypi.python.org  \       
-        dask     numba   \
-        sklearn  statsmodels tensorflow  theano \
-        seaborn  altair      bokeh       datashader   holoviews  networkx
 
 ##
 ## R tidyverse + tensorflow-for-R
@@ -55,8 +65,11 @@ RUN apt-get update && \
     Rscript -e "library(tensorflow); install_tensorflow()"  && \
     apt-get purge -yq build-essential && \
     apt-get autoremove -yq && \
-    rm -rf /var/lib/apt/lists/*
-    
+    rm -rf /tmp/R*
+
+
+RUN pip3 install rpy2
+
 
 ##
 ## MySql
@@ -67,7 +80,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --trusted-host pypi.python.org  \ 
-            ipython-sql   pymysql
+        ipython-sql   pymysql
 
 ##
 ## 
@@ -85,12 +98,9 @@ RUN apt-get update && \
     apt-get autoremove -yq && \
     rm -rf /var/lib/apt/lists/*
 
-    
- 
 ##
 ## Puertos
 ##
 EXPOSE   8888  5000  8000  6006  
 
-#CMD bash
 CMD jupyter lab --ip=0.0.0.0 --allow-root --no-browser

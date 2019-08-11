@@ -1,4 +1,4 @@
-FROM jdvelasq/jupyterlab:minimal
+FROM jdvelasq/jupyterlab:minimal-2019-2
 
 ARG HDP_VERSION
 

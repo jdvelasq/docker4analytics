@@ -1,4 +1,4 @@
-FROM jdvelasq/jupyterlab:hadoop
+FROM jdvelasq/hadoop:2019-2
 
 ARG SPARK_VERSION
 

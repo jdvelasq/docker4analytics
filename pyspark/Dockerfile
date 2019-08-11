@@ -1,4 +1,4 @@
-FROM jdvelasq/jupyterlab:spark
+FROM jdvelasq/spark:2019-2
 
 ARG SPARK_VERSION
 
