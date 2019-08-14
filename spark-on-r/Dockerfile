@@ -23,11 +23,15 @@ RUN apt-get update && \
         libcurl4-openssl-dev \
         build-essential && \
     pip3 install --trusted-host pypi.python.org rpy2 && \
-    Rscript -e "install.packages(c('repr', 'IRdisplay', 'IRkernel', 'dplyr'), repos = 'http://cran.us.r-project.org', type = 'source'); IRkernel::installspec(user=FALSE)"  && \
+    Rscript -e "install.packages(c('dplyr'), repos = 'http://cran.us.r-project.org')"  && \
+    Rscript -e "install.packages(c('IRkernel'), repos = 'http://cran.us.r-project.org')"  && \
     Rscript -e "IRkernel::installspec(user=FALSE)" && \
     apt-get purge -yq build-essential && \
     apt-get autoremove -yq && \
     rm -rf /var/lib/apt/lists/*
+
+#    Rscript -e "install.packages(c('repr', 'IRdisplay', 'IRkernel', 'dplyr'), repos = 'http://cran.us.r-project.org', type = 'source'); IRkernel::installspec(user=FALSE)"  && \
+
 
 ##
 ## SparkR + sparklyr

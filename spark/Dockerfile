@@ -21,7 +21,9 @@ ENV PATH $PATH:/usr/local/spark/bin
 
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \
-        curl && \
+        curl \
+        netcat \
+        net-tools && \
     curl -O https://www-eu.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-without-hadoop.tgz && \
     tar -xzf spark-$SPARK_VERSION-bin-without-hadoop.tgz && \
     mv spark-$SPARK_VERSION-bin-without-hadoop /usr/local/spark && \
