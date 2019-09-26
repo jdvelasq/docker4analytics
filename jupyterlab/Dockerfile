@@ -17,16 +17,20 @@ RUN pip3 install --trusted-host pypi.python.org  \
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \
         python3-venv \
-        libssh2-1-dev && \
+        libssh2-1-dev \ 
+        build-essential \
+        pylint \
+        pandoc && \
     rm -rf /var/lib/apt/lists/* && \
     pip3 install --trusted-host pypi.python.org  \       
         dask        numba \
         sklearn     statsmodels \
         tensorflow  mxnet       \
         seaborn     altair      bokeh       networkx   \
-        rednose     nose        paver && \
+        rednose     nose        paver       wheel      \
+        setuptools  twine       sphinx      sphinx_rtd_theme \
+        nbsphinx    Pygments    ipykernel   && \
     pip3 install torch==1.2.0+cpu torchvision==0.4.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
-
 
 
 ##
@@ -43,12 +47,10 @@ RUN apt-get update && \
         libsasl2-dev \
         libxml2-dev \
         libzmq3-dev \
-        libcurl4-openssl-dev \
-        build-essential && \
+        libcurl4-openssl-dev && \
     pip3 install --trusted-host pypi.python.org rpy2 && \
     Rscript -e "install.packages(c('repr', 'IRdisplay', 'IRkernel', 'dplyr'), repos = 'http://cran.us.r-project.org', type = 'source'); IRkernel::installspec(user=FALSE)"  && \
     Rscript -e "IRkernel::installspec(user=FALSE)" && \
-    apt-get purge -yq build-essential && \
     apt-get autoremove -yq && \
     rm -rf /var/lib/apt/lists/*
 
@@ -57,16 +59,14 @@ RUN apt-get update && \
 ## R tidyverse + tensorflow-for-R
 ##
 RUN apt-get update && \
-    apt-get install -yq --no-install-recommends \
-        build-essential && \
     Rscript -e "install.packages(c('tidyverse'), repos = 'http://cran.us.r-project.org')"  && \
     Rscript -e "install.packages(c('devtools'), repos = 'http://cran.us.r-project.org')"  && \
+    Rscript -e "install.packages(c('txtplot'), repos = 'http://cran.us.r-project.org')"  && \
     Rscript -e "devtools::install_github('rstudio/tensorflow')"  && \
     Rscript -e "library(tensorflow); install_tensorflow()"  && \
     apt-get purge -yq build-essential && \
     apt-get autoremove -yq && \
     rm -rf /tmp/R*
-
 
 RUN pip3 install rpy2
 
@@ -97,6 +97,8 @@ RUN apt-get update && \
     apt-get purge -yq python3-dev  g++  && \
     apt-get autoremove -yq && \
     rm -rf /var/lib/apt/lists/*
+
+
 
 ##
 ## Puertos
