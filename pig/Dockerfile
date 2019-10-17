@@ -1,4 +1,4 @@
-FROM jdvelasq/hadoop:2019-2
+FROM jdvelasq/hadoop:2.8.5
 
 ARG PIG_VERSION
 
