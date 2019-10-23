@@ -48,5 +48,8 @@ EXPOSE  50070  8088  8888  5000
 
 RUN rm -rf /app/*
 
-CMD bash hdp-start.sh && jupyter lab --ip=0.0.0.0 --allow-root --no-browser && bash hdp-stop.sh
+ENTRYPOINT bash hdp-start.sh &&
+CMD /bin/bash
+
+# CMD  jupyter lab --ip=0.0.0.0 --allow-root --no-browser && bash hdp-stop.sh
 

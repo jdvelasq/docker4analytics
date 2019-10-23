@@ -40,5 +40,5 @@ RUN pip3 install --trusted-host pypi.python.org setuptools wheel && \
 ##
 EXPOSE   8888
 
-#CMD bash
-CMD jupyter lab --ip=0.0.0.0 --allow-root --no-browser
+CMD bash
+# CMD jupyter lab --ip=0.0.0.0 --allow-root --no-browser
