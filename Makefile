@@ -1,4 +1,4 @@
-.PHONY: minimal  
+.PHONY: python-3.7-minimal
 .PHONY: hadoop  pig  hive  mahout  spark  
 .PHONY: pyspark spark-on-r
 .PHONY: jupyterlab
@@ -9,8 +9,8 @@ hive_version = 2.3.5
 mahout_version = 0.13.0
 spark_version = 2.4.3
 
-minimal:
-	docker build --tag=jdvelasq/jupyterlab:minimal-2019-2  minimal/
+python-3.7-minimal:
+	docker build --tag=jdvelasq/python:3.7-minimal  python-3.7-minimal/
 
 hadoop:
 	docker build --tag=jdvelasq/hadoop:$(hdp_version)  \
