@@ -1,25 +1,38 @@
+#
+# How to run:
+#
+#    docker run --rm -it -v "$PWD":/app -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hadoop:2.8.5
+#
+# How to make:
+#
+#    docker build --tag=jdvelasq/hadoop:2.8.5  .
+#
+# How to push
+#
+#    docker push jdvelasq/hadoop:2.8.5
+#
+
 FROM jdvelasq/python:3.7-minimal
 
-ARG HDP_VERSION
+ENV HDP_VERSION 2.8.5
 
 WORKDIR /app
 COPY .  /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
-##
-## Java
-##
+#
+# Java
+#
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $PATH:$JAVA_HOME/bin
-RUN apt-get update && \
-    apt-get install -yq --no-install-recommends \
-        openjdk-8-jdk && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && apt-get install -yq --no-install-recommends openjdk-8-jdk \
+    && rm -rf /var/lib/apt/lists/*
 
-##
-## Hadoop
-##
+#
+# Hadoop
+#
 ENV PATH $PATH:/usr/local/hadoop/bin:/usr/local/hadoop/sbin
 
 ENV HADOOP_CLASSPATH  /usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar
@@ -29,27 +42,26 @@ ENV HADOOP_COMMON_LIB_NATIVE_DIR  /usr/local/hadoop/lib/native
 ENV HADOOP_OPTS  "-Djava.library.path=/usr/local/hadoop/lib/native"
 ENV HADOOP_ROOT_LOGGER  "ERROR,console"
 
-RUN apt-get update && \ 
-    apt-get install -yq --no-install-recommends curl && \
-    curl -O https://www-eu.apache.org/dist/hadoop/common/hadoop-${HDP_VERSION}/hadoop-${HDP_VERSION}.tar.gz && \
-    tar -xzf hadoop-${HDP_VERSION}.tar.gz && \
-    mv hadoop-${HDP_VERSION} /usr/local/hadoop && \
-    rm hadoop-${HDP_VERSION}.tar.gz && \
-    chmod 0777 /usr/local/hadoop && \ 
-    apt-get purge -yq curl && \
-    apt-get autoremove -yq && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update \ 
+    && apt-get install -yq --no-install-recommends curl \
+    && curl -O https://www-eu.apache.org/dist/hadoop/common/hadoop-${HDP_VERSION}/hadoop-${HDP_VERSION}.tar.gz \
+    && tar -xzf hadoop-${HDP_VERSION}.tar.gz \
+    && mv hadoop-${HDP_VERSION} /usr/local/hadoop \
+    && rm hadoop-${HDP_VERSION}.tar.gz \
+    && chmod 0777 /usr/local/hadoop \ 
+    && apt-get purge -yq curl \
+    && apt-get autoremove -yq \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN  mv conf/*  /usr/local/hadoop/etc/hadoop/ && \
-     mv bin/*  /usr/local/bin/ && \
-     mv etc/environment  /etc/environment
+RUN mv conf/* /usr/local/hadoop/etc/hadoop/ \
+    && mv bin/* /usr/local/bin/ \
+    && mv etc/environment /etc/environment
         
-EXPOSE  50070  8088  8888  5000
+EXPOSE 50070 8088 8888 5000
 
 RUN rm -rf /app/*
 
-ENTRYPOINT bash hdp-start.sh &&
-CMD /bin/bash
+ENV DEBIAN_FRONTEND= 
 
-# CMD  jupyter lab --ip=0.0.0.0 --allow-root --no-browser && bash hdp-stop.sh
+ENTRYPOINT bash hdp-start.sh && /bin/bash && bash hdp-stop.sh
 
