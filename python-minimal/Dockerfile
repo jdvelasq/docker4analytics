@@ -1,3 +1,18 @@
+#
+# How to run:
+#
+#    docker run --rm -it -v "$PWD":/app -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hadoop:2.8.5
+#
+# How to make:
+#
+#    docker build --tag=jdvelasq/python:3.7-minimal  .
+#
+# How to push
+#
+#    docker push jdvelasq/python:3.7-minimal
+#
+
+
 FROM ubuntu:18.04
 
 WORKDIR /app
@@ -34,6 +49,9 @@ RUN apt-get update && \
 
 RUN pip3 install --trusted-host pypi.python.org setuptools wheel && \
     pip3 install --trusted-host pypi.python.org jupyterlab
+
+
+VOLUME /datalake
 
 #
 # Puertos
