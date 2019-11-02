@@ -1,7 +1,7 @@
 #
 # How to run:
 #
-#    docker run --rm -it -v "$PWD":/app -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hadoop:2.8.5
+#    docker run --rm -it -v "$PWD":/datalake -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hadoop:2.8.5
 #
 # How to make:
 #
@@ -62,6 +62,8 @@ EXPOSE 50070 8088 8888 5000
 RUN rm -rf /app/*
 
 ENV DEBIAN_FRONTEND= 
+
+VOLUME /datalake
 
 ENTRYPOINT bash hdp-start.sh && /bin/bash && bash hdp-stop.sh
 
