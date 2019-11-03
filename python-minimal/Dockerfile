@@ -1,9 +1,5 @@
 #
-# How to run:
-#
-#    docker run --rm -it -v "$PWD":/datalake -p 8888:8888 jdvelasq/python:3.7-minimal
-#
-# How to make:
+# How to build:
 #
 #    docker build --tag=jdvelasq/python:3.7-minimal  .
 #
@@ -11,9 +7,15 @@
 #
 #    docker push jdvelasq/python:3.7-minimal
 #
+# How to run:
+#
+#    docker run --rm -it -v "$PWD":/datalake -p 8888:8888 jdvelasq/python:3.7-minimal
+#
+#    docker run --rm -it -v datalake:/datalake -p 8888:8888 jdvelasq/python:3.7-minimal
+#
 # How to run jupyter lab:
 #
-#    jupyter lab --ip=0.0.0.0 --allow-root --no-browser
+#    jupyter lab --ip=0.0.0.0 --allow-root --no-browser (deprecated)
 #
 
 FROM ubuntu:18.04
@@ -46,6 +48,9 @@ RUN apt-get update \
 RUN pip3 install --trusted-host pypi.python.org setuptools wheel \
     && pip3 install --trusted-host pypi.python.org jupyterlab
 
+RUN mkdir /root/.jupyter \
+    && mv jupyter_notebook_config.py /root/.jupyter/
+
 # nodejs
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends curl \
@@ -53,8 +58,13 @@ RUN apt-get update \
     && apt-get install -yq --no-install-recommends nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-VOLUME /datalake
+# nano
+RUN apt-get update \
+    && apt-get install -yq --no-install-recommends nano \
+    && rm -rf /var/lib/apt/lists/*
 
+VOLUME /datalake
+WORKDIR /datalake
 
 # Ports
 EXPOSE   8888
