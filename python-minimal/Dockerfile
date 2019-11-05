@@ -25,6 +25,11 @@ COPY .  /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
+# git, curl, wget, nano, apt-utils
+RUN apt-get update \
+    && apt-get install -yq --no-install-recommends curl  wget  git  nano apt-utils \
+    && rm -rf /var/lib/apt/lists/*
+
 # ssh 
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
@@ -52,21 +57,13 @@ RUN mkdir /root/.jupyter \
     && mv jupyter_notebook_config.py /root/.jupyter/
 
 # nodejs
-RUN apt-get update \
-    && apt-get install -yq --no-install-recommends curl \
-    && curl -sL https://deb.nodesource.com/setup_13.x | bash - \
-    && apt-get install -yq --no-install-recommends nodejs \
-    && rm -rf /var/lib/apt/lists/*
+RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - \
+    && apt-get install -yq --no-install-recommends nodejs 
 
-# nano
-RUN apt-get update \
-    && apt-get install -yq --no-install-recommends nano \
-    && rm -rf /var/lib/apt/lists/*
-
+# generic
+EXPOSE 8888
+RUN rm -rf /app/*
+ENV DEBIAN_FRONTEND= 
 VOLUME /datalake
 WORKDIR /datalake
-
-# Ports
-EXPOSE   8888
-
-CMD bash
+ENTRYPOINT bash
