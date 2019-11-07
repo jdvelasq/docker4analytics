@@ -9,11 +9,16 @@
 #
 # How to run:
 #
-#    docker run --rm -it -v "$PWD":/datalake -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hadoop:2.8.5
+#    docker run --rm -it -v "$PWD":/datalake --name hadoop -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hadoop:2.8.5
 #
-#    docker run --rm -it -v datalake:/datalake -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hadoop:2.8.5
+#    docker run --rm -it -v datalake:/datalake --name hadoop -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hadoop:2.8.5
+#
+# How to connect to a container:
+#
+#    docker exec -it hadoop bash
 #
 # hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar -files mapper.py,reducer.py  -input input -output output -mapper 'python3 mapper.py'   -reducer 'python3 reducer.py'
+#
 
 FROM jdvelasq/python:3.7-minimal
 

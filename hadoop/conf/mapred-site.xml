@@ -5,6 +5,7 @@
         <name>mapreduce.framework.name</name>
         <value>yarn</value>
     </property>
+    <!--
     <property>
         <name>mapreduce.map.log.level</name>
         <value>ERROR</value>
@@ -17,4 +18,5 @@
         <name>yarn.app.mapreduce.am.log.level</name>
         <value>ERROR</value>
     </property>
+    -->
 </configuration>

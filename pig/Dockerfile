@@ -9,10 +9,16 @@
 #
 # How to run:
 #
-#    docker run --rm -it -v "$PWD":/datalake -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pig:0.17.0
+#    docker run --rm -it -v "$PWD":/datalake  --name pig -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pig:0.17.0
 #
-#    docker run --rm -it -v datalake:/datalake -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pig:0.17.0
+#    docker run --rm -it -v datalake:/datalake --name pig  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pig:0.17.0
 #
+# How to connect to container:
+#
+#    docker exec -it pig bash
+#
+
+
 
 FROM jdvelasq/hadoop:2.8.5
 
@@ -42,5 +48,4 @@ RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
 VOLUME /datalake
 WORKDIR /datalake
-ENTRYPOINT bash hdp-start.sh && /bin/bash && bash hdp-stop.sh
-
+ENTRYPOINT bash hdp-start.sh && mr-jobhistory-daemon.sh start historyserver && /bin/bash && bash hdp-stop.sh
