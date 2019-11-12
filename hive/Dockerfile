@@ -41,7 +41,7 @@ RUN curl -O https://www-eu.apache.org/dist/hive/hive-$HIVE_VERSION/apache-hive-$
 COPY conf/hive-site.xml  /usr/local/hive/conf/ 
 
 # Scripts de inicio de hadoop
-COPY bin/*.sh   /usr/local/bin/
+COPY bin/*.sh /usr/local/bin/
 
 # Parte generica
 EXPOSE 50070 8088 8888 5000
@@ -49,4 +49,4 @@ RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
 VOLUME /datalake
 WORKDIR /datalake
-ENTRYPOINT bash hdp-start.sh && mr-jobhistory-daemon.sh start historyserver && /bin/bash && bash hdp-stop.sh
+ENTRYPOINT bash hdp-start.sh && mr-jobhistory-daemon.sh start historyserver && bash && bash hdp-stop.sh

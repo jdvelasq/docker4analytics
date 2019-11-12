@@ -48,4 +48,4 @@ RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
 VOLUME /datalake
 WORKDIR /datalake
-ENTRYPOINT bash hdp-start.sh && mr-jobhistory-daemon.sh start historyserver && /bin/bash && bash hdp-stop.sh
+ENTRYPOINT bash hdp-start.sh && mr-jobhistory-daemon.sh start historyserver && bash && bash hdp-stop.sh
