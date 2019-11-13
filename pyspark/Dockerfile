@@ -1,43 +1,51 @@
-FROM jdvelasq/spark:2019-2
+#
+# How to build:
+#
+#    docker build --tag=jdvelasq/pyspark:2.4.4  .
+#
+# How to push
+#
+#    docker push jdvelasq/pyspark:2.4.4
+#
+# How to run:
+#
+#    docker run --rm -it -v "$PWD":/datalake  --name pyspark -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pyspark:2.4.4
+#
+#    docker run --rm -it -v datalake:/datalake --name pyspark  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pyspark:2.4.4
+#
+# How to connect to container:
+#
+#    docker exec -it pyspark bash
+#
 
-ARG SPARK_VERSION
+FROM jdvelasq/spark:2.4.4
+
+ENV SPARK_VERSION 2.4.4
 
 WORKDIR /app
 COPY .  /app
 
-##
-## Sistema operativo
-##
 ENV DEBIAN_FRONTEND noninteractive
 
-##
-## Python - base
-##
+# Librerias base base
 RUN pip3 install --trusted-host pypi.python.org  \
-         numpy    pandas   matplotlib   wordcloud
+        numpy \
+        pandas \
+        matplotlib \
+        wordcloud
 
-##
-## PySpark
-##
+# PySpark
 ENV PYSPARK_DRIVER_PYTHON ipython
-
 ENV PYSPARK_PYTHON python3
-
-
 RUN pip3 install  --trusted-host pypi.python.org \
         findspark  \
-        pyspark
+        pyspark==$SPARK_VERSION
 
-
-##
-## Limpia la instalacion
-##
-RUN rm -rf /app/*
-
-##
-## Puertos
-##
+# Parte generica
 EXPOSE  50070  8088  8888  5000
 EXPOSE  8881   8880  4040  4041
-
-CMD bash hdp-start.sh && jupyter lab --ip=0.0.0.0 --allow-root --no-browser && bash hdp-stop.sh
+RUN rm -rf /app/*
+ENV DEBIAN_FRONTEND= 
+VOLUME /datalake
+WORKDIR /datalake
+ENTRYPOINT bash hdp-start.sh && bash && bash hdp-stop.sh
