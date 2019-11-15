@@ -1,17 +1,17 @@
 #
 # How to build:
 #
-#    docker build --tag=jdvelasq/python:3.7-minimal  .
+#    docker build --tag=jdvelasq/python:3.6.8-minimal  .
 #
 # How to push
 #
-#    docker push jdvelasq/python:3.7-minimal
+#    docker push jdvelasq/python:3.6.8-minimal
 #
 # How to run:
 #
-#    docker run --rm -it -v "$PWD":/datalake -p 8888:8888 jdvelasq/python:3.7-minimal
+#    docker run --rm -it -v "$PWD":/datalake -p 8888:8888 jdvelasq/python:3.6.8-minimal
 #
-#    docker run --rm -it -v datalake:/datalake -p 8888:8888 jdvelasq/python:3.7-minimal
+#    docker run --rm -it -v datalake:/datalake -p 8888:8888 jdvelasq/python:3.6.8-minimal
 #
 # How to run jupyter lab:
 #
@@ -25,19 +25,28 @@ COPY .  /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# git, curl, wget, nano, apt-utils
 RUN apt-get update \
-    && apt-get install -yq --no-install-recommends curl  wget  git  nano apt-utils \
+    && apt-get install -yq --no-install-recommends \
+        apt-utils \
+    && rm -rf /var/lib/apt/lists/*
+
+# git, curl, wget, nano
+RUN apt-get update \
+    && apt-get install -yq --no-install-recommends \
+        curl \
+        git \
+        wget \
+        nano \
     && rm -rf /var/lib/apt/lists/*
 
 # ssh 
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
-        ssh \
         rsync \
+        ssh \
     && rm -rf /var/lib/apt/lists/*
     
-RUN mv ssh/ssh_config  /etc/ssh/ssh_config \
+RUN mv ssh/ssh_config /etc/ssh/ssh_config \
 	&& rm -f /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key /root/.ssh/id_rsa \
 	&& ssh-keygen  -t rsa -P '' -f /root/.ssh/id_rsa \
 	&& cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys \
@@ -46,12 +55,15 @@ RUN mv ssh/ssh_config  /etc/ssh/ssh_config \
 # Python 3.7
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
-        python3.7-minimal \
+        python3-minimal \
         python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --trusted-host pypi.python.org setuptools wheel \
-    && pip3 install --trusted-host pypi.python.org jupyterlab
+RUN pip3 install --trusted-host pypi.python.org \
+        setuptools \
+        wheel \
+    && pip3 install --trusted-host pypi.python.org \
+        jupyterlab
 
 RUN mkdir /root/.jupyter \
     && mv jupyter_notebook_config.py /root/.jupyter/

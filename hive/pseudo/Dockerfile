@@ -1,29 +1,29 @@
 #
 # How to build:
 #
-#    docker build --tag=jdvelasq/hive:2.3.6 .
+#    docker build --tag=jdvelasq/hive:2.3.6-pseudo .
 #
 # How to push
 #
-#    docker push jdvelasq/hive:2.3.6
+#    docker push jdvelasq/hive:2.3.6-pseudo
 #
 # How to run:
 #
-#    docker run --rm -it -v "$PWD":/datalake  --name hive -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hive:2.3.6
+#    docker run --rm -it -v "$PWD":/datalake  --name hive -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hive:2.3.6-pseudo
 #
-#    docker run --rm -it -v datalake:/datalake --name hive  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hive:2.3.6
+#    docker run --rm -it -v datalake:/datalake --name hive  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hive:2.3.6-pseudo
 #
 # How to connect to container:
 #
 #    docker exec -it hive bash
 #
 
-FROM jdvelasq/hadoop:2.8.5
+FROM jdvelasq/hadoop:2.8.5-pseudo
 
 ENV HIVE_VERSION 2.3.6
 
 WORKDIR /app
-COPY .  /app
+COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
  

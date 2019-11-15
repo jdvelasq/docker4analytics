@@ -1,17 +1,17 @@
 #
 # How to build:
 #
-#    docker build --tag=jdvelasq/hadoop:2.8.5  .
+#    docker build --tag=jdvelasq/hadoop:2.8.5-pseudo .
 #
 # How to push
 #
-#    docker push jdvelasq/hadoop:2.8.5
+#    docker push jdvelasq/hadoop:2.8.5-pseudo
 #
 # How to run:
 #
-#    docker run --rm -it -v "$PWD":/datalake --name hadoop -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hadoop:2.8.5
+#    docker run --rm -it -v "$PWD":/datalake --name hadoop -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hadoop:2.8.5-pseudo
 #
-#    docker run --rm -it -v datalake:/datalake --name hadoop -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hadoop:2.8.5
+#    docker run --rm -it -v datalake:/datalake --name hadoop -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hadoop:2.8.5-pseudo
 #
 # How to connect to a container:
 #
@@ -20,15 +20,14 @@
 # hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar -files mapper.py,reducer.py  -input input -output output -mapper 'python3 mapper.py'   -reducer 'python3 reducer.py'
 #
 
-FROM jdvelasq/python:3.7-minimal
+FROM jdvelasq/python:3.6.8-minimal
 
 ENV HDP_VERSION 2.8.5
 
 WORKDIR /app
-COPY .  /app
+COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
-
 
 # Java
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
@@ -36,7 +35,6 @@ ENV PATH $PATH:$JAVA_HOME/bin
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends openjdk-8-jdk \
     && rm -rf /var/lib/apt/lists/*
-
 
 # Hadoop
 ENV PATH $PATH:/usr/local/hadoop/bin:/usr/local/hadoop/sbin
@@ -57,9 +55,7 @@ RUN curl -O https://www-eu.apache.org/dist/hadoop/common/hadoop-${HDP_VERSION}/h
     && mv bin/* /usr/local/bin/ \
     && mv etc/environment /etc/environment
         
-#
 # Parte generica
-#
 EXPOSE 50070 8088 8888 5000
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 

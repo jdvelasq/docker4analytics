@@ -1,19 +1,19 @@
 #
 # How to build:
 #
-#    docker build --tag=jdvelasq/spark:2.4.4 .
+#    docker build --tag=jdvelasq/spark:2.4.4-pseudo .
 #
 # How to push
 #
-#    docker push jdvelasq/spark:2.4.4
+#    docker push jdvelasq/spark:2.4.4-pseudo
 #
 
-FROM jdvelasq/hadoop:2.8.5
+FROM jdvelasq/hadoop:2.8.5-pseudo
 
 ENV SPARK_VERSION 2.4.4
 
 WORKDIR /app
-COPY .  /app
+COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
 

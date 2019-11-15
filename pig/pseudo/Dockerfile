@@ -1,17 +1,17 @@
 #
 # How to build:
 #
-#    docker build --tag=jdvelasq/pig:0.17.0  .
+#    docker build --tag=jdvelasq/pig:0.17.0-pseudo  .
 #
 # How to push
 #
-#    docker push jdvelasq/pig:0.17.0
+#    docker push jdvelasq/pig:0.17.0-pseudo
 #
 # How to run:
 #
-#    docker run --rm -it -v "$PWD":/datalake  --name pig -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pig:0.17.0
+#    docker run --rm -it -v "$PWD":/datalake  --name pig -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pig:0.17.0-pseudo
 #
-#    docker run --rm -it -v datalake:/datalake --name pig  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pig:0.17.0
+#    docker run --rm -it -v datalake:/datalake --name pig  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pig:0.17.0-pseudo
 #
 # How to connect to container:
 #
@@ -20,7 +20,7 @@
 
 
 
-FROM jdvelasq/hadoop:2.8.5
+FROM jdvelasq/hadoop:2.8.5-pseudo
 
 ENV PIG_VERSION 0.17.0
 
