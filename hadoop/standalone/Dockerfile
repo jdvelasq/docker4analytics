@@ -20,12 +20,16 @@
 
 FROM jdvelasq/hadoop:2.8.5-pseudo
 
+WORKDIR /app
+COPY . /app
+
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN cp /standalone/* /usr/local/hadoop/etc/hadoop/
-        
+RUN mv conf/* /usr/local/hadoop/etc/hadoop/ 
+RUN rm -rf /app/*
+
 # Parte generica
-EXPOSE 50070 8088 8888 5000
+EXPOSE 8888
 ENV DEBIAN_FRONTEND= 
 VOLUME /datalake
 WORKDIR /datalake
