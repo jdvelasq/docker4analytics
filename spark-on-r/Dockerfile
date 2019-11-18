@@ -57,4 +57,4 @@ RUN rm -rf /app/*
 EXPOSE  50070  8088  8888  5000
 EXPOSE  8881   8880  4040  4041
 
-CMD bash hdp-start.sh && jupyter lab --ip=0.0.0.0 --allow-root --no-browser && bash hdp-stop.sh
+CMD /etc/init.d/ssh start &&  bash hadoop-start.sh && bash && bash hadoop-stop.sh

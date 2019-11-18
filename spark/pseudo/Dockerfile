@@ -38,4 +38,4 @@ RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
 VOLUME /datalake
 WORKDIR /datalake
-ENTRYPOINT bash hdp-start.sh && bash && bash hdp-stop.sh
+ENTRYPOINT /etc/init.d/ssh start && bash hadoop-start.sh && bash && bash hadoop-stop.sh

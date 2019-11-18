@@ -42,6 +42,7 @@ RUN apt-get update \
 # ssh 
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
+        pdsh \
         rsync \
         ssh \
     && rm -rf /var/lib/apt/lists/*
@@ -78,4 +79,4 @@ RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
 VOLUME /datalake
 WORKDIR /datalake
-ENTRYPOINT bash
+ENTRYPOINT /etc/init.d/ssh start && bash

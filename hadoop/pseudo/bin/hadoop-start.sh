@@ -1,4 +1,4 @@
-/etc/init.d/ssh start
+# /etc/init.d/ssh start
 
 rm -rf /tmp/hadoop-root/dfs/name
 
@@ -10,8 +10,8 @@ hdfs dfs -chmod 777   /tmp
 hdfs dfs -mkdir       /user
 hdfs dfs -mkdir       /user/root
 
-## Si se agrega para Apache Pig hadoop muere en la corrida
-## mr-jobhistory-daemon.sh start historyserver
+# Si se agrega para Apache Pig hadoop muere en la corrida
+# mr-jobhistory-daemon.sh start historyserver
 
 echo 
 echo ======================================
