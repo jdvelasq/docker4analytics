@@ -1,43 +1,49 @@
-FROM jdvelasq/hadoop:2019-2
+#
+# How to build:
+#
+#    docker build --tag=jdvelasq/mahout:0.13.0-pseudo  .
+#
+# How to push
+#
+#    docker push jdvelasq/mahout:0.13.0-pseudo
+#
+# How to run:
+#
+#    docker run --rm -it -v "$PWD":/datalake  --name mahout -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/mahout:0.13.0-pseudo
+#
+#    docker run --rm -it -v datalake:/datalake --name mahout  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/mahout:0.13.0-pseudo
+#
+# How to connect to container:
+#
+#    docker exec -it mahout bash
+#
 
-ARG MAHOUT_VERSION
+
+FROM jdvelasq/hadoop:2.8.5-pseudo
+
+ENV MAHOUT_VERSION 0.13.0
 
 WORKDIR /app
 COPY .  /app
 
-##
-## Sistema operativo
-##
 ENV DEBIAN_FRONTEND noninteractive
 
-##
-## Python
-##
 RUN pip3 install bigdata
 
-##
-## Mahout
-##
+# Mahout
 ENV MAHOUT_HOME  /usr/local/mahout
 ENV PATH $PATH:/usr/local/mahout/bin
-RUN apt-get update && \ 
-    apt-get install -yq --no-install-recommends curl && \
-    curl -O http://archive.apache.org/dist/mahout/$MAHOUT_VERSION/apache-mahout-distribution-$MAHOUT_VERSION.tar.gz && \
-    tar -xzf apache-mahout-distribution-$MAHOUT_VERSION.tar.gz && \
-    mv apache-mahout-distribution-$MAHOUT_VERSION /usr/local/mahout && \
-    rm apache-mahout-distribution-$MAHOUT_VERSION.tar.gz && \
-    apt-get purge -yq curl && \
-    apt-get autoremove -yq && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update \ 
+    && curl -O http://archive.apache.org/dist/mahout/$MAHOUT_VERSION/apache-mahout-distribution-$MAHOUT_VERSION.tar.gz \
+    && tar -xzf apache-mahout-distribution-$MAHOUT_VERSION.tar.gz \
+    && mv apache-mahout-distribution-$MAHOUT_VERSION /usr/local/mahout \
+    && rm apache-mahout-distribution-$MAHOUT_VERSION.tar.gz \
+    && rm -rf /var/lib/apt/lists/*
 
-##
-## Limpia la instalacion
-##
+# Parte generica
+EXPOSE 50070 8088 8888 5000
 RUN rm -rf /app/*
-
-##
-## Puertos
-##
-EXPOSE  50070  8088  8888  5000
-
-CMD /etc/init.d/ssh start &&  bash hadoop-start.sh && bash && bash hadoop-stop.sh
+ENV DEBIAN_FRONTEND= 
+VOLUME /datalake
+WORKDIR /datalake
+ENTRYPOINT /etc/init.d/ssh start && bash hadoop-start.sh && mr-jobhistory-daemon.sh start historyserver && bash && bash hadoop-stop.sh
