@@ -24,7 +24,11 @@ WORKDIR /app
 COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
- 
+ENV HIVE_HOME /usr/local/hive
+ENV HIVE_CONF_DIR /usr/local/hive/conf
+ENV PATH $PATH:/usr/local/hive/bin        
+
+
 RUN mv conf/* /usr/local/hadoop/etc/hadoop/ 
 RUN rm -rf /app/*
 

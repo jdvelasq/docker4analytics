@@ -27,6 +27,9 @@ COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
+ENV PIG_HOME /usr/local/pig
+ENV PATH $PATH:/usr/local/pig/bin
+
 RUN mv conf/* /usr/local/hadoop/etc/hadoop/ 
 RUN rm -rf /app/*
 
