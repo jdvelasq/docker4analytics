@@ -1,38 +1,20 @@
 #
-# How to build:
+# docker build --tag=jdvelasq/python:3.6.9-minimal .
+# docker push jdvelasq/python:3.6.9-minimal
+# docker run --rm -it -v "$PWD":/datalake -p 8888:8888 jdvelasq/python:3.6.9-minimal
+# docker run --rm -it -v datalake:/datalake -p 8888:8888 jdvelasq/python:3.6.9-minimal
 #
-#    docker build --tag=jdvelasq/python:3.6.8-minimal  .
-#
-# How to push
-#
-#    docker push jdvelasq/python:3.6.8-minimal
-#
-# How to run:
-#
-#    docker run --rm -it -v "$PWD":/datalake -p 8888:8888 jdvelasq/python:3.6.8-minimal
-#
-#    docker run --rm -it -v datalake:/datalake -p 8888:8888 jdvelasq/python:3.6.8-minimal
-#
-# How to run jupyter lab:
-#
-#    jupyter lab --ip=0.0.0.0 --allow-root --no-browser (deprecated)
-#
-
 FROM ubuntu:18.04
 
 WORKDIR /app
-COPY .  /app
+COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get update \
-    && apt-get install -yq --no-install-recommends \
-        apt-utils \
-    && rm -rf /var/lib/apt/lists/*
 
 # git, curl, wget, nano
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
+        apt-utils \ 
         curl \
         git \
         wget \
@@ -45,38 +27,95 @@ RUN apt-get update \
         pdsh \
         rsync \
         ssh \
-    && rm -rf /var/lib/apt/lists/*
-    
-RUN mv ssh/ssh_config /etc/ssh/ssh_config \
+    && rm -rf /var/lib/apt/lists/* \
+    && mv ssh/ssh_config /etc/ssh/ssh_config \
 	&& rm -f /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key /root/.ssh/id_rsa \
 	&& ssh-keygen  -t rsa -P '' -f /root/.ssh/id_rsa \
 	&& cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys \
 	&& chmod 0600 /root/.ssh/authorized_keys  
 
-# Python 3.7
+# nodejs
+RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - \
+    && apt-get update \
+    && apt-get install -yq --no-install-recommends nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+# Python 3.7 + jupyter
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
         python3-minimal \
         python3-pip \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN pip3 install --trusted-host pypi.python.org \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip3 install --trusted-host pypi.python.org \
         setuptools \
         wheel \
     && pip3 install --trusted-host pypi.python.org \
-        jupyterlab
-
-RUN mkdir /root/.jupyter \
+        jupyterlab \
+    && mkdir /root/.jupyter \
     && mv jupyter_notebook_config.py /root/.jupyter/
 
-# nodejs
-RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - \
-    && apt-get install -yq --no-install-recommends nodejs 
+# Sphinx
+RUN apt-get update \
+    && apt-get -yq --no-install-recommends install \
+        make \
+        pandoc \  
+    && rm -rf /var/lib/apt/lists/*  \
+    && pip3 install --trusted-host pypi.python.org \
+        sphinx==2.2.1 \
+        sphinx_rtd_theme \
+        nbsphinx \
+        pygments \
+        ipykernel 
 
-# generic
+# jupyter 
 EXPOSE 8888
+
+# generic
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
 VOLUME /datalake
 WORKDIR /datalake
-ENTRYPOINT /etc/init.d/ssh start && bash
+ENTRYPOINT bash
+
+# MySQL
+# RUN apt-get update \
+#     && apt-get install -yq --no-install-recommends  \ 
+#         build-essential \
+#         python3-dev \
+#         python-dev \
+#         libssl-dev \
+#         libffi-dev \
+#     && pip3 install --trusted-host pypi.python.org  \
+#         cryptography \
+#     && apt-get install -yq --no-install-recommends \
+#         mysql-server \
+#         libmysqlclient-dev \
+#     && rm -rf /var/lib/apt/lists/* \
+#     && pip3 install --trusted-host pypi.python.org  \ 
+#         ipython-sql \
+#         pymysql \
+#         mysqlclient
+
+# Apache Superset
+# ENV LANG=C.UTF-8 \
+#     LC_ALL=C.UTF-8 \
+#     FLASK_APP=superset
+# RUN apt-get update -y \
+#     && apt-get install -yq --no-install-recommends \
+#         apt-transport-https \
+#         build-essential \
+#         libssl-dev \
+#         libffi-dev \
+#         python3.6-dev \
+#         python-dev \
+#         python-pip \
+#         libsasl2-dev \
+#         libldap2-dev \
+#         libxi-dev \
+#     && rm -rf /var/lib/apt/lists/* \
+#     && pip3 install --trusted-host pypi.python.org apache-superset \
+#     && superset db upgrade \
+#     && superset init
+    
+## flask fab create-admin \
+# EXPOSE 8080
