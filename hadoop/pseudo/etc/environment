@@ -1,4 +1,4 @@
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/snap/bin:/usr/local/hadoop/bin:/usr/local/hadoop/sbin:/usr/local/pig/bin:/usr/local/hive/bin:/usr/local/mahout/bin:/usr/local/spark/bin
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/snap/bin:/usr/local/hadoop/bin:/usr/local/hadoop/sbin:/usr/local/pig/bin:/usr/local/hive/bin:/usr/local/mahout/bin:/usr/local/spark/bin:/usr/local/zeppelin/bin
 
 JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
