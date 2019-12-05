@@ -52,7 +52,10 @@ RUN apt-get update \
     && pip3 install --trusted-host pypi.python.org \
         jupyterlab \
     && mkdir /root/.jupyter \
-    && mv jupyter_notebook_config.py /root/.jupyter/
+    && mv jupyter_notebook_config.py /root/.jupyter/ \
+    && pip3 install --trusted-host pypi.python.org \
+        matplotlib \
+        pandas
 
 # Sphinx
 RUN apt-get update \
