@@ -29,7 +29,8 @@ echo
 echo To run Zeppelin:
 echo
 echo "   bash zeppelin-daemon.sh start"
-echo "   http://http://127.0.0.1:8090/"
+echo "   http://127.0.0.1:8090/"
 echo "   bash zeppelin-daemon.sh stop"
 echo 
 echo ======================================
+echo
