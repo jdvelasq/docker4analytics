@@ -1,6 +1,7 @@
 .DS_Store
 .vscode
 *.tgz
+*.gz
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
