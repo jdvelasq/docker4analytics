@@ -14,19 +14,24 @@ COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
+
 # Zeppelin
+ENV PATH $PATH:/usr/local/zeppelin/bin
 RUN curl -O https://www-us.apache.org/dist/zeppelin/zeppelin-${ZEPPELIN_VERSION}/zeppelin-${ZEPPELIN_VERSION}-bin-all.tgz \
     && tar -xzf zeppelin-${ZEPPELIN_VERSION}-bin-all.tgz \
     && mv zeppelin-${ZEPPELIN_VERSION}-bin-all /usr/local/zeppelin \
     && rm zeppelin-${ZEPPELIN_VERSION}-bin-all.tgz \
+    && mv conf/* /usr/local/zepeplin/conf/ \
     && pip3 install --trusted-host pypi.python.org \
         grpcio \
-        protobuf
+        protobuf \
+    && mkdir /usr/local/zeppelin/logs \
+    && mkdir /usr/local/zeppelin/run
         
 # Parte generica
-EXPOSE 50070 8088 8888 5000 8080
+EXPOSE 50070 8088 8888 5000 8090
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
 VOLUME /datalake
 WORKDIR /datalake
-ENTRYPOINT /etc/init.d/ssh start && bash hadoop-start.sh && /bin/bash && bash hadoop-stop.sh
+ENTRYPOINT /etc/init.d/ssh start && bash hadoop-start.sh && bash && bash hadoop-stop.sh
