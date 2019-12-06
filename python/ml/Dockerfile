@@ -13,10 +13,8 @@ ENV DEBIAN_FRONTEND noninteractive
 # Capa compartida con Hive
 RUN pip3 install --trusted-host pypi.python.org  \
         altair \
-        matplotlib \
         networkx \
         numpy \
-        pandas \
         seaborn \
         wordcloud
 
