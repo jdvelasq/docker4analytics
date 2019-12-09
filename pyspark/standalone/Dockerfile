@@ -1,23 +1,10 @@
 #
-# How to build:
+# docker build --tag=jdvelasq/pyspark:2.4.4-standalone .
+# docker push jdvelasq/pyspark:2.4.4-standalone
+# docker run --rm -it -v "$PWD":/datalake  --name pyspark -p 8888:8888 jdvelasq/pyspark:2.4.4-standalone
+# docker run --rm -it -v datalake:/datalake --name pyspark  -p 8888:8888 jdvelasq/pyspark:2.4.4-standalone
+# docker exec -it pyspark bash
 #
-#    docker build --tag=jdvelasq/pyspark:2.4.4-standalone  .
-#
-# How to push
-#
-#    docker push jdvelasq/pyspark:2.4.4-standalone
-#
-# How to run:
-#
-#    docker run --rm -it -v "$PWD":/datalake  --name pyspark -p 8888:8888 jdvelasq/pyspark:2.4.4-standalone
-#
-#    docker run --rm -it -v datalake:/datalake --name pyspark  -p 8888:8888 jdvelasq/pyspark:2.4.4-standalone
-#
-# How to connect to container:
-#
-#    docker exec -it pyspark bash
-#
-
 FROM jdvelasq/pyspark:2.4.4-pseudo
 
 ENV PYSPARK_VERSION 2.4.4

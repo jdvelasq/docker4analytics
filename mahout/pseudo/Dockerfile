@@ -1,30 +1,16 @@
 #
-# How to build:
+# docker build --tag=jdvelasq/mahout:0.13.0-pseudo .
+# docker push jdvelasq/mahout:0.13.0-pseudo
+# docker run --rm -it -v "$PWD":/datalake  --name mahout -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/mahout:0.13.0-pseudo
+# docker run --rm -it -v datalake:/datalake --name mahout  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/mahout:0.13.0-pseudo
+# docker exec -it mahout bash
 #
-#    docker build --tag=jdvelasq/mahout:0.13.0-pseudo  .
-#
-# How to push
-#
-#    docker push jdvelasq/mahout:0.13.0-pseudo
-#
-# How to run:
-#
-#    docker run --rm -it -v "$PWD":/datalake  --name mahout -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/mahout:0.13.0-pseudo
-#
-#    docker run --rm -it -v datalake:/datalake --name mahout  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/mahout:0.13.0-pseudo
-#
-# How to connect to container:
-#
-#    docker exec -it mahout bash
-#
-
-
 FROM jdvelasq/hadoop:2.8.5-pseudo
 
 ENV MAHOUT_VERSION 0.13.0
 
 WORKDIR /app
-COPY .  /app
+COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
 

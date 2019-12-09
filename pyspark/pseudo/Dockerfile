@@ -1,23 +1,10 @@
 #
-# How to build:
+# docker build --tag=jdvelasq/pyspark:2.4.4-pseudo .
+# docker push jdvelasq/pyspark:2.4.4-pseudo
+# docker run --rm -it -v "$PWD":/datalake  --name pyspark -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pyspark:2.4.4-pseudo
+# docker run --rm -it -v datalake:/datalake --name pyspark  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pyspark:2.4.4-pseudo
+# docker exec -it pyspark bash
 #
-#    docker build --tag=jdvelasq/pyspark:2.4.4-pseudo  .
-#
-# How to push
-#
-#    docker push jdvelasq/pyspark:2.4.4-pseudo
-#
-# How to run:
-#
-#    docker run --rm -it -v "$PWD":/datalake  --name pyspark -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pyspark:2.4.4-pseudo
-#
-#    docker run --rm -it -v datalake:/datalake --name pyspark  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/pyspark:2.4.4-pseudo
-#
-# How to connect to container:
-#
-#    docker exec -it pyspark bash
-#
-
 FROM jdvelasq/spark:2.4.4-pseudo
 
 ENV PYSPARK_VERSION 2.4.4
@@ -27,11 +14,13 @@ COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Librerias base base
+# Capa conpartida con python-ml
 RUN pip3 install --trusted-host pypi.python.org  \
+        altair \
+        matplotlib \
+        networkx \
         numpy \
         pandas \
-        matplotlib \
         seaborn \
         wordcloud
 

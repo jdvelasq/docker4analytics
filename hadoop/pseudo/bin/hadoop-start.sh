@@ -26,11 +26,12 @@ echo "     http://127.0.0.1:8088/"
 echo 
 echo ======================================
 echo
-echo To run Zeppelin:
-echo
-echo "   bash zeppelin-daemon.sh start"
-echo "   http://127.0.0.1:8090/"
-echo "   bash zeppelin-daemon.sh stop"
-echo 
-echo ======================================
-echo
+
+# echo To run Zeppelin:
+# echo
+# echo "   bash zeppelin-daemon.sh start"
+# echo "   http://127.0.0.1:8090/"
+# echo "   bash zeppelin-daemon.sh stop"
+# echo 
+# echo ======================================
+# echo

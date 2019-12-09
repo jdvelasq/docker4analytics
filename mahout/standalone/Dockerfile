@@ -1,25 +1,10 @@
 #
-# How to build:
+# docker build --tag=jdvelasq/mahout:0.13.0-standalone .
+# docker push jdvelasq/mahout:0.13.0-standalone
+# docker run --rm -it -v "$PWD":/datalake  --name mahout -p 8888:8888 jdvelasq/mahout:0.13.0-standalone
+# docker run --rm -it -v datalake:/datalake --name mahout  -p 8888:8888 jdvelasq/mahout:0.13.0-standalone
+# docker exec -it mahout bash
 #
-#    docker build --tag=jdvelasq/mahout:0.13.0-standalone  .
-#
-# How to push
-#
-#    docker push jdvelasq/mahout:0.13.0-standalone
-#
-# How to run:
-#
-#    docker run --rm -it -v "$PWD":/datalake  --name mahout -p 8888:8888 jdvelasq/mahout:0.13.0-standalone
-#
-#    docker run --rm -it -v datalake:/datalake --name mahout  -p 8888:8888 jdvelasq/mahout:0.13.0-standalone
-#
-# How to connect to container:
-#
-#    docker exec -it mahout bash
-#
-
-
-
 FROM jdvelasq/mahout:0.13.0-pseudo
 
 WORKDIR /app

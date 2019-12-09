@@ -1,13 +1,7 @@
 #
-# How to build:
+# docker build --tag=jdvelasq/spark:2.4.4-pseudo .
+# docker push jdvelasq/spark:2.4.4-pseudo
 #
-#    docker build --tag=jdvelasq/spark:2.4.4-pseudo .
-#
-# How to push
-#
-#    docker push jdvelasq/spark:2.4.4-pseudo
-#
-
 FROM jdvelasq/hadoop:2.8.5-pseudo
 
 ENV SPARK_VERSION 2.4.4
