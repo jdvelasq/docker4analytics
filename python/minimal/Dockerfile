@@ -68,7 +68,8 @@ RUN apt-get update \
         sphinx_rtd_theme \
         nbsphinx \
         pygments \
-        ipykernel 
+        ipykernel \ 
+        pyyaml
 
 # jupyter 
 EXPOSE 8888
