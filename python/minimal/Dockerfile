@@ -1,8 +1,10 @@
 #
 # docker build --tag=jdvelasq/python:3.6.9-minimal .
 # docker push jdvelasq/python:3.6.9-minimal
-# docker run --rm -it -v "$PWD":/datalake -p 8888:8888 jdvelasq/python:3.6.9-minimal
-# docker run --rm -it -v datalake:/datalake -p 8888:8888 jdvelasq/python:3.6.9-minimal
+# docker run --rm -it -v "$PWD":/datalake --name python-min -p 8888:8888 jdvelasq/python:3.6.9-minimal
+# docker run --rm -it -v datalake:/datalake -name python-min -p 8888:8888 jdvelasq/python:3.6.9-minimal
+# docker exec -it python-min bash
+#
 #
 FROM ubuntu:18.04
 
@@ -15,10 +17,13 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
         apt-utils \ 
+        bsdmainutils \
         curl \
+        csvkit \
+        gawk \
         git \
-        wget \
         nano \
+        wget \ 
     && rm -rf /var/lib/apt/lists/*
 
 # ssh 
@@ -55,7 +60,10 @@ RUN apt-get update \
     && mv jupyter_notebook_config.py /root/.jupyter/ \
     && pip3 install --trusted-host pypi.python.org \
         matplotlib \
-        pandas
+        pandas \
+        tables \
+        pyPDF2 \
+        scipy
 
 # Sphinx
 RUN apt-get update \
@@ -64,7 +72,7 @@ RUN apt-get update \
         pandoc \  
     && rm -rf /var/lib/apt/lists/*  \
     && pip3 install --trusted-host pypi.python.org \
-        sphinx==2.2.1 \
+        sphinx \
         sphinx_rtd_theme \
         nbsphinx \
         pygments \

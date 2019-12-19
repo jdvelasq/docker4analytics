@@ -46,24 +46,24 @@ RUN apt-get update \
         build-essential \
         pylint \
         pandoc \
+        csvkit \
     && rm -rf /var/lib/apt/lists/* \
     && pip3 install --trusted-host pypi.python.org  \   
         bokeh \    
         dask \
         ipykernel \
+        ipython-sql \
         nbsphinx \
         nltk \ 
         nose \          
         numba \
         paver \      
         Pygments \
+        pymysql \    
         rednose \            
         sklearn \
         statsmodels \
-        tensorflow \
-        twine \
-        ipython-sql \
-        pymysql        
+        twine
 
 # R Language
 RUN apt-get update \
