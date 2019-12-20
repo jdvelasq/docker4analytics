@@ -63,7 +63,10 @@ RUN apt-get update \
         pandas \
         tables \
         pyPDF2 \
-        scipy
+        scipy \
+        flask \
+        WTForms
+
 
 # Sphinx
 RUN apt-get update \
