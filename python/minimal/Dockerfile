@@ -1,7 +1,7 @@
 #
 # docker build --tag=jdvelasq/python:3.6.9-minimal .
 # docker push jdvelasq/python:3.6.9-minimal
-# docker run --rm -it -v "$PWD":/datalake --name python-min -p 8888:8888 jdvelasq/python:3.6.9-minimal
+# docker run --rm -it -v "$PWD":/datalake --name python-min -p 8888:8888 -p 5000:5000 jdvelasq/python:3.6.9-minimal
 # docker run --rm -it -v datalake:/datalake -name python-min -p 8888:8888 jdvelasq/python:3.6.9-minimal
 # docker exec -it python-min bash
 #
@@ -65,8 +65,8 @@ RUN apt-get update \
         pyPDF2 \
         scipy \
         flask \
-        WTForms
-
+        WTForms \
+        Flask-WTF
 
 # Sphinx
 RUN apt-get update \
@@ -90,7 +90,7 @@ RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
 VOLUME /datalake
 WORKDIR /datalake
-ENTRYPOINT bash
+ENTRYPOINT /etc/init.d/ssh start && bash
 
 # MySQL
 # RUN apt-get update \
