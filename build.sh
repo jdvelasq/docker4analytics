@@ -29,3 +29,15 @@ cd spark/pseudo && docker build --tag=jdvelasq/spark:2.4.4-pseudo .
 cd pyspark/pseudo && docker build --tag=jdvelasq/pyspark:2.4.4-pseudo . && cd ../standalone && docker build --tag=jdvelasq/pyspark:2.4.4-standalone . && cd ../..
 
 
+docker push jdvelasq/python:3.6.9-minimal
+docker push jdvelasq/python:3.6.9-ml
+docker push jdvelasq/hadoop:2.8.5-standalone
+docker push jdvelasq/hive:2.3.6-pseudo 
+docker push jdvelasq/hive:2.3.6-standalone
+docker push jdvelasq/mahout:0.13.0-pseudo 
+docker push jdvelasq/mahout:0.13.0-standalone 
+docker push jdvelasq/pig:0.17.0-pseudo
+docker push jdvelasq/pig:0.17.0-standalone 
+docker push jdvelasq/spark:2.4.4-pseudo 
+docker push jdvelasq/pyspark:2.4.4-pseudo 
+docker push jdvelasq/pyspark:2.4.4-standalone
