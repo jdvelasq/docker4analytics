@@ -88,7 +88,7 @@ EXPOSE 8888
 # generic
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
-VOLUME /datalake
+# VOLUME /datalake
 WORKDIR /datalake
 ENTRYPOINT /etc/init.d/ssh start && bash
 

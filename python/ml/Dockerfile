@@ -88,6 +88,6 @@ RUN apt-get update \
 EXPOSE   8888  5000  8000  6006 
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
-VOLUME /datalake
+# VOLUME /datalake
 WORKDIR /datalake
 ENTRYPOINT /etc/init.d/ssh start && bash
