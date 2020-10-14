@@ -103,9 +103,9 @@ RUN jupyter labextension install nbdime-jupyterlab@2.0.0 \
     && pip install --trusted-host pypi.python.org --upgrade --default-timeout=100 jupyterlab-git \
     && jupyter lab build
 ## requiere 'jupyterLab >=2.2.0,<3.0.0a0'
-RUN pip install --trusted-host pypi.python.org --default-timeout=100 jupyter-lsp \
-    && jupyter labextension install @krassowski/jupyterlab-lsp \
-    && pip install --trusted-host pypi.python.org --default-timeout=100 'python-language-server[all]'
+# RUN pip install --trusted-host pypi.python.org --default-timeout=100 jupyter-lsp \
+#     && jupyter labextension install @krassowski/jupyterlab-lsp \
+#     && pip install --trusted-host pypi.python.org --default-timeout=100 'python-language-server[all]'
 
 ##
 ## VS Code
