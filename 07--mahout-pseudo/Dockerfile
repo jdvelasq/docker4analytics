@@ -20,7 +20,7 @@ RUN pip3 install bigdata
 ENV MAHOUT_HOME  /usr/local/mahout
 ENV PATH $PATH:/usr/local/mahout/bin
 RUN apt-get update \ 
-    && curl -O http://archive.apache.org/dist/mahout/$MAHOUT_VERSION/apache-mahout-distribution-$MAHOUT_VERSION.tar.gz \
+    && curl -O https://downloads.apache.org/mahout/$MAHOUT_VERSION/apache-mahout-distribution-$MAHOUT_VERSION.tar.gz \
     && tar -xzf apache-mahout-distribution-$MAHOUT_VERSION.tar.gz \
     && mv apache-mahout-distribution-$MAHOUT_VERSION /usr/local/mahout \
     && rm apache-mahout-distribution-$MAHOUT_VERSION.tar.gz \

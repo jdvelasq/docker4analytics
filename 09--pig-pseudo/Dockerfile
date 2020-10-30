@@ -20,7 +20,7 @@ RUN pip3 install bigdata
 # Pig
 ENV PIG_HOME  /usr/local/pig
 ENV PATH $PATH:/usr/local/pig/bin
-RUN curl -O https://www-eu.apache.org/dist/pig/pig-$PIG_VERSION/pig-$PIG_VERSION.tar.gz \
+RUN curl -O https://downloads.apache.org/pig/pig-$PIG_VERSION/pig-$PIG_VERSION.tar.gz \
     && tar -xzf pig-$PIG_VERSION.tar.gz \
     && mv pig-$PIG_VERSION /usr/local/pig \
     && mv conf/* /usr/local/pig/conf/ \

@@ -1,6 +1,6 @@
 #
 # docker build --tag=jdvelasq/python3:vscode-minimal .
-# docker push jdvelasq/python3:vscode-minimal .
+# docker push jdvelasq/python3:vscode-minimal
 # docker run --rm -it -v "$PWD":/datalake --name python3-vscode-minimal -p 8888:8888 -p 5000:5000 jdvelasq/python3:vscode-minimal .
 # docker run --rm -it -v datalake:/datalake -name python3-vscode-minimal -p 8888:8888 jdvelasq/python3:vscode-minimal .
 # docker exec -it python3-vscode-minimal bash
@@ -91,7 +91,7 @@ RUN apt-get update \
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
 RUN jupyter labextension install @lckr/jupyterlab_variableinspector
 RUN jupyter labextension install @jupyterlab/toc 
-RUN jupyter labextension install @jupyterlab/github
+# RUN jupyter labextension install @jupyterlab/github
 RUN jupyter labextension install \
     @ryantam626/jupyterlab_code_formatter \
     && pip install --trusted-host pypi.python.org --default-timeout=100 \
@@ -99,9 +99,9 @@ RUN jupyter labextension install \
     black \
     isort \
     && jupyter serverextension enable --system --py jupyterlab_code_formatter
-RUN jupyter labextension install nbdime-jupyterlab@2.0.0 \
-    && pip install --trusted-host pypi.python.org --upgrade --default-timeout=100 jupyterlab-git \
-    && jupyter lab build
+# RUN jupyter labextension install nbdime-jupyterlab@2.0.0 \
+#     && pip install --trusted-host pypi.python.org --upgrade --default-timeout=100 jupyterlab-git \
+#     && jupyter lab build
 ## requiere 'jupyterLab >=2.2.0,<3.0.0a0'
 # RUN pip install --trusted-host pypi.python.org --default-timeout=100 jupyter-lsp \
 #     && jupyter labextension install @krassowski/jupyterlab-lsp \

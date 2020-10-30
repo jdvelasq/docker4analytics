@@ -1,0 +1,1 @@
+docker run --rm -it -v "$PWD":/datalake  --name hive -p 8888:8888 jdvelasq/hive:2.3.7-standalone

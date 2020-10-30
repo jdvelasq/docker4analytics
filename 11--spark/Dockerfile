@@ -1,10 +1,10 @@
 #
-# docker build --tag=jdvelasq/spark:2.4.4-pseudo .
-# docker push jdvelasq/spark:2.4.4-pseudo
+# docker build --tag=jdvelasq/spark:2.4.7 .
+# docker push jdvelasq/spark:2.4.7
 #
 FROM jdvelasq/hadoop:2.8.5-pseudo
 
-ENV SPARK_VERSION 2.4.4
+ENV SPARK_VERSION 2.4.7
 
 WORKDIR /app
 COPY . /app
@@ -19,7 +19,7 @@ RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
         netcat \
         net-tools \
-    && curl -O https://www-us.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-without-hadoop.tgz \
+    && curl -O https://downloads.apache.org/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-without-hadoop.tgz \
     && tar -xzf spark-$SPARK_VERSION-bin-without-hadoop.tgz \
     && mv spark-$SPARK_VERSION-bin-without-hadoop /usr/local/spark \
     && rm spark-$SPARK_VERSION-bin-without-hadoop.tgz \

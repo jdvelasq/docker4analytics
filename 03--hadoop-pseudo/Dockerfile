@@ -30,7 +30,7 @@ ENV HADOOP_COMMON_LIB_NATIVE_DIR  /usr/local/hadoop/lib/native
 ENV HADOOP_OPTS "-Djava.library.path=/usr/local/hadoop/lib/native"
 ENV HADOOP_ROOT_LOGGER "ERROR,console"
 
-RUN curl -O https://www-eu.apache.org/dist/hadoop/common/hadoop-${HDP_VERSION}/hadoop-${HDP_VERSION}.tar.gz \
+RUN curl -O https://downloads.apache.org/hadoop/common/hadoop-${HDP_VERSION}/hadoop-${HDP_VERSION}.tar.gz \
     && tar -xzf hadoop-${HDP_VERSION}.tar.gz \
     && mv hadoop-${HDP_VERSION} /usr/local/hadoop \
     && rm hadoop-${HDP_VERSION}.tar.gz \

@@ -1,0 +1,1 @@
+docker run --rm -it -v "$PWD":/datalake  --name pyspark -p 8888:8888 jdvelasq/pyspark:2.4.7-standalone

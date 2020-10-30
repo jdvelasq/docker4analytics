@@ -1,0 +1,1 @@
+docker run --rm -it -v "$PWD":/datalake --name hadoop -p 8888:8888 jdvelasq/hadoop:2.8.5-standalone
