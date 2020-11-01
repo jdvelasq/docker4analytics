@@ -1,8 +1,8 @@
 #
-# docker build --tag=jdvelasq/hive:2.3.7-standalone .
-# docker push jdvelasq/hive:2.3.7-standalone
-# docker run --rm -it -v "$PWD":/datalake  --name hive -p 8888:8888 jdvelasq/hive:2.3.7-standalone
-# docker run --rm -it -v datalake:/datalake --name hive  -p 8888:8888 jdvelasq/hive:2.3.7-standalone
+# docker build --tag=jdvelasq/hive:2.3.7-local .
+# docker push jdvelasq/hive:2.3.7-local
+# docker run --rm -it -v "$PWD":/datalake  --name hive -p 8888:8888 jdvelasq/hive:2.3.7-local
+# docker run --rm -it -v datalake:/datalake --name hive  -p 8888:8888 jdvelasq/hive:2.3.7-local
 # docker exec -it hive bash
 #
 FROM jdvelasq/hive:2.3.7-pseudo

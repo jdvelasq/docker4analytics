@@ -1,8 +1,8 @@
 #
-# docker build --tag=jdvelasq/pyspark:2.4.7-standalone .
-# docker push jdvelasq/pyspark:2.4.7-standalone
-# docker run --rm -it -v "$PWD":/datalake  --name pyspark -p 8888:8888 jdvelasq/pyspark:2.4.7-standalone
-# docker run --rm -it -v datalake:/datalake --name pyspark  -p 8888:8888 jdvelasq/pyspark:2.4.7-standalone
+# docker build --tag=jdvelasq/pyspark:2.4.7-local .
+# docker push jdvelasq/pyspark:2.4.7-local
+# docker run --rm -it -v "$PWD":/datalake  --name pyspark -p 8888:8888 jdvelasq/pyspark:2.4.7-local
+# docker run --rm -it -v datalake:/datalake --name pyspark  -p 8888:8888 jdvelasq/pyspark:2.4.7-local
 # docker exec -it pyspark bash
 #
 FROM jdvelasq/pyspark:2.4.7-pseudo

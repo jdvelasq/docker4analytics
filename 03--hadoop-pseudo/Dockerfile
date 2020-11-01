@@ -5,7 +5,7 @@
 # docker run --rm -it -v datalake:/datalake --name hadoop -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 jdvelasq/hadoop:2.8.5-pseudo
 # docker exec -it hadoop bash
 #
-FROM jdvelasq/python:3.6.9-minimal
+FROM jdvelasq/python3:vscode-minimal
 
 ENV HDP_VERSION 2.8.5
 

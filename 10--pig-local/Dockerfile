@@ -1,8 +1,8 @@
 #
-# docker build --tag=jdvelasq/pig:0.17.0-standalone .
-# docker push jdvelasq/pig:0.17.0-standalone
-# docker run --rm -it -v "$PWD":/datalake  --name pig -p 8888:8888 jdvelasq/pig:0.17.0-standalone
-# docker run --rm -it -v datalake:/datalake --name pig  -p 8888:8888 jdvelasq/pig:0.17.0-standalone
+# docker build --tag=jdvelasq/pig:0.17.0-local .
+# docker push jdvelasq/pig:0.17.0-local
+# docker run --rm -it -v "$PWD":/datalake  --name pig -p 8888:8888 jdvelasq/pig:0.17.0-local
+# docker run --rm -it -v datalake:/datalake --name pig  -p 8888:8888 jdvelasq/pig:0.17.0-local
 # docker exec -it pig bash
 #
 FROM jdvelasq/pig:0.17.0-pseudo
