@@ -1,10 +1,10 @@
 #
-# docker build --tag=jdvelasq/spark:2.4.7 .
-# docker push jdvelasq/spark:2.4.7
+# docker build --tag=jdvelasq/spark:3.0.1 .
+# docker push jdvelasq/spark:3.0.1
 #
 FROM jdvelasq/hadoop:2.8.5-pseudo
 
-ENV SPARK_VERSION 2.4.7
+ENV SPARK_VERSION 3.0.1
 
 WORKDIR /app
 COPY . /app
