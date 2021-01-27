@@ -52,15 +52,15 @@ RUN apt-get update \
 ##
 ## nodejs
 ##
-RUN apt-get update \
-    && apt-get install -y ca-certificates xz-utils \
-    && curl -O https://nodejs.org/dist/v13.12.0/node-v13.12.0-linux-x64.tar.xz \
-    && tar -xf node-v13.12.0-linux-x64.tar.xz \
-    && cp -r node-v13.12.0-linux-x64/* /usr/ \
-    && ln -s "$(which node)" /usr/bin/nodejs \
-    && apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update \
+#     && apt-get install -y ca-certificates xz-utils \
+#     && curl -O https://nodejs.org/dist/v13.12.0/node-v13.12.0-linux-x64.tar.xz \
+#     && tar -xf node-v13.12.0-linux-x64.tar.xz \
+#     && cp -r node-v13.12.0-linux-x64/* /usr/ \
+#     && ln -s "$(which node)" /usr/bin/nodejs \
+#     && apt-get autoremove -y \
+#     && apt-get clean -y \
+#     && rm -rf /var/lib/apt/lists/*
 
 ##
 ## Python 3.7 + Jupyter Lab
@@ -81,24 +81,32 @@ RUN apt-get update \
     setuptools \
     wheel \
     && pip install --trusted-host pypi.python.org --default-timeout=100 \
-    "jupyterLab>=2.2.0,<3.0.0a0" \
+    jupyterLab \
     && mkdir /root/.jupyter \
     && mv jupyter_notebook_config.py /root/.jupyter/ 
+
+# "jupyterLab>=2.2.0,<3.0.0a0" \
 
 ##
 ## Jupyter Lab extensions
 ##
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
-RUN jupyter labextension install @lckr/jupyterlab_variableinspector
-RUN jupyter labextension install @jupyterlab/toc 
+# RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
+# RUN jupyter labextension install @lckr/jupyterlab_variableinspector
+# RUN jupyter labextension install @jupyterlab/toc 
 # RUN jupyter labextension install @jupyterlab/github
-RUN jupyter labextension install \
-    @ryantam626/jupyterlab_code_formatter \
-    && pip install --trusted-host pypi.python.org --default-timeout=100 \
+RUN pip install lckr-jupyterlab-variableinspector
+RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
     jupyterlab_code_formatter \
     black \
-    isort \
-    && jupyter serverextension enable --system --py jupyterlab_code_formatter
+    isort
+
+# RUN jupyter labextension install \
+#     @ryantam626/jupyterlab_code_formatter \
+#     && pip install --trusted-host pypi.python.org --default-timeout=100 \
+#     jupyterlab_code_formatter \
+#     black \
+#     isort \
+#     && jupyter serverextension enable --system --py jupyterlab_code_formatter
 # RUN jupyter labextension install nbdime-jupyterlab@2.0.0 \
 #     && pip install --trusted-host pypi.python.org --upgrade --default-timeout=100 jupyterlab-git \
 #     && jupyter lab build

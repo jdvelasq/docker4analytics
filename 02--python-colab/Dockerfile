@@ -51,7 +51,7 @@ RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
 
 
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
-    nltk==3.2.5 \
+    nltk==3.5 \
     spacy==2.2.4 \
     gensim==3.6.0 \
     snowballstemmer==2.0.0
