@@ -52,15 +52,15 @@ RUN apt-get update \
 ##
 ## nodejs
 ##
-# RUN apt-get update \
-#     && apt-get install -y ca-certificates xz-utils \
-#     && curl -O https://nodejs.org/dist/v13.12.0/node-v13.12.0-linux-x64.tar.xz \
-#     && tar -xf node-v13.12.0-linux-x64.tar.xz \
-#     && cp -r node-v13.12.0-linux-x64/* /usr/ \
-#     && ln -s "$(which node)" /usr/bin/nodejs \
-#     && apt-get autoremove -y \
-#     && apt-get clean -y \
-#     && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && apt-get install -y ca-certificates xz-utils \
+    && curl -O https://nodejs.org/dist/v13.12.0/node-v13.12.0-linux-x64.tar.xz \
+    && tar -xf node-v13.12.0-linux-x64.tar.xz \
+    && cp -r node-v13.12.0-linux-x64/* /usr/ \
+    && ln -s "$(which node)" /usr/bin/nodejs \
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
 ##
 ## Python 3.7 + Jupyter Lab

@@ -35,7 +35,7 @@ RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     scikit-learn==0.22.2.post1 \
     sklearn-pandas==1.8.0 \
     progressbar2==3.38.0 \
-    ipywidgets==7.5.1 \
+    ipywidgets \
     flask==1.1.2    
 
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
