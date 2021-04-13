@@ -25,6 +25,7 @@ RUN apt-get update \
 RUN pip install --trusted-host pypi.python.org \
         sphinx==2.2.1 \
         sphinx_rtd_theme \
+        sphinx_copybutton \
         nbsphinx \
         pygments \
         ipykernel 
