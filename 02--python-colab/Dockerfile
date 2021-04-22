@@ -36,7 +36,8 @@ RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     sklearn-pandas==1.8.0 \
     progressbar2==3.38.0 \
     ipywidgets \
-    flask==1.1.2    
+    flask==1.1.2  \
+    pydotplus  
 
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     altair==4.1.0 \
@@ -47,8 +48,6 @@ RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     textblob==0.15.3 \
     widgetsnbextension==3.5.1 \
     wordcloud==1.5.0
-
-
 
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     nltk==3.5 \
@@ -63,6 +62,11 @@ RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     tensorflow-datasets==2.1.0 \
     tensorflow-estimator==2.3.0
 
+RUN apt update \
+    && apt install -yq --no-install-recommends graphviz \
+    && apt autoremove -y \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV DEBIAN_FRONTEND=dialog
 

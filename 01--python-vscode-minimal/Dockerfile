@@ -83,7 +83,13 @@ RUN apt-get update \
     && pip install --trusted-host pypi.python.org --default-timeout=100 \
     jupyterLab \
     && mkdir /root/.jupyter \
-    && mv jupyter_notebook_config.py /root/.jupyter/ 
+    && mv jupyter_notebook_config.py /root/.jupyter/ \
+    && mkdir /root/.jupyter/lab \
+    && mkdir /root/.jupyter/lab/user-settings \
+    && mkdir /root/.jupyter/lab/user-settings/@jupyterlab \
+    && mkdir /root/.jupyter/lab/user-settings/@jupyterlab/notebook-extension \
+    && mv tracker.jupyterlab-settings /root/.jupyter/lab/user-settings/@jupyterlab/notebook-extension/
+
 
 # "jupyterLab>=2.2.0,<3.0.0a0" \
 
