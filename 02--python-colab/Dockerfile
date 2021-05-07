@@ -56,11 +56,22 @@ RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     snowballstemmer==2.0.0
 
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \    
-    tensorflow==2.3.0 \
-    tensorboard==2.3.0 \
-    tensorflow-addons==0.8.3 \
-    tensorflow-datasets==2.1.0 \
-    tensorflow-estimator==2.3.0
+    tensorflow \
+    tensorboard \
+    tensorflow-addons \
+    tensorflow-datasets \
+    tensorflow-estimator \
+    tensorflow-hub \
+    tensorflow-text \
+    tensorflow_io \
+    pyyaml \
+    h5py \
+    keras-tuner
+
+
+RUN pip install -q git+https://github.com/tensorflow/docs
+
+RUN pip install -q git+https://github.com/tensorflow/examples.git
 
 RUN apt update \
     && apt install -yq --no-install-recommends graphviz \
