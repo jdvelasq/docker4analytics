@@ -81,7 +81,7 @@ RUN apt-get update \
     setuptools \
     wheel \
     && pip install --trusted-host pypi.python.org --default-timeout=100 \
-    jupyterLab \
+    jupyterlab \
     && mkdir /root/.jupyter \
     && mv jupyter_notebook_config.py /root/.jupyter/ \
     && mkdir /root/.jupyter/lab \
@@ -100,7 +100,7 @@ RUN apt-get update \
 # RUN jupyter labextension install @lckr/jupyterlab_variableinspector
 # RUN jupyter labextension install @jupyterlab/toc 
 # RUN jupyter labextension install @jupyterlab/github
-RUN pip install lckr-jupyterlab-variableinspector
+# RUN pip install lckr-jupyterlab-variableinspector
 RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
     jupyterlab_code_formatter \
     black \
