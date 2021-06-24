@@ -22,38 +22,38 @@ ENV DEBIAN_FRONTEND noninteractive
 ##
 ## Python Data Science & ML
 ##
-RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
-    numpy==1.18.5 \
-    pandas==1.0.5 \
-    pandas-datareader==0.8.1 \
-    pandas-gbq==0.11.0 \
-    pandas-profiling==1.4.1 \
-    scipy==1.4.1 \
-    SQLAlchemy==1.3.19 \
-    matplotlib==3.2.2 \
-    statsmodels==0.10.2 \
-    scikit-learn==0.22.2.post1 \
-    sklearn-pandas==1.8.0 \
-    progressbar2==3.38.0 \
+RUN pip3 install --upgrade pip setuptools wheel
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    numpy==1.21 \
+    pandas \
+    pandas-datareader \
+    pandas-gbq \
+    pandas-profiling \
+    SQLAlchemy \
+    matplotlib \
+    statsmodels \
+    scikit-learn \
+    sklearn-pandas \
+    progressbar2 \
     ipywidgets \
-    flask==1.1.2  \
+    flask  \
     pydotplus  
 
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
-    altair==4.1.0 \
-    gensim==3.6.0 \
-    Jinja2==2.11.2 \
-    networkx==2.5 \
-    seaborn==0.10.1 \
-    textblob==0.15.3 \
-    widgetsnbextension==3.5.1 \
-    wordcloud==1.5.0
+    altair \
+    gensim \
+    Jinja2 \
+    networkx \
+    seaborn \
+    textblob \
+    widgetsnbextension \
+    wordcloud
 
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
-    nltk==3.5 \
-    spacy==2.2.4 \
-    gensim==3.6.0 \
-    snowballstemmer==2.0.0
+    nltk \
+    spacy \
+    gensim \
+    snowballstemmer
 
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \    
     tensorflow \

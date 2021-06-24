@@ -2,12 +2,12 @@
 # docker build --tag=jdvelasq/python3:vscode-minimal .
 # docker push jdvelasq/python3:vscode-minimal
 # docker run --rm -it -v "$PWD":/datalake --name python3-vscode-minimal -p 8888:8888 -p 5000:5000 jdvelasq/python3:vscode-minimal .
-# docker run --rm -it -v datalake:/datalake -name python3-vscode-minimal -p 8888:8888 jdvelasq/python3:vscode-minimal .
+# docker run --rm -it -v datalake:/datalake --name python3-vscode-minimal -p 8888:8888 jdvelasq/python3:vscode-minimal .
 # docker exec -it python3-vscode-minimal bash
 #
 # docker run --rm -it  --name python3-vscode-minimal -p 8888:8888 -p 5000:5000 jdvelasq/python3:vscode-minimal
 #
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV LANG C.UTF-8 
 
@@ -63,20 +63,40 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 ##
-## Python 3.7 + Jupyter Lab
+## Essencials
 ##
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
     build-essential \
-    python-dev \
-    python3-minimal \
-    python3-pip \
-    python3-dev \       
-    python3-venv \ 
     && apt-get autoremove -y \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/* \
-    && pip3 install --upgrade pip \
+    && rm -rf /var/lib/apt/lists/*     
+
+
+RUN apt update \
+    && apt install -yq --no-install-recommends \
+    software-properties-common \
+    && add-apt-repository ppa:deadsnakes/ppa \
+    && apt install -yq --no-install-recommends \
+    python3-pip \
+    python3.9 \
+    python3.9-dev \
+    python3-dev \
+    && apt autoremove -y \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/* 
+
+
+##
+## Jupyter Lab
+##
+
+#    python3-minimal \
+#    python3-pip \
+#    python3-dev \       
+# python-dev \
+
+RUN pip3 install --upgrade pip \
     && pip install --trusted-host pypi.python.org  --default-timeout=100 \
     setuptools \
     wheel \
