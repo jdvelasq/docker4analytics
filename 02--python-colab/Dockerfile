@@ -24,13 +24,14 @@ ENV DEBIAN_FRONTEND noninteractive
 ##
 RUN pip3 install --upgrade pip setuptools wheel
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    numpy==1.21 \
+    numpy \
     pandas \
     pandas-datareader \
     pandas-gbq \
     pandas-profiling \
     SQLAlchemy \
     matplotlib \
+    scipy \
     statsmodels \
     scikit-learn \
     sklearn-pandas \

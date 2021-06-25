@@ -7,7 +7,7 @@
 #
 # docker run --rm -it  --name python3-vscode-minimal -p 8888:8888 -p 5000:5000 jdvelasq/python3:vscode-minimal
 #
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 ENV LANG C.UTF-8 
 
@@ -16,25 +16,25 @@ COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
-##
-##  Base
-##
+#
+#  Base
+#
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
     apt-utils \
     bsdmainutils \
     curl \
     git \
+    make \
     nano \
     wget \
-    make \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-##
-##  ssh 
-##
+#
+#  ssh 
+#
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
     pdsh \
@@ -49,58 +49,42 @@ RUN apt-get update \
     && cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys \
     && chmod 0600 /root/.ssh/authorized_keys  
 
-##
-## nodejs
-##
+#
+# nodejs
+#
 RUN apt-get update \
     && apt-get install -y ca-certificates xz-utils \
-    && curl -O https://nodejs.org/dist/v13.12.0/node-v13.12.0-linux-x64.tar.xz \
-    && tar -xf node-v13.12.0-linux-x64.tar.xz \
-    && cp -r node-v13.12.0-linux-x64/* /usr/ \
+    && curl -O https://nodejs.org/dist/v16.4.0/node-v16.4.0-linux-x64.tar.xz \
+    && tar -xf node-v16.4.0-linux-x64.tar.xz \
+    && cp -r node-v16.4.0-linux-x64/* /usr/ \
     && ln -s "$(which node)" /usr/bin/nodejs \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-##
-## Essencials
-##
+#
+# Python 3
+#
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
     build-essential \
+    python-dev \
+    python3-minimal \
+    python3-pip \
+    python3-dev \       
+    python3-venv \ 
     && apt-get autoremove -y \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*     
-
-
-RUN apt update \
-    && apt install -yq --no-install-recommends \
-    software-properties-common \
-    && add-apt-repository ppa:deadsnakes/ppa \
-    && apt install -yq --no-install-recommends \
-    python3-pip \
-    python3.9 \
-    python3.9-dev \
-    python3-dev \
-    && apt autoremove -y \
-    && apt clean -y \
-    && rm -rf /var/lib/apt/lists/* 
-
-
-##
-## Jupyter Lab
-##
-
-#    python3-minimal \
-#    python3-pip \
-#    python3-dev \       
-# python-dev \
-
-RUN pip3 install --upgrade pip \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip3 install --upgrade pip \
     && pip install --trusted-host pypi.python.org  --default-timeout=100 \
     setuptools \
-    wheel \
-    && pip install --trusted-host pypi.python.org --default-timeout=100 \
+    wheel 
+
+#
+# Jupyter Lab
+#
+RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
     jupyterlab \
     && mkdir /root/.jupyter \
     && mv jupyter_notebook_config.py /root/.jupyter/ \
@@ -109,6 +93,9 @@ RUN pip3 install --upgrade pip \
     && mkdir /root/.jupyter/lab/user-settings/@jupyterlab \
     && mkdir /root/.jupyter/lab/user-settings/@jupyterlab/notebook-extension \
     && mv tracker.jupyterlab-settings /root/.jupyter/lab/user-settings/@jupyterlab/notebook-extension/
+
+
+
 
 
 # "jupyterLab>=2.2.0,<3.0.0a0" \
