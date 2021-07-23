@@ -1,1 +1,1 @@
-docker run --rm -v "$PWD":/app jdvelasq/sphinx:2.2.1
+docker run --rm -v "$PWD":/app jdvelasq/sphinx:3.0.4

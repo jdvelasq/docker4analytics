@@ -16,46 +16,87 @@ COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# RUN pip3 install --trusted-host pypi.python.org --default-timeout=100  --user -r requeriments.txt
-
-
-##
-## Python Data Science & ML
-##
+# -- Package development ----------------------------------------------------------------
 RUN pip3 install --upgrade pip setuptools wheel
+
+# -- Manipulación de Datos --------------------------------------------------------------
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     numpy \
     pandas \
+    scipy \
     pandas-datareader \
     pandas-gbq \
     pandas-profiling \
-    SQLAlchemy \
+    SQLAlchemy
+
+# -- Graficación ------------------------------------------------------------------------
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    altair \
+    bokeh \
+    calmap \
+    chord \
+    circlify \
+    dash \
+    graphviz \
+    imageio \
+    leidenalg \
     matplotlib \
-    scipy \
+    matplotlib \        
+    matplotlib_venn \
+    mne \
+    networkx \
+    plotly \
+    pydotplus \
+    pydot \
+    python-igraph \
+    pywaffle \
+    scikit-image \
+    seaborn \
+    squarify \
+    yellowbrick \
+    wordcloud \
+    'plotnine[all]' \
+    pyviz \
+    holoviews
+
+
+RUN apt update \
+    && apt install -yq --no-install-recommends graphviz \
+    && apt autoremove -y \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
+
+# -- Progress bars ----------------------------------------------------------------------
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    progressbar2 \
+    tdqm
+
+# -- Desarrollo web ---------------------------------------------------------------------
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    flask  \
+    Jinja2 
+
+# -- Scrapping --------------------------------------------------------------------------
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    bs4
+
+# -- Machine Learning -------------------------------------------------------------------
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     statsmodels \
     scikit-learn \
-    sklearn-pandas \
-    progressbar2 \
-    ipywidgets \
-    flask  \
-    pydotplus  
+    sklearn-pandas
 
+# -- Text Analytics ---------------------------------------------------------------------
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
-    altair \
     gensim \
-    Jinja2 \
-    networkx \
-    seaborn \
-    textblob \
-    widgetsnbextension \
-    wordcloud
-
-RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     nltk \
     spacy \
     gensim \
     snowballstemmer
 
+
+# -- Deep Learning ----------------------------------------------------------------------
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \    
     tensorflow \
     tensorboard \
@@ -67,18 +108,19 @@ RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     tensorflow_io \
     pyyaml \
     h5py \
-    keras-tuner
+    keras-tuner && \
+    pip install -q git+https://github.com/tensorflow/docs && \
+    pip install -q git+https://github.com/tensorflow/examples.git
 
+# -- Sphinx -----------------------------------------------------------------------------
+RUN pip3 --disable-pip-version-check --no-cache-dir install \
+    sphinx==4.0.3 \
+    sphinx-intl \
+    nbsphinx \
+    sphinx-rtd-theme \ 
+    sphinx_copybutton \    
+    pygments
 
-RUN pip install -q git+https://github.com/tensorflow/docs
-
-RUN pip install -q git+https://github.com/tensorflow/examples.git
-
-RUN apt update \
-    && apt install -yq --no-install-recommends graphviz \
-    && apt autoremove -y \
-    && apt clean -y \
-    && rm -rf /var/lib/apt/lists/*
 
 ENV DEBIAN_FRONTEND=dialog
 
@@ -93,60 +135,6 @@ ENTRYPOINT /etc/init.d/ssh start && jupyter lab
 
 # RUN echo "import nltk; nltk.download('stopwords'); nltk.download('wordnet'); nltk.download('averaged_perceptron_tagger')" > n.py \
 #     && python3 n.py
-
-# RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
-#     graphviz \
-#     h5py \
-#     ipython-sql \
-#     pydot \
-#     pygments \
-#     pymysql \    
-#     pyPDF2 \
-#     pyyaml \
-#     tables \
-#     bs4
-
-# RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
-#     flask \
-#     WTForms \
-#     Flask-WTF
-
-# RUN pip install --trusted-host pypi.python.org  \
-#     altair \
-#     bokeh \
-#     dash \
-#     imageio \
-#     matplotlib \        
-#     networkx \
-#     plotly \
-#     scikit-image \
-#     seaborn \
-#     vega_datasets \
-#     wordcloud \
-#     squarify \
-#     pywaffle \
-#     calmap \
-#     python-igraph \
-#     leidenalg 
-
-
-#
-# TensorFlow 2.0
-#
-
-# RUN pip install --trusted-host pypi.python.org --upgrade --default-timeout=100 \
-#     tensorflow==2.0.1 
-
-# RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
-#     tensorflow-transform \
-#     tensorflow_hub \
-#     tensorflow-text 
-
-# RUN pip install --trusted-host pypi.python.org --default-timeout=100 \    
-#     git+https://github.com/tensorflow/docs \
-#     git+https://github.com/tensorflow/examples.git \
-#     tensorflow_datasets 
-
 
 
 ##

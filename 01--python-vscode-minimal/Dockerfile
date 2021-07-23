@@ -16,9 +16,7 @@ COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
-#
-#  Base
-#
+# -- Base -------------------------------------------------------------------------------
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
     apt-utils \
@@ -28,13 +26,13 @@ RUN apt-get update \
     make \
     nano \
     wget \
+    pandoc \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-#
-#  ssh 
-#
+
+# -- ssh --------------------------------------------------------------------------------
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
     pdsh \
@@ -49,9 +47,8 @@ RUN apt-get update \
     && cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys \
     && chmod 0600 /root/.ssh/authorized_keys  
 
-#
-# nodejs
-#
+
+# -- nodejs -----------------------------------------------------------------------------
 RUN apt-get update \
     && apt-get install -y ca-certificates xz-utils \
     && curl -O https://nodejs.org/dist/v16.4.0/node-v16.4.0-linux-x64.tar.xz \
@@ -62,9 +59,8 @@ RUN apt-get update \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-#
-# Python 3
-#
+
+# -- Python 3 ---------------------------------------------------------------------------
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
     build-essential \
@@ -81,11 +77,12 @@ RUN apt-get update \
     setuptools \
     wheel 
 
-#
-# Jupyter Lab
-#
+
+# -- Jupyter Lab ------------------------------------------------------------------------
 RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
     jupyterlab \
+    ipywidgets \
+    ipykernel \
     && mkdir /root/.jupyter \
     && mv jupyter_notebook_config.py /root/.jupyter/ \
     && mkdir /root/.jupyter/lab \
@@ -95,42 +92,22 @@ RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
     && mv tracker.jupyterlab-settings /root/.jupyter/lab/user-settings/@jupyterlab/notebook-extension/
 
 
-
-
-
-# "jupyterLab>=2.2.0,<3.0.0a0" \
-
-##
-## Jupyter Lab extensions
-##
-# RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
-# RUN jupyter labextension install @lckr/jupyterlab_variableinspector
-# RUN jupyter labextension install @jupyterlab/toc 
-# RUN jupyter labextension install @jupyterlab/github
-# RUN pip install lckr-jupyterlab-variableinspector
+# -- Code Formater ----------------------------------------------------------------------
 RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
     jupyterlab_code_formatter \
     black \
     isort
 
-# RUN jupyter labextension install \
-#     @ryantam626/jupyterlab_code_formatter \
-#     && pip install --trusted-host pypi.python.org --default-timeout=100 \
-#     jupyterlab_code_formatter \
-#     black \
-#     isort \
-#     && jupyter serverextension enable --system --py jupyterlab_code_formatter
-# RUN jupyter labextension install nbdime-jupyterlab@2.0.0 \
-#     && pip install --trusted-host pypi.python.org --upgrade --default-timeout=100 jupyterlab-git \
-#     && jupyter lab build
-## requiere 'jupyterLab >=2.2.0,<3.0.0a0'
-# RUN pip install --trusted-host pypi.python.org --default-timeout=100 jupyter-lsp \
-#     && jupyter labextension install @krassowski/jupyterlab-lsp \
-#     && pip install --trusted-host pypi.python.org --default-timeout=100 'python-language-server[all]'
 
-##
-## VS Code
-##
+# -- Table of Content -------------------------------------------------------------------
+RUN jupyter labextension install @jupyterlab/toc 
+
+# -- DrawIO -----------------------------------------------------------------------------
+RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
+    jupyterlab-drawio
+
+
+# -- VS code tools ----------------------------------------------------------------------
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     bandit \
     flake8 \
@@ -149,40 +126,8 @@ RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
 
 
 
-# RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
-#     graphviz \
-#     h5py \
-#     ipython-sql \
-#     pydot \
-#     pygments \
-#     pymysql \    
-#     pyPDF2 \
-#     pyyaml \
-#     tables \
-#     bs4
 
-# RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
-#     flask \
-#     WTForms \
-#     Flask-WTF
 
-# RUN pip install --trusted-host pypi.python.org  \
-#     altair \
-#     bokeh \
-#     dash \
-#     imageio \
-#     matplotlib \        
-#     networkx \
-#     plotly \
-#     scikit-image \
-#     seaborn \
-#     vega_datasets \
-#     wordcloud \
-#     squarify \
-#     pywaffle \
-#     calmap \
-#     python-igraph \
-#     leidenalg 
 
 
 
