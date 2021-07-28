@@ -1,13 +1,16 @@
 #
-# docker build --tag=jdvelasq/python3:colab .
-# docker push jdvelasq/python3:colab
-# docker run --rm -it -v "$PWD":/datalake --name colab -p 8888:8888 -p 5000:5000 jdvelasq/python3:colab
-# docker run --rm -it -v datalake:/datalake -name colab -p 8888:8888 jdvelasq/python3:colab
-# docker exec -it colab bash
+# docker build --tag=jdvelasq/python3:aws-emr .
+# docker push jdvelasq/python3:aws-emr
+# docker run --rm -it -v "$PWD":/datalake --name aws-emr -p 8888:8888 -p 5000:5000 jdvelasq/python3:aws-emr
+# docker run --rm -it -v datalake:/datalake -name aws-emr -p 8888:8888 jdvelasq/python3:aws-emr
+# docker exec -it aws-emr bash
 #
-# docker run --rm -it  --name colab -p 8888:8888 -p 5000:5000 jdvelasq/python3:colab
+# docker run --rm -it  --name aws-emr -p 8888:8888 -p 5000:5000 jdvelasq/python3:aws-emr
 #
-FROM jdvelasq/python3:vscode-minimal
+# REPOSITORY         TAG          IMAGE ID       CREATED          SIZE
+# jdvelasq/python3   aws-emr      c72e04963fe1   2 minutes ago    1.31GB
+#
+FROM jdvelasq/python3:jupyterlab
 
 ENV LANG C.UTF-8 
 
@@ -17,109 +20,17 @@ COPY . /app
 ENV DEBIAN_FRONTEND noninteractive
 
 # -- Package development ----------------------------------------------------------------
-RUN pip3 install --upgrade pip setuptools wheel
+RUN pip3 install --upgrade pip
 
-# -- Manipulación de Datos --------------------------------------------------------------
+# -- Amazon EMR on EKS (Elastic Kubernetes Service)  ------------------------------------
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    numpy \
-    pandas \
-    scipy \
-    pandas-datareader \
-    pandas-gbq \
-    pandas-profiling \
-    SQLAlchemy
-
-# -- Graficación ------------------------------------------------------------------------
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    altair \
-    bokeh \
-    calmap \
-    chord \
-    circlify \
-    dash \
-    graphviz \
-    imageio \
-    leidenalg \
-    matplotlib \
-    matplotlib \        
-    matplotlib_venn \
-    mne \
-    networkx \
-    plotly \
-    pydotplus \
-    pydot \
-    python-igraph \
-    pywaffle \
-    scikit-image \
-    seaborn \
-    squarify \
-    yellowbrick \
-    wordcloud \
-    'plotnine[all]' \
-    pyviz \
-    holoviews
-
-
-RUN apt update \
-    && apt install -yq --no-install-recommends graphviz \
-    && apt autoremove -y \
-    && apt clean -y \
-    && rm -rf /var/lib/apt/lists/*
-
-
-# -- Progress bars ----------------------------------------------------------------------
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    progressbar2 \
-    tdqm
-
-# -- Desarrollo web ---------------------------------------------------------------------
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    flask  \
-    Jinja2 
-
-# -- Scrapping --------------------------------------------------------------------------
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    bs4
-
-# -- Machine Learning -------------------------------------------------------------------
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    statsmodels \
-    scikit-learn \
-    sklearn-pandas
-
-# -- Text Analytics ---------------------------------------------------------------------
-RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
-    gensim \
-    nltk \
-    spacy \
-    gensim \
-    snowballstemmer
-
-
-# -- Deep Learning ----------------------------------------------------------------------
-RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \    
-    tensorflow \
-    tensorboard \
-    tensorflow-addons \
-    tensorflow-datasets \
-    tensorflow-estimator \
-    tensorflow-hub \
-    tensorflow-text \
-    tensorflow_io \
-    pyyaml \
-    h5py \
-    keras-tuner && \
-    pip install -q git+https://github.com/tensorflow/docs && \
-    pip install -q git+https://github.com/tensorflow/examples.git
-
-# -- Sphinx -----------------------------------------------------------------------------
-RUN pip3 --disable-pip-version-check --no-cache-dir install \
-    sphinx==4.0.3 \
-    sphinx-intl \
-    nbsphinx \
-    sphinx-rtd-theme \ 
-    sphinx_copybutton \    
-    pygments
+    numpy==1.19.5 \
+    pandas==1.1.5 \
+    scipy==1.4.1 \
+    matplotlib==3.2.2 \
+    plotly==4.4.1 \
+    scikit-learn==0.22.2.post1 \
+    seaborn==0.11.1
 
 
 ENV DEBIAN_FRONTEND=dialog
@@ -131,6 +42,101 @@ EXPOSE   8888  5000  8000  6006
 RUN rm -rf /app/*
 WORKDIR /datalake
 ENTRYPOINT /etc/init.d/ssh start && jupyter lab
+
+
+
+# -- Graficación ------------------------------------------------------------------------
+# RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+#     altair \
+#     bokeh \
+#     calmap \
+#     chord \
+#     circlify \
+#     dash \
+#     graphviz \
+#     imageio \
+#     leidenalg \
+#     matplotlib \
+#     matplotlib \        
+#     matplotlib_venn \
+#     mne \
+#     networkx \
+#     plotly \
+#     pydotplus \
+#     pydot \
+#     python-igraph \
+#     pywaffle \
+#     scikit-image \
+#     seaborn \
+#     squarify \
+#     yellowbrick \
+#     wordcloud \
+#     'plotnine[all]' \
+#     pyviz \
+#     holoviews
+
+
+# RUN apt update \
+#     && apt install -yq --no-install-recommends graphviz \
+#     && apt autoremove -y \
+#     && apt clean -y \
+#     && rm -rf /var/lib/apt/lists/*
+
+
+# -- Progress bars ----------------------------------------------------------------------
+# RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+#     progressbar2 \
+#     tdqm
+
+# -- Desarrollo web ---------------------------------------------------------------------
+# RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+#     flask  \
+#     Jinja2 
+
+# -- Scrapping --------------------------------------------------------------------------
+# RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+#     bs4
+
+# -- Machine Learning -------------------------------------------------------------------
+# RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+#     statsmodels \
+#     scikit-learn \
+#     sklearn-pandas
+
+# -- Text Analytics ---------------------------------------------------------------------
+# RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
+#     gensim \
+#     nltk \
+#     spacy \
+#     gensim \
+#     snowballstemmer
+
+
+# -- Deep Learning ----------------------------------------------------------------------
+# RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \    
+#     tensorflow \
+#     tensorboard \
+#     tensorflow-addons \
+#     tensorflow-datasets \
+#     tensorflow-estimator \
+#     tensorflow-hub \
+#     tensorflow-text \
+#     tensorflow_io \
+#     pyyaml \
+#     h5py \
+#     keras-tuner && \
+#     pip install -q git+https://github.com/tensorflow/docs && \
+#     pip install -q git+https://github.com/tensorflow/examples.git
+
+# -- Sphinx -----------------------------------------------------------------------------
+# RUN pip3 --disable-pip-version-check --no-cache-dir install \
+#     sphinx==4.0.3 \
+#     sphinx-intl \
+#     nbsphinx \
+#     sphinx-rtd-theme \ 
+#     sphinx_copybutton \    
+#     pygments
+
 
 
 # RUN echo "import nltk; nltk.download('stopwords'); nltk.download('wordnet'); nltk.download('averaged_perceptron_tagger')" > n.py \

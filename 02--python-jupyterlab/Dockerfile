@@ -1,12 +1,15 @@
 #
-# docker build --tag=jdvelasq/python3:vscode-minimal .
-# docker push jdvelasq/python3:vscode-minimal
-# docker run --rm -it -v "$PWD":/datalake --name python3-vscode-minimal -p 8888:8888 -p 5000:5000 jdvelasq/python3:vscode-minimal .
-# docker run --rm -it -v datalake:/datalake --name python3-vscode-minimal -p 8888:8888 jdvelasq/python3:vscode-minimal .
-# docker exec -it python3-vscode-minimal bash
+# docker build --tag=jdvelasq/python3:jupyterlab .
+# docker push jdvelasq/python3:jupyterlab
+# docker run --rm -it -v "$PWD":/datalake --name python3-jupyterlab -p 8888:8888 -p 5000:5000 jdvelasq/python3:jupyterlab .
+# docker run --rm -it -v datalake:/datalake --name python3-jupyterlab -p 8888:8888 jdvelasq/python3:jupyterlab .
+# docker exec -it python3-jupyterlab bash
 #
-# docker run --rm -it  --name python3-vscode-minimal -p 8888:8888 -p 5000:5000 jdvelasq/python3:vscode-minimal
+# docker run --rm -it  --name python3-jupyterlab -p 8888:8888 -p 5000:5000 jdvelasq/python3:jupyterlab
 #
+# REPOSITORY         TAG          IMAGE ID       CREATED          SIZE
+# jdvelasq/python3   jupyterlab   f9bdce8b7f47   17 minutes ago   912MB
+# 
 FROM ubuntu:18.04
 
 ENV LANG C.UTF-8 
@@ -16,17 +19,17 @@ COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# -- Base -------------------------------------------------------------------------------
+# -- utlidades sistema operativo --------------------------------------------------------
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
     apt-utils \
     bsdmainutils \
+    build-essential \
     curl \
     git \
     make \
     nano \
     wget \
-    pandoc \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
@@ -63,7 +66,6 @@ RUN apt-get update \
 # -- Python 3 ---------------------------------------------------------------------------
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
-    build-essential \
     python-dev \
     python3-minimal \
     python3-pip \
@@ -80,9 +82,7 @@ RUN apt-get update \
 
 # -- Jupyter Lab ------------------------------------------------------------------------
 RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
-    jupyterlab \
-    ipywidgets \
-    ipykernel \
+    jupyterlab==3.1.0 \
     && mkdir /root/.jupyter \
     && mv jupyter_notebook_config.py /root/.jupyter/ \
     && mkdir /root/.jupyter/lab \
@@ -100,35 +100,28 @@ RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
 
 
 # -- Table of Content -------------------------------------------------------------------
-RUN jupyter labextension install @jupyterlab/toc 
+# RUN jupyter labextension install @jupyterlab/toc 
 
 # -- DrawIO -----------------------------------------------------------------------------
-RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
-    jupyterlab-drawio
+# RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
+#     jupyterlab-drawio
 
 
 # -- VS code tools ----------------------------------------------------------------------
-RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
-    bandit \
-    flake8 \
-    jedi \
-    mypy \
-    nose \
-    poetry \
-    prospector \
-    pycodestyle \
-    pylama \
-    pylint \
-    pytest \
-    rope \
-    yapf
-
-
-
-
-
-
-
+# RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
+#     bandit \
+#     flake8 \
+#     jedi \
+#     mypy \
+#     nose \
+#     poetry \
+#     prospector \
+#     pycodestyle \
+#     pylama \
+#     pylint \
+#     pytest \
+#     rope \
+#     yapf
 
 
 ENV DEBIAN_FRONTEND=dialog
