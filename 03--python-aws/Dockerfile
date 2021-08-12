@@ -32,13 +32,24 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     scikit-learn==0.22.2.post1 \
     seaborn==0.11.1
 
+# -- Voila, bqplot, ipysheet  -----------------------------------------------------------
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    bqplot \
+    ipywidgets \
+    traitlets \
+    traittypes  \
+    ipympl \
+    ipysheet \
+    voila \
+    voila-gridstack
+
 
 ENV DEBIAN_FRONTEND=dialog
 
 #
 # Parte generica
 #
-EXPOSE   8888  5000  8000  6006 
+EXPOSE   8888  8866 5000  8000  6006 
 RUN rm -rf /app/*
 WORKDIR /datalake
 ENTRYPOINT /etc/init.d/ssh start && jupyter lab
