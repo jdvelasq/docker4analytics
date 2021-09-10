@@ -30,7 +30,7 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     matplotlib==3.2.2 \
     plotly==4.4.1 \
     scikit-learn==0.22.2.post1 \
-    seaborn==0.11.1
+    seaborn==0.11.1 
 
 # -- Voila, bqplot, ipysheet  -----------------------------------------------------------
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
@@ -41,7 +41,8 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     ipympl \
     ipysheet \
     voila \
-    voila-gridstack
+    voila-gridstack \
+    jupyterlab-drawio
 
 
 ENV DEBIAN_FRONTEND=dialog

@@ -2,7 +2,7 @@
 # docker build --tag=jdvelasq/python3:jupyterlab .
 # docker push jdvelasq/python3:jupyterlab
 # docker run --rm -it -v "$PWD":/datalake --name python3-jupyterlab -p 8888:8888 -p 5000:5000 jdvelasq/python3:jupyterlab .
-# docker run --rm -it -v datalake:/datalake --name python3-jupyterlab -p 8888:8888 jdvelasq/python3:jupyterlab .
+# docker run --rm -it -v datalake:/datalake --name python3-jupyterlab -p 8888:8888 -p 5000:5000 jdvelasq/python3:jupyterlab .
 # docker exec -it python3-jupyterlab bash
 #
 # docker run --rm -it  --name python3-jupyterlab -p 8888:8888 -p 5000:5000 jdvelasq/python3:jupyterlab
@@ -25,6 +25,7 @@ RUN apt-get update \
     apt-utils \
     bsdmainutils \
     build-essential \
+    bash \
     curl \
     git \
     make \
@@ -91,6 +92,12 @@ RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
     && mkdir /root/.jupyter/lab/user-settings/@jupyterlab/notebook-extension \
     && mv tracker.jupyterlab-settings /root/.jupyter/lab/user-settings/@jupyterlab/notebook-extension/
 
+# -- Debugger ---------------------------------------------------------------------------
+RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
+    ipykernel \
+    xeus-python \
+    notebook
+
 
 # -- Code Formater ----------------------------------------------------------------------
 RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
@@ -132,4 +139,5 @@ ENV DEBIAN_FRONTEND=dialog
 EXPOSE   8888  5000  8000  6006 
 RUN rm -rf /app/*
 WORKDIR /datalake
+SHELL ["/bin/bash", "-c"]
 ENTRYPOINT /etc/init.d/ssh start && jupyter lab
