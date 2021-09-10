@@ -26,11 +26,14 @@ RUN apt-get update \
     bsdmainutils \
     build-essential \
     bash \
+    bash-completion \
     curl \
     git \
     make \
     nano \
     wget \
+    && echo "source /etc/profile.d/bash_completion.sh" >> /root/.bashrc \
+    && mv inputrc /root/.inputrc \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
