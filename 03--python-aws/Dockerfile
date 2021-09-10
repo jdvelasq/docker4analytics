@@ -53,6 +53,7 @@ ENV DEBIAN_FRONTEND=dialog
 EXPOSE   8888  8866 5000  8000  6006 
 RUN rm -rf /app/*
 WORKDIR /datalake
+SHELL ["/bin/bash", "-c"]
 ENTRYPOINT /etc/init.d/ssh start && jupyter lab
 
 
