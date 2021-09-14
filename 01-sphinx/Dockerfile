@@ -17,15 +17,16 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* 
 
 RUN pip install --trusted-host pypi.python.org \
-    sphinx==3.0.4 \
+    sphinx==4.0.3 \
     sphinx_rtd_theme \
     sphinx_copybutton \
     sphinx-autodoc-typehints \
     sphinx-intl \
-    nbsphinx \
+    nbsphinx==0.8.5\
+    docutils==0.16 \
     pygments \
     ipykernel 
 
 VOLUME /datalake
 
-ENTRYPOINT cd /app && make html
+ENTRYPOINT cd /app && make html && cp /tmp/sphinx-*.log /app/
