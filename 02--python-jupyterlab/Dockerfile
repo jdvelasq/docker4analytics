@@ -32,11 +32,13 @@ RUN apt-get update \
     make \
     nano \
     wget \
-    && echo "source /etc/profile.d/bash_completion.sh" >> /root/.bashrc \
-    && mv inputrc /root/.inputrc \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
+
+
+#    && echo "source /etc/profile.d/bash_completion.sh" >> /root/.bashrc \
+#    && mv inputrc /root/.inputrc \
 
 
 # -- ssh --------------------------------------------------------------------------------
@@ -106,7 +108,10 @@ RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
 RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
     jupyterlab_code_formatter \
     black \
-    isort
+    isort \
+    && mkdir /root/.jupyter/lab/user-settings/@ryantam626 \
+    && mkdir /root/.jupyter/lab/user-settings/@ryantam626/jupyterlab_code_formatter \
+    && mv settings_jupyterlab-settings /root/.jupyter/lab/user-settings/@ryantam626/jupyterlab_code_formatter/settings.jupyterlab-settings
 
 
 # -- Table of Content -------------------------------------------------------------------

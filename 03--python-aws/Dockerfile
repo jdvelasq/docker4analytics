@@ -30,7 +30,7 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     matplotlib==3.2.2 \
     plotly==4.4.1 \
     scikit-learn==0.22.2.post1 \
-    seaborn==0.11.1 \
+    seaborn==0.11.2 \
     statsmodels==0.10.2
 
 # -- Voila, bqplot, ipysheet  -----------------------------------------------------------

@@ -20,6 +20,7 @@ RUN pip install --trusted-host pypi.python.org \
     sphinx==4.0.3 \
     sphinx_rtd_theme \
     sphinx_copybutton \
+    sphinx-book-theme \
     sphinx-autodoc-typehints \
     sphinx-intl \
     nbsphinx==0.8.5\
