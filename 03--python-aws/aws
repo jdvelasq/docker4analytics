@@ -1,1 +1,1 @@
-docker run --rm -it -v "$PWD":/datalake --name aws-emr -p 8888:8888 -p 5000:5000 -p 6006:6006 -p 6007:6006 jdvelasq/python3:aws-emr
+docker run --rm -it -v "$PWD":/datalake --name aws-emr -p 8888:8888 -p 6006:6006 -p 6007:6006 jdvelasq/python3:aws-emr
