@@ -10,7 +10,8 @@
 # REPOSITORY         TAG          IMAGE ID       CREATED          SIZE
 # jdvelasq/python3   jupyterlab   f9bdce8b7f47   17 minutes ago   912MB
 # 
-FROM ubuntu:18.04
+# FROM ubuntu:18.04
+FROM python:3.9
 
 ENV LANG C.UTF-8 
 
@@ -79,11 +80,21 @@ RUN apt-get update \
     python3-venv \ 
     && apt-get autoremove -y \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/* \
-    && pip3 install --upgrade pip \
-    && pip install --trusted-host pypi.python.org  --default-timeout=100 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install --upgrade pip
+
+RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     setuptools \
     wheel 
+
+
+# RUN add-apt-repository ppa:deadsnakes/ppa \
+#     && apt-get update \
+#     && apt-get install python3.9 \
+#     && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1 \
+#     && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 2 \
+#     && update-alternatives --config python3
 
 
 # -- Jupyter Lab ------------------------------------------------------------------------
