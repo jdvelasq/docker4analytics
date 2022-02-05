@@ -17,6 +17,7 @@ ENV LANG C.UTF-8
 WORKDIR /app
 COPY . /app
 
+
 ENV DEBIAN_FRONTEND noninteractive
 
 # -- Package development ----------------------------------------------------------------
@@ -24,27 +25,45 @@ RUN pip3 install --upgrade pip
 
 # -- Amazon EMR on EKS (Elastic Kubernetes Service)  ------------------------------------
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    graphviz==0.10.1 \
+    ipykernel==4.10.1 \
+    ipywidgets==7.6.5 \
+    matplotlib==3.5.1 \
+    networkx==2.6.3 \
+    nltk==3.2.5 \
     numpy==1.19.5 \
     pandas==1.1.5 \
-    scipy==1.4.1 \
-    matplotlib==3.2.2 \
     plotly==4.4.1 \
-    scikit-learn \
+    PyYAML==5.4.1 \
+    "scikit-learn==1.0.2" \
     seaborn==0.11.2 \
-    statsmodels==0.10.2
+    statsmodels==0.10.2 \
+    textblob==0.15.3 \
+    wordcloud==1.8.1 \
+    "cdlib==0.2.5" \
+    "squarify==0.4.3" \
+    "python-Levenshtein==0.12.2" \
+    circlify 
 
-# -- Voila, bqplot, ipysheet  -----------------------------------------------------------
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    bqplot \
-    ipywidgets \
-    traitlets \
-    traittypes  \
-    ipympl \
-    ipysheet \
-    voila \
-    voila-gridstack \
+# -- Voila, bqplot, ipysheet  ----------------------------------------------------------
+# RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+#     bqplot \
+#     traitlets \
+#     traittypes  \
+#     ipympl \
+#     ipysheet \
+#     voila \
+#     voila-gridstack 
+
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \    
     jupyterlab-drawio
 
+RUN python3 -c "import nltk; nltk.download('punkt'); nltk.download('brown'); nltk.download('averaged_perceptron_tagger')"
+
+RUN python3 -c "import nltk; nltk.download('stopwords'); "
+
+
+RUN pip3 install -q -U git+https://github.com/jdvelasq/techminer2
 
 ENV DEBIAN_FRONTEND=dialog
 
