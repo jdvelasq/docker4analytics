@@ -45,15 +45,18 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     "python-Levenshtein==0.12.2" \
     circlify 
 
+
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    ipympl \
+    voila \
+    voila-gridstack 
+
 # -- Voila, bqplot, ipysheet  ----------------------------------------------------------
 # RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
 #     bqplot \
 #     traitlets \
 #     traittypes  \
-#     ipympl \
 #     ipysheet \
-#     voila \
-#     voila-gridstack 
 
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \    
     jupyterlab-drawio
@@ -64,6 +67,17 @@ RUN python3 -c "import nltk; nltk.download('stopwords'); "
 
 
 RUN pip3 install -q -U git+https://github.com/jdvelasq/techminer2
+
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    tensorboard==2.7.0 \
+    tensorflow==2.7.0 \
+    tensorflow-datasets==4.0.1 \
+    tensorflow-estimator==2.7.0 \
+    tensorflow-gcs-config==2.7.0 \
+    tensorflow-hub==0.12.0 \
+    tensorflow-metadata==1.6.0 \
+    tensorflow-probability==0.15.0
+
 
 ENV DEBIAN_FRONTEND=dialog
 
