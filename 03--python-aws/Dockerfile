@@ -21,7 +21,7 @@ COPY . /app
 ENV DEBIAN_FRONTEND noninteractive
 
 # -- Package development ----------------------------------------------------------------
-RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade pip  
 
 # -- Amazon EMR on EKS (Elastic Kubernetes Service)  ------------------------------------
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
