@@ -1,5 +1,5 @@
 #
-# docker build --tag=jdvelasq/python3:techminer2 .
+# docker build --tag=jdvelasq/python3:techminer2 --no-cache .
 # docker push jdvelasq/python3:techminer2
 # docker run --rm -it -v "$PWD":/datalake --name aws-emr -p 8888:8888 -p 5000:5000 jdvelasq/python3:techminer2
 # docker run --rm -it -v datalake:/datalake -name aws-emr -p 8888:8888 jdvelasq/python3:techminer2
@@ -15,14 +15,12 @@ ENV LANG C.UTF-8
 WORKDIR /app
 COPY . /app
 
-
 ENV DEBIAN_FRONTEND noninteractive
 
 # -- Package development ----------------------------------------------------------------
+
 RUN pip3 install --upgrade pip
-
 RUN pip3 install -q -U git+https://github.com/jdvelasq/techminer2
-
 ENV DEBIAN_FRONTEND=dialog
 
 #
