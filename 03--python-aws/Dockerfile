@@ -21,7 +21,7 @@ COPY . /app
 ENV DEBIAN_FRONTEND noninteractive
 
 # -- Package development ----------------------------------------------------------------
-RUN pip3 install --upgrade pip  
+RUN pip3 install --upgrade pip
 
 # -- Amazon EMR on EKS (Elastic Kubernetes Service)  ------------------------------------
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
@@ -32,7 +32,7 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     networkx==2.6.3 \
     nltk==3.2.5 \
     numpy==1.19.5 \
-    pandas==1.1.5 \
+    pandas==1.3.5 \
     plotly==4.4.1 \
     PyYAML==5.4.1 \
     "scikit-learn==1.0.2" \
@@ -46,10 +46,10 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     circlify 
 
 
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    ipympl \
-    voila \
-    voila-gridstack 
+# RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+#     ipympl \
+#     voila \
+#     voila-gridstack 
 
 # -- Voila, bqplot, ipysheet  ----------------------------------------------------------
 # RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
@@ -58,25 +58,21 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
 #     traittypes  \
 #     ipysheet \
 
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \    
-    jupyterlab-drawio
+# RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \    
+#     jupyterlab-drawio
 
-RUN python3 -c "import nltk; nltk.download('punkt'); nltk.download('brown'); nltk.download('averaged_perceptron_tagger')"
+RUN python3 -c "import nltk; nltk.download('punkt'); nltk.download('brown'); nltk.download('averaged_perceptron_tagger'); nltk.download('stopwords'); "
 
-RUN python3 -c "import nltk; nltk.download('stopwords'); "
-
-
-RUN pip3 install -q -U git+https://github.com/jdvelasq/techminer2
 
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    tensorboard==2.7.0 \
-    tensorflow==2.7.0 \
+    tensorboard==2.8.0 \
+    tensorflow==2.8.0 \
     tensorflow-datasets==4.0.1 \
-    tensorflow-estimator==2.7.0 \
-    tensorflow-gcs-config==2.7.0 \
+    tensorflow-estimator==2.8.0 \
+    tensorflow-gcs-config==2.8.0 \
     tensorflow-hub==0.12.0 \
     tensorflow-metadata==1.6.0 \
-    tensorflow-probability==0.15.0
+    tensorflow-probability==0.16.0
 
 
 ENV DEBIAN_FRONTEND=dialog
