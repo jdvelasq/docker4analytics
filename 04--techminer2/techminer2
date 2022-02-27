@@ -1,1 +1,0 @@
-docker run --rm -it -v "$PWD":/datalake --name techminer2 -p 8888:8888 -p 6006:6006 -p 6007:6006 jdvelasq/python3:techminer2
