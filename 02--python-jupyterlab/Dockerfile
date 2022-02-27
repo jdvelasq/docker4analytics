@@ -31,6 +31,7 @@ RUN apt-get update \
     curl \
     git \
     make \
+    tree \
     nano \
     wget \
     && apt-get autoremove -y \
@@ -71,22 +72,25 @@ RUN apt-get update \
 
 
 # -- Python 3 ---------------------------------------------------------------------------
-RUN apt-get update \
-    && apt-get install -yq --no-install-recommends \
-    python-dev \
-    python3-minimal \
-    python3-pip \
-    python3-dev \       
-    python3-venv \ 
-    && apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
-
 RUN pip3 install --upgrade pip
 
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     setuptools \
     wheel 
+
+
+# -- Python 3 ---------------------------------------------------------------------------
+# RUN apt-get update \
+#     && apt-get install -yq --no-install-recommends \
+#     python-dev \
+#     python3-minimal \
+#     python3-pip \
+#     python3-dev \       
+#     python3-venv \ 
+#     && apt-get autoremove -y \
+#     && apt-get clean -y \
+#     && rm -rf /var/lib/apt/lists/*
+
 
 
 # RUN add-apt-repository ppa:deadsnakes/ppa \
@@ -99,7 +103,7 @@ RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
 
 # -- Jupyter Lab ------------------------------------------------------------------------
 RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
-    jupyterlab==3.1.0 \
+    jupyterlab==3.2.9 \
     && mkdir /root/.jupyter \
     && mv jupyter_notebook_config.py /root/.jupyter/ \
     && mkdir /root/.jupyter/lab \
@@ -111,7 +115,6 @@ RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
 # -- Debugger ---------------------------------------------------------------------------
 RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
     ipykernel \
-    xeus-python \
     notebook
 
 
