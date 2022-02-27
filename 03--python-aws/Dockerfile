@@ -25,9 +25,6 @@ RUN pip3 install --upgrade pip
 
 # -- Amazon EMR on EKS (Elastic Kubernetes Service)  ------------------------------------
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    graphviz==0.10.1 \
-    ipykernel==4.10.1 \
-    ipywidgets==7.6.5 \
     matplotlib==3.5.1 \
     networkx==2.6.3 \
     nltk==3.2.5 \
@@ -45,6 +42,10 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     "python-Levenshtein==0.12.2" \
     circlify 
 
+# graphviz==0.10.1 \ 
+# ipykernel==4.10.1 \
+# ipywidgets==7.6.5 \
+
 
 # RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
 #     ipympl \
@@ -58,8 +59,8 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
 #     traittypes  \
 #     ipysheet \
 
-# RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \    
-#     jupyterlab-drawio
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \    
+    jupyterlab-drawio
 
 RUN python3 -c "import nltk; nltk.download('punkt'); nltk.download('brown'); nltk.download('averaged_perceptron_tagger'); nltk.download('stopwords'); "
 
@@ -72,8 +73,20 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     tensorflow-gcs-config==2.8.0 \
     tensorflow-hub==0.12.0 \
     tensorflow-metadata==1.6.0 \
-    tensorflow-probability==0.16.0
+    tensorflow-probability==0.16.0 \
+    tensorflow-text=2.8.1 \
+    tensorflow_decision_forests
 
+
+# -- Visualizacion de modelos en TensorFlow ---------------------------------------------
+RUN apt-get update \
+    && apt-get install -yq --no-install-recommends \
+    graphviz \
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    pydot
 
 ENV DEBIAN_FRONTEND=dialog
 
