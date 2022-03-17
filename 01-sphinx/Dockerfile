@@ -17,7 +17,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* 
 
 RUN pip install --trusted-host pypi.python.org \
-    sphinx==4.0.3 \
+    sphinx==3.0.4 \
     sphinx_rtd_theme \
     sphinx_copybutton \
     sphinx-book-theme \
@@ -26,7 +26,8 @@ RUN pip install --trusted-host pypi.python.org \
     nbsphinx==0.8.5\
     docutils==0.16 \
     pygments \
-    ipykernel 
+    ipykernel \
+    MarkupSafe==2.0.0
 
 VOLUME /datalake
 

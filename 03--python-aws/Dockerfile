@@ -25,22 +25,10 @@ RUN pip3 install --upgrade pip
 
 # -- Amazon EMR on EKS (Elastic Kubernetes Service)  ------------------------------------
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    matplotlib==3.5.1 \
-    networkx==2.6.3 \
-    nltk==3.2.5 \
-    numpy==1.19.5 \
-    pandas==1.3.5 \
-    plotly==4.4.1 \
-    PyYAML==5.4.1 \
-    "scikit-learn==1.0.2" \
-    seaborn==0.11.2 \
-    statsmodels==0.10.2 \
-    textblob==0.15.3 \
-    wordcloud==1.8.1 \
-    "cdlib==0.2.5" \
-    "squarify==0.4.3" \
-    "python-Levenshtein==0.12.2" \
-    circlify 
+    matplotlib \
+    pandas \
+    scikit-learn \
+    seaborn 
 
 # graphviz==0.10.1 \ 
 # ipykernel==4.10.1 \
@@ -59,34 +47,10 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
 #     traittypes  \
 #     ipysheet \
 
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \    
-    jupyterlab-drawio
-
-RUN python3 -c "import nltk; nltk.download('punkt'); nltk.download('brown'); nltk.download('averaged_perceptron_tagger'); nltk.download('stopwords'); "
 
 
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    tensorboard==2.8.0 \
-    tensorflow==2.8.0 \
-    tensorflow-datasets==4.0.1 \
-    tensorflow-estimator==2.8.0 \
-    tensorflow-gcs-config==2.8.0 \
-    tensorflow-hub==0.12.0 \
-    tensorflow-metadata==1.6.0 \
-    tensorflow-probability==0.16.0 \
-    tensorflow-text=2.8.1 \
-    tensorflow_decision_forests
 
 
-# -- Visualizacion de modelos en TensorFlow ---------------------------------------------
-RUN apt-get update \
-    && apt-get install -yq --no-install-recommends \
-    graphviz \
-    && apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/* \
-    && pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    pydot
 
 ENV DEBIAN_FRONTEND=dialog
 
@@ -97,7 +61,7 @@ EXPOSE   8888  8866 5000  8000  6006
 RUN rm -rf /app/*
 WORKDIR /datalake
 SHELL ["/bin/bash", "-c"]
-ENTRYPOINT /etc/init.d/ssh start && jupyter lab
+ENTRYPOINT /etc/init.d/ssh start && jupyter lab --ip 0.0.0.0 --allow-root
 
 
 
