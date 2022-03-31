@@ -73,7 +73,7 @@ EXPOSE   8888  6006
 RUN rm -rf /app/*
 WORKDIR /datalake
 SHELL ["/bin/bash", "-c"]
-ENTRYPOINT /etc/init.d/ssh start && jupyter lab
+ENTRYPOINT jupyter lab --ip 0.0.0.0 --allow-root --no-browser
 
 
 
