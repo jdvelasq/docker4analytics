@@ -28,7 +28,8 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     matplotlib \
     pandas \
     scikit-learn \
-    seaborn 
+    seaborn \
+    mlflow[extras]
 
 # graphviz==0.10.1 \ 
 # ipykernel==4.10.1 \
@@ -61,7 +62,7 @@ EXPOSE   8888  8866 5000  8000  6006
 RUN rm -rf /app/*
 WORKDIR /datalake
 SHELL ["/bin/bash", "-c"]
-ENTRYPOINT /etc/init.d/ssh start && jupyter lab --ip 0.0.0.0 --allow-root
+ENTRYPOINT jupyter lab --ip 0.0.0.0 --allow-root --no-browser
 
 
 
