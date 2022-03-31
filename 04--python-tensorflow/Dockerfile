@@ -10,7 +10,7 @@
 # REPOSITORY         TAG          IMAGE ID       CREATED          SIZE
 # jdvelasq/python3   tensorflow   92276c1ffa50   17 seconds ago   3.03GB
 #
-FROM jdvelasq/python3:jupyterlab
+FROM jdvelasq/python3:aws-emr
 
 ENV LANG C.UTF-8 
 
@@ -18,13 +18,6 @@ WORKDIR /app
 COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
-
-
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    scikit-learn \
-    matplotlib \
-    pandas
-
 
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     tensorflow \
@@ -71,4 +64,4 @@ EXPOSE   8888 6006
 RUN rm -rf /app/*
 WORKDIR /datalake
 # ENTRYPOINT /etc/init.d/ssh start && jupyter lab
-ENTRYPOINT jupyter lab
+ENTRYPOINT jupyter lab --ip 0.0.0.0 --allow-root --no-browser
