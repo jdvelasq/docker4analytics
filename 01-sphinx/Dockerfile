@@ -8,7 +8,7 @@
 #
 FROM python:3.7-slim
 
-WORKDIR /app
+WORKDIR /workspace
 
 RUN apt-get update \
     && apt-get -yq --no-install-recommends install  pandoc  make \
@@ -28,7 +28,5 @@ RUN pip install --trusted-host pypi.python.org \
     pygments \
     ipykernel \
     MarkupSafe==2.0.0
-
-VOLUME /datalake
 
 ENTRYPOINT cd /app && make html && cp /tmp/sphinx-*.log /app/
