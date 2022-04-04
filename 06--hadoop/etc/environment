@@ -1,4 +1,4 @@
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/snap/bin:/opt/hadoop/bin:/opt/hadoop/sbin:/opt/pig/bin:/opt/hive/bin:/usr/local/spark/bin
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/snap/bin:/opt/hadoop/bin:/opt/hadoop/sbin:/opt/pig/bin:/opt/hive/bin:/opt/spark/bin
 
 JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
@@ -25,7 +25,7 @@ HIVE_HOME=/opt/hive
 
 HIVE_CONF_DIR=/opt/hive/conf
 
-SPARK_HOME=/usr/local/spark
+SPARK_HOME=/opt/spark
 
 SPARK_DIST_CLASSPATH=/opt/hadoop/etc/hadoop:/opt/hadoop/share/hadoop/common/lib/*:/opt/hadoop/share/hadoop/common/*:/opt/hadoop/share/hadoop/hdfs:/opt/hadoop/share/hadoop/hdfs/lib/*:/opt/hadoop/share/hadoop/hdfs/*:/opt/hadoop/share/hadoop/yarn/lib/*:/opt/hadoop/share/hadoop/yarn/*:/opt/hadoop/share/hadoop/mapreduce/lib/*:/opt/hadoop/share/hadoop/mapreduce/*://usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/opt/hadoop/contrib/capacity-scheduler/*.jar
 

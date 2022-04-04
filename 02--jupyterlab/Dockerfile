@@ -21,6 +21,7 @@ RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
     wget \
     curl \
+    git-all \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
