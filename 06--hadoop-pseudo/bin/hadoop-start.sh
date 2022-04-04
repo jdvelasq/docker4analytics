@@ -3,7 +3,7 @@
 rm -rf /tmp/hadoop-root/dfs/name
 
 hdfs namenode -format
-bash /usr/local/hadoop/sbin/start-dfs.sh
+bash /opt/hadoop/sbin/start-dfs.sh
 bash start-yarn.sh
 hdfs dfs -mkdir       /tmp
 hdfs dfs -chmod 777   /tmp
