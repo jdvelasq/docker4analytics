@@ -69,7 +69,7 @@ RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
 
 
 # -- Parte generica ---------------------------------------------------------------------
-EXPOSE   8888  6006
+EXPOSE   8888
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
