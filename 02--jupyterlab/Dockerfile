@@ -1,13 +1,11 @@
 #
-# docker build --tag=jdvelasq/python3:jupyterlab .
-# docker push jdvelasq/python3:jupyterlab
-# docker run --rm -it -v "$PWD":/workspace --name python3-jupyterlab -p 8888:8888 -p 5001:5000 jdvelasq/python3:jupyterlab .
-# docker exec -it python3-jupyterlab bash
+# docker build --tag=jdvelasq/jupyterlab:3.2.9 .
+# docker push jdvelasq/jupyterlab:3.2.9
+# docker run --rm -it -v "$PWD":/workspace --name jupyterlab -p 8888:8888 jdvelasq/jupyterlab:3.2.9
+# docker exec -it jupyterlab bash
 #
-# docker run --rm -it  --name python3-jupyterlab -p 8888:8888 -p 5001:5000 jdvelasq/python3:jupyterlab
-#
-# REPOSITORY         TAG          IMAGE ID       CREATED          SIZE
-# jdvelasq/python3   jupyterlab   f9bdce8b7f47   17 minutes ago   912MB
+# REPOSITORY            TAG       IMAGE ID       CREATED              SIZE
+# jdvelasq/jupyterlab   3.2.9     e2483f8b4462   About a minute ago   1.38GB
 # 
 FROM python:3.9
 

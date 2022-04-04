@@ -99,13 +99,6 @@ RUN apt-get update \
 ENV PDSH_RCMD_TYPE=ssh
 
 # -- Java -------------------------------------------------------------------------------
-# ENV JAVA_HOME /opt/jdk-18
-# ENV PATH $PATH:$JAVA_HOME/bin
-# RUN tar -xzf openjdk-18_linux-x64_bin.tar.gz \
-#     && mv jdk-18 /opt/jdk-18 \
-#     && rm openjdk-18_linux-x64_bin.tar.gz \
-#    && chmod 0777 /opt/jdk-18 
-
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $PATH:$JAVA_HOME/bin
 RUN apt-get update \
