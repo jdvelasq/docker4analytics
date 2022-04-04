@@ -1,8 +1,8 @@
 #
 # docker build --tag=jdvelasq/python3:tensorflow .
 # docker push jdvelasq/python3:tensorflow
-# docker run --rm -it -v "$PWD":/datalake --name tensorflow -p 8888:8888 -p 5000:5000 jdvelasq/python3:tensorflow
-# docker run --rm -it -v datalake:/datalake -name tensorflow -p 8888:8888 jdvelasq/python3:tensorflow
+# docker run --rm -it -v "$PWD":/datalake --name tensorflow -p 8888:8888 -p 5001:5000 jdvelasq/python3:tensorflow
+# docker run --rm -it -v datalake:/datalake -name tensorflow -p 8888:8888 -p 5001:5000 jdvelasq/python3:tensorflow
 # docker exec -it tensorflow bash
 #
 # docker run --rm -it  --name tensorflow -p 8888:8888 -p 5000:5000 jdvelasq/python3:tensorflow
@@ -22,6 +22,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     tensorflow \
     tensorboard \
+    tensorflow-addons \
     tensorflow-datasets \
     tensorflow-estimator \
     tensorflow-gcs-config \
@@ -60,8 +61,8 @@ RUN apt-get update \
 
 ENV DEBIAN_FRONTEND=dialog
 
-EXPOSE   8888 6006
+EXPOSE   8888 6006 5000
 RUN rm -rf /app/*
 WORKDIR /datalake
 # ENTRYPOINT /etc/init.d/ssh start && jupyter lab
-ENTRYPOINT jupyter lab --ip 0.0.0.0 --allow-root --no-browser
+ENTRYPOINT jupyter lab
