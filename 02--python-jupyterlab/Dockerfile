@@ -1,16 +1,14 @@
 #
 # docker build --tag=jdvelasq/python3:jupyterlab .
 # docker push jdvelasq/python3:jupyterlab
-# docker run --rm -it -v "$PWD":/datalake --name python3-jupyterlab -p 8888:8888 -p 5000:5000 jdvelasq/python3:jupyterlab .
-# docker run --rm -it -v datalake:/datalake --name python3-jupyterlab -p 8888:8888 -p 5000:5000 jdvelasq/python3:jupyterlab .
+# docker run --rm -it -v "$PWD":/workspace --name python3-jupyterlab -p 8888:8888 -p 5001:5000 jdvelasq/python3:jupyterlab .
 # docker exec -it python3-jupyterlab bash
 #
-# docker run --rm -it  --name python3-jupyterlab -p 8888:8888 -p 5000:5000 jdvelasq/python3:jupyterlab
+# docker run --rm -it  --name python3-jupyterlab -p 8888:8888 -p 5001:5000 jdvelasq/python3:jupyterlab
 #
 # REPOSITORY         TAG          IMAGE ID       CREATED          SIZE
 # jdvelasq/python3   jupyterlab   f9bdce8b7f47   17 minutes ago   912MB
 # 
-# FROM ubuntu:18.04
 FROM python:3.9
 
 ENV LANG C.UTF-8 
@@ -43,6 +41,10 @@ RUN apt-get update \
 # -- pip upgrade ------------------------------------------------------------------------
 RUN pip3 install --upgrade pip
 
+# -- draw.io ----------------------------------------------------------------------------
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \    
+    jupyterlab-drawio
+
 
 # -- Jupyter Lab ------------------------------------------------------------------------
 RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
@@ -64,24 +66,21 @@ RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
     && mkdir /root/.jupyter/lab/user-settings/@ryantam626/jupyterlab_code_formatter \
     && mv settings_jupyterlab-settings /root/.jupyter/lab/user-settings/@ryantam626/jupyterlab_code_formatter/settings.jupyterlab-settings
 
+
+
+# -- Parte generica ---------------------------------------------------------------------
+EXPOSE   8888  6006
 ENV DEBIAN_FRONTEND=dialog
-
-#
-# Parte generica
-#
-EXPOSE   8888  6006 
 RUN rm -rf /app/*
-WORKDIR /datalake
+WORKDIR /workspace
 SHELL ["/bin/bash", "-c"]
-ENTRYPOINT jupyter lab --ip 0.0.0.0 --allow-root --no-browser
+ENTRYPOINT jupyter lab
 
 
 
 
 
 
-# RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \    
-#    jupyterlab-drawio
 
 # RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
 #     setuptools \
