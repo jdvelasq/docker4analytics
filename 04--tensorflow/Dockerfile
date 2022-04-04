@@ -59,9 +59,9 @@ RUN apt-get update \
     pydot
 
 
-ENV DEBIAN_FRONTEND=dialog
-
+# -- Parte generica ---------------------------------------------------------------------
 EXPOSE   8888 6006 5000
+ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
 ENTRYPOINT jupyter lab
