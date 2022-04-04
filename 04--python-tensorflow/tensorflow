@@ -1,1 +1,0 @@
-docker run --rm -it -v "$PWD":/datalake --name tensorflow -p 8888:8888  -p 6006:6006 -p 5001:5000 jdvelasq/python3:tensorflow

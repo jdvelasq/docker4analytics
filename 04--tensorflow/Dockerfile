@@ -1,16 +1,16 @@
 #
-# docker build --tag=jdvelasq/python3:tensorflow .
-# docker push jdvelasq/python3:tensorflow
-# docker run --rm -it -v "$PWD":/datalake --name tensorflow -p 8888:8888 -p 5001:5000 jdvelasq/python3:tensorflow
-# docker run --rm -it -v datalake:/datalake -name tensorflow -p 8888:8888 -p 5001:5000 jdvelasq/python3:tensorflow
+# docker build --tag=jdvelasq/tensorflow:2.8 .
+# docker push jdvelasq/tensorflow:2.8
+# docker run --rm -it -v "$PWD":/datalake --name tensorflow -p 8888:8888 -p 5001:5000 jdvelasq/tensorflow:2.8
+# docker run --rm -it -v datalake:/datalake -name tensorflow -p 8888:8888 -p 5001:5000 jdvelasq/tensorflow:2.8
 # docker exec -it tensorflow bash
 #
-# docker run --rm -it  --name tensorflow -p 8888:8888 -p 5000:5000 jdvelasq/python3:tensorflow
+# docker run --rm -it  --name tensorflow -p 8888:8888 -p 5000:5000 jdvelasq/tensorflow:2.8
 #
 # REPOSITORY         TAG          IMAGE ID       CREATED          SIZE
-# jdvelasq/python3   tensorflow   92276c1ffa50   17 seconds ago   3.03GB
 #
-FROM jdvelasq/python3:aws-emr
+#
+FROM jdvelasq/sklearn:1.0.2
 
 ENV LANG C.UTF-8 
 
@@ -63,6 +63,5 @@ ENV DEBIAN_FRONTEND=dialog
 
 EXPOSE   8888 6006 5000
 RUN rm -rf /app/*
-WORKDIR /datalake
-# ENTRYPOINT /etc/init.d/ssh start && jupyter lab
+WORKDIR /workspace
 ENTRYPOINT jupyter lab
