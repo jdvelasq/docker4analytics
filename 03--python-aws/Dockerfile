@@ -1,8 +1,8 @@
 #
 # docker build --tag=jdvelasq/python3:aws-emr .
 # docker push jdvelasq/python3:aws-emr
-# docker run --rm -it -v "$PWD":/datalake --name aws-emr -p 8888:8888 -p 5000:5000 jdvelasq/python3:aws-emr
-# docker run --rm -it -v datalake:/datalake -name aws-emr -p 8888:8888 jdvelasq/python3:aws-emr
+# docker run --rm -it -v "$PWD":/datalake --name aws-emr -p 8888:8888 -p 5001:5000 jdvelasq/python3:aws-emr
+# docker run --rm -it -v datalake:/datalake -name aws-emr -p 8888:8888 -p 5001:5000 jdvelasq/python3:aws-emr
 # docker exec -it aws-emr bash
 #
 # docker run --rm -it  --name aws-emr -p 8888:8888 -p 5000:5000 jdvelasq/python3:aws-emr
@@ -31,6 +31,19 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     seaborn \
     mlflow[extras]
 
+ENV DEBIAN_FRONTEND=dialog
+
+#
+# Parte generica
+#
+EXPOSE   8888  5000
+RUN rm -rf /app/*
+WORKDIR /datalake
+SHELL ["/bin/bash", "-c"]
+ENTRYPOINT jupyter lab
+
+
+
 # graphviz==0.10.1 \ 
 # ipykernel==4.10.1 \
 # ipywidgets==7.6.5 \
@@ -53,16 +66,6 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
 
 
 
-ENV DEBIAN_FRONTEND=dialog
-
-#
-# Parte generica
-#
-EXPOSE   8888  8866 5000  8000  6006 
-RUN rm -rf /app/*
-WORKDIR /datalake
-SHELL ["/bin/bash", "-c"]
-ENTRYPOINT jupyter lab --ip 0.0.0.0 --allow-root --no-browser
 
 
 
