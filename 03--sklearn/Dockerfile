@@ -10,7 +10,7 @@
 # REPOSITORY         TAG          IMAGE ID       CREATED          SIZE
 #
 #
-FROM jdvelasq/jupyterlab:3.2.1
+FROM jdvelasq/jupyterlab:3.2.9
 
 ENV LANG C.UTF-8 
 
