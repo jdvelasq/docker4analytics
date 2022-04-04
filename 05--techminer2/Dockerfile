@@ -1,14 +1,14 @@
 #
-# docker build --tag=jdvelasq/python3:techminer2 --no-cache .
-# docker push jdvelasq/python3:techminer2
-# docker run --rm -it -v "$PWD":/datalake --name aws-emr -p 8888:8888 -p 5000:5000 jdvelasq/python3:techminer2
-# docker run --rm -it -v datalake:/datalake -name aws-emr -p 8888:8888 jdvelasq/python3:techminer2
+# docker build --tag=jdvelasq/techminer2:0.0.0 --no-cache .
+# docker push jdvelasq/jdvelasq/techminer2:0.0.0
+# docker run --rm -it -v "$PWD":/datalake --name aws-emr -p 8888:8888  jdvelasq/techminer2:0.0.0
+# docker run --rm -it -v datalake:/datalake -name aws-emr -p 8888:8888 jdvelasq/techminer2:0.0.0
 # docker exec -it techminer2 bash
 #
-# docker run --rm -it  --name aws-emr -p 8888:8888 -p 5000:5000 jdvelasq/python3:techminer2
+# docker run --rm -it  --name aws-emr -p 8888:8888 jdvelasq/techminer2:0.0.0
 #
 
-FROM jdvelasq/python3:jupyterlab
+FROM jdvelasq/jupyterlab:3.2.9
 
 ENV LANG C.UTF-8 
 
@@ -44,6 +44,6 @@ ENV DEBIAN_FRONTEND=dialog
 #
 EXPOSE   8888
 RUN rm -rf /app/*
-WORKDIR /datalake
+WORKDIR /workspace
 SHELL ["/bin/bash", "-c"]
-ENTRYPOINT jupyter lab --ip 0.0.0.0 --allow-root --no-browser
+ENTRYPOINT jupyter lab
