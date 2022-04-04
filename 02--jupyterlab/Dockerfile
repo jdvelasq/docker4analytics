@@ -5,9 +5,9 @@
 # docker exec -it jupyterlab bash
 #
 # REPOSITORY            TAG       IMAGE ID       CREATED              SIZE
-# jdvelasq/jupyterlab   3.2.9     e2483f8b4462   About a minute ago   1.38GB
+#
 # 
-FROM python:3.9
+FROM ubuntu:20.04
 
 ENV LANG C.UTF-8 
 
@@ -16,7 +16,7 @@ COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# -- wget / curl  -----------------------------------------------------------------------
+# -- utils  -----------------------------------------------------------------------------
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
     wget \
@@ -24,6 +24,15 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
+
+# -- python3  ---------------------------------------------------------------------------
+RUN apt-get update \
+    && apt-get install -yq --no-install-recommends \
+    python3-pip \
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
 
 # -- nodejs -----------------------------------------------------------------------------
 RUN apt-get update \
