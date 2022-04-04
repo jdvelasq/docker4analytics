@@ -1,16 +1,16 @@
 #
-# docker build --tag=jdvelasq/python3:aws-emr .
-# docker push jdvelasq/python3:aws-emr
-# docker run --rm -it -v "$PWD":/datalake --name aws-emr -p 8888:8888 -p 5001:5000 jdvelasq/python3:aws-emr
-# docker run --rm -it -v datalake:/datalake -name aws-emr -p 8888:8888 -p 5001:5000 jdvelasq/python3:aws-emr
+# docker build --tag=jdvelasq/sklearn:1.0.2 .
+# docker push jdvelasq/sklearn:1.0.2
+# docker run --rm -it -v "$PWD":/workspace --name aws-emr -p 8888:8888 -p 5001:5000 jdvelasq/sklearn:1.0.2
+# docker run --rm -it -v datalake:/workspace -name aws-emr -p 8888:8888 -p 5001:5000 jdvelasq/sklearn:1.0.2
 # docker exec -it aws-emr bash
 #
-# docker run --rm -it  --name aws-emr -p 8888:8888 -p 5000:5000 jdvelasq/python3:aws-emr
+# docker run --rm -it  --name aws-emr -p 8888:8888 -p 5000:5000 jdvelasq/sklearn:1.0.2
 #
 # REPOSITORY         TAG          IMAGE ID       CREATED          SIZE
-# jdvelasq/python3   aws-emr      c72e04963fe1   2 minutes ago    1.31GB
 #
-FROM jdvelasq/python3:jupyterlab
+#
+FROM jdvelasq/jupyterlab:3.2.1
 
 ENV LANG C.UTF-8 
 
@@ -27,7 +27,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     matplotlib \
     pandas \
-    scikit-learn \
+    scikit-learn==1.0.2 \
     seaborn \
     mlflow[extras]
 
@@ -38,7 +38,7 @@ ENV DEBIAN_FRONTEND=dialog
 #
 EXPOSE   8888  5000
 RUN rm -rf /app/*
-WORKDIR /datalake
+WORKDIR /workspace
 SHELL ["/bin/bash", "-c"]
 ENTRYPOINT jupyter lab
 
