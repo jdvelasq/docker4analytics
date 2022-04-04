@@ -7,6 +7,11 @@
     </property>
     <!--
     <property>
+        <name>mapreduce.application.classpath</name>
+        <value>/opt/hadoop/share/hadoop/mapreduce/*:/opt/hadoop/share/hadoop/mapreduce/lib/*</value>
+    </property>    
+    
+    <property>
         <name>mapreduce.map.log.level</name>
         <value>ERROR</value>
     </property>
