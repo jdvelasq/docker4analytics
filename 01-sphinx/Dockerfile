@@ -29,4 +29,4 @@ RUN pip install --trusted-host pypi.python.org \
     ipykernel \
     MarkupSafe==2.0.0
 
-ENTRYPOINT cd /app && make html && cp /tmp/sphinx-*.log /app/
+ENTRYPOINT cd /workspace && make html && cp /tmp/sphinx-*.log /workspace/
