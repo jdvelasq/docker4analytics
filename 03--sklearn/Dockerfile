@@ -31,12 +31,10 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     seaborn \
     mlflow[extras]
 
-ENV DEBIAN_FRONTEND=dialog
 
-#
-# Parte generica
-#
+# -- Parte generica ---------------------------------------------------------------------
 EXPOSE   8888  5000
+ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
 SHELL ["/bin/bash", "-c"]
