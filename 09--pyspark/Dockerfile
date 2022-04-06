@@ -37,11 +37,19 @@ RUN pip3 install  --trusted-host pypi.python.org \
     findspark  \
     pyspark==$PYSPARK_VERSION
 
-# -- MLflow -----------------------------------------------------------------------------
+
+# -- Machine learning  ------------------------------------------------------------------
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     matplotlib \
     pandas \
     scikit-learn==1.0.2 \
+    seaborn
+
+
+# -- MLflow  ----------------------------------------------------------------------------
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    shap \
+    SQLAlchemy \
     mlflow[extras]
 
 # Parte generica
