@@ -1,11 +1,11 @@
 #
 # docker build --tag=jdvelasq/sklearn:1.0.2 .
 # docker push jdvelasq/sklearn:1.0.2
-# docker run --rm -it -v "$PWD":/workspace --name aws-emr -p 8888:8888 -p 5001:5000 jdvelasq/sklearn:1.0.2
-# docker run --rm -it -v datalake:/workspace -name aws-emr -p 8888:8888 -p 5001:5000 jdvelasq/sklearn:1.0.2
-# docker exec -it aws-emr bash
+# docker run --rm -it -v "$PWD":/workspace --name sklearn -p 8888:8888 -p 5001:5000 jdvelasq/sklearn:1.0.2
+# docker run --rm -it -v datalake:/workspace -name sklear -p 8888:8888 -p 5001:5000 jdvelasq/sklearn:1.0.2
+# docker exec -it sklearn bash
 #
-# docker run --rm -it  --name aws-emr -p 8888:8888 -p 5000:5000 jdvelasq/sklearn:1.0.2
+# docker run --rm -it  --name sklearn -p 8888:8888 -p 5000:5000 jdvelasq/sklearn:1.0.2
 #
 # REPOSITORY         TAG          IMAGE ID       CREATED          SIZE
 #
@@ -23,13 +23,23 @@ ENV DEBIAN_FRONTEND noninteractive
 # -- Package development ----------------------------------------------------------------
 RUN pip3 install --upgrade pip
 
-# -- Amazon EMR on EKS (Elastic Kubernetes Service)  ------------------------------------
+# -- Machine learning  ------------------------------------------------------------------
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     matplotlib \
     pandas \
     scikit-learn==1.0.2 \
-    seaborn \
+    seaborn
+
+# -- MLflow  ----------------------------------------------------------------------------
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    shap \
+    SQLAlchemy \
     mlflow[extras]
+
+# -- Paquetes requeridos para visualizar modelos de TF 2.x  y MLFlow --------------------
+RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
+    tdqm \
+    ipywidgets 
 
 
 # -- Parte generica ---------------------------------------------------------------------
