@@ -34,19 +34,14 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     git+https://github.com/tensorflow/docs \
     tensorflow-recommenders
 
+RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
+    keras-tuner
+
 
 # -- Almacenamiento de modelos en formato HDF5 ------------------------------------------
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     pyyaml \
     h5py
-
-RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
-    keras-tuner
-
-# -- Paquetes requeridos para visualizar modelos de TF 2.x ------------------------------
-RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
-    tdqm \
-    ipywidgets 
 
 # -- Visualizacion de modelos en TensorFlow ---------------------------------------------
 RUN apt-get update \
