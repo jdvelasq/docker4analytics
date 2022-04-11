@@ -6,7 +6,7 @@
 # docker exec -it hive bash
 #
 
-FROM jdvelasq/hadoop:2.8.5-pseudo
+FROM jdvelasq/hadoop:2.8.5
 
 ENV HIVE_VERSION 2.3.7
 
@@ -14,7 +14,7 @@ WORKDIR /app
 COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
- 
+
 # Jupyter extension
 RUN pip3 install bigdata
 
