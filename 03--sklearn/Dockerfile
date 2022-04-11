@@ -36,6 +36,11 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     SQLAlchemy \
     mlflow[extras]
 
+# -- Luigi  ----------------------------------------------------------------------------
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    luigi
+
+
 # -- Paquetes requeridos para visualizar modelos de TF 2.x  y MLFlow --------------------
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
     tdqm \
