@@ -1,1 +1,1 @@
-docker run --rm -it -v "$PWD":/workspace --name aws-emr -p 8888:8888 -p 5001:5000 jdvelasq/sklearn:1.0.2
+docker run --rm -it -v "$PWD":/workspace --name aws-emr -p 8888:8888 -p 5001:5000 -p 8082:8082 jdvelasq/sklearn:1.0.2
