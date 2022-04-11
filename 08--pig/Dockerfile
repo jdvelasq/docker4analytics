@@ -1,5 +1,5 @@
 #
-# docker build --tag=jdvelasq/pig:0.17.0-pseudo .
+# docker build --tag=jdvelasq/pig:0.17.0 .
 # docker push jdvelasq/pig:0.17.0-pseudo
 # docker run --rm -it -v "$PWD":/datalake  --name pig -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 -p 8090:8090 jdvelasq/pig:0.17.0-pseudo
 # docker run --rm -it -v datalake:/datalake --name pig  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 -p 8090:8090 jdvelasq/pig:0.17.0-pseudo
@@ -26,7 +26,7 @@ RUN curl -O https://downloads.apache.org/pig/pig-$PIG_VERSION/pig-$PIG_VERSION.t
     && mv conf/* /usr/local/pig/conf/ \
     && rm pig-$PIG_VERSION.tar.gz \
     && rm -rf /var/lib/apt/lists/* 
-    
+
 # Parte generica
 EXPOSE 50070 8088 8888 5000
 RUN rm -rf /app/*
