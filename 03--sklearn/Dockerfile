@@ -34,7 +34,7 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     shap \
     SQLAlchemy \
-    mlflow[extras]
+    mlflow
 
 # -- Luigi  ----------------------------------------------------------------------------
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
@@ -48,7 +48,7 @@ RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
 
 
 # -- Parte generica ---------------------------------------------------------------------
-EXPOSE   8888  5000
+EXPOSE   8888  5000  8082
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
