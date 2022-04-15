@@ -22,6 +22,7 @@ RUN apt-get update \
     wget \
     curl \
     git-all \
+    make \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
