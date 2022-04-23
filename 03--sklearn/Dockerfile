@@ -42,7 +42,15 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
 
 # -- dvc  -------------------------------------------------------------------------------
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    dvc
+    dvc \
+    pyaml
+
+# -- tests  -----------------------------------------------------------------------------
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    pytest \
+    great_expectations \ 
+    faker \
+    datatest
 
 
 # -- Paquetes requeridos para visualizar modelos de TF 2.x  y MLFlow --------------------
