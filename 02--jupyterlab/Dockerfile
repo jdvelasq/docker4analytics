@@ -23,6 +23,8 @@ RUN apt-get update \
     curl \
     git-all \
     make \
+    zip \
+    unzip \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
