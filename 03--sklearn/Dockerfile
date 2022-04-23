@@ -40,6 +40,10 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     luigi
 
+# -- dvc  -------------------------------------------------------------------------------
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    dvc
+
 
 # -- Paquetes requeridos para visualizar modelos de TF 2.x  y MLFlow --------------------
 RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
