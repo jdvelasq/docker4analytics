@@ -20,6 +20,14 @@ COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
+
+# -- sqlite3 ----------------------------------------------------------------------------
+RUN apt-get update \
+    && apt-get install -y sqlite3 \
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
 # -- Package development ----------------------------------------------------------------
 RUN pip3 install --upgrade pip
 
@@ -60,7 +68,7 @@ RUN pip install --trusted-host pypi.python.org  --default-timeout=100 \
 
 
 # -- Parte generica ---------------------------------------------------------------------
-EXPOSE   8888  5000  8082
+EXPOSE   8888  5000  8082 
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
