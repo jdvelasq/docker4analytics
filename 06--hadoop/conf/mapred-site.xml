@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="configuration.xsl"?> 
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
     <property>
         <name>mapreduce.framework.name</name>
         <value>yarn</value>
     </property>
-    <!--
-    <property>
-        <name>mapreduce.application.classpath</name>
-        <value>/opt/hadoop/share/hadoop/mapreduce/*:/opt/hadoop/share/hadoop/mapreduce/lib/*</value>
-    </property>    
-    
     <property>
         <name>mapreduce.map.log.level</name>
         <value>ERROR</value>
@@ -23,5 +17,10 @@
         <name>yarn.app.mapreduce.am.log.level</name>
         <value>ERROR</value>
     </property>
+    <!--
+    <property>
+        <name>mapreduce.application.classpath</name>
+        <value>/opt/hadoop/share/hadoop/mapreduce/*:/opt/hadoop/share/hadoop/mapreduce/lib/*</value>
+    </property>    
     -->
 </configuration>
