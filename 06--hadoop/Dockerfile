@@ -4,15 +4,15 @@
 # docker run --rm -it -v "$PWD":/workspace --name hadoop -p 8888:8888 -p 50070:50070 -p 8088:8088 jdvelasq/hadoop:2.8.5
 # docker exec -it hadoop bash
 #
-FROM jdvelasq/jupyterlab:3.2.9
+FROM ubuntu:20.04
 
 WORKDIR /app
 COPY . /app
 
-ENV HDP_VERSION 2.8.5
 
+ENV LANG C.UTF-8 
 ENV DEBIAN_FRONTEND noninteractive
-
+ENV HDP_VERSION 2.10.1
 
 # -- bash -------------------------------------------------------------------------------
 RUN apt-get update \
@@ -23,8 +23,6 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* 
-
-
 
 # -- ssh --------------------------------------------------------------------------------
 RUN apt-get update \
@@ -79,13 +77,19 @@ RUN tar -xzf hadoop-${HDP_VERSION}.tar.gz \
     && mkdir /opt/hadoop/logs
 
 
-# -- Hadoop streaming in Python ---------------------------------------------------------
+# -- python3  ---------------------------------------------------------------------------
+RUN apt-get update \
+    && apt-get install -yq --no-install-recommends \
+    python3-pip \
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN pip3 install --upgrade pip
 
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     mrjob==0.7.4 \
-    snakebite-py3==3.0.5 \
-    csvkit
+    snakebite-py3==3.0.5 
 
 # -- Parte generica ---------------------------------------------------------------------
 EXPOSE  8888  50070  8088

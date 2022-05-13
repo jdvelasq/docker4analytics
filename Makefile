@@ -29,15 +29,17 @@ techminer2:
 
 hadoop:
 	docker build \
-		--tag=jdvelasq/hadoop:2.8.5 \
+		--tag=jdvelasq/hadoop:2.10.1 \
 		06--hadoop/
 	docker image prune --force
 
-hive:
+
+hadoop-jupyterlab:
 	docker build \
-		--tag=jdvelasq/hive:2.3.9 \
-		07--hive/
+		--tag=jdvelasq/hadoop-jupyterlab:2.10.1 \
+		07--hadoop-jupyterlab/
 	docker image prune --force
+
 
 pig:
 	docker build \
@@ -45,8 +47,15 @@ pig:
 		08--pig/
 	docker image prune --force
 
+hive:
+	docker build \
+		--tag=jdvelasq/hive:2.3.9 \
+		09--hive/
+	docker image prune --force
+
+
 pyspark:
 	docker build \
 		--tag=jdvelasq/pyspark:3.2.1 \
-		09--pyspark/
+		10--pyspark/
 	docker image prune --force
