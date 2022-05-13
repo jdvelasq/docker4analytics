@@ -13,6 +13,19 @@ ENV HDP_VERSION 2.8.5
 
 ENV DEBIAN_FRONTEND noninteractive
 
+
+# -- bash -------------------------------------------------------------------------------
+RUN apt-get update \
+    && apt-get install -yq --no-install-recommends \
+    tree \
+    nano \
+    ssh \
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/* 
+
+
+
 # -- ssh --------------------------------------------------------------------------------
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
@@ -65,9 +78,21 @@ RUN tar -xzf hadoop-${HDP_VERSION}.tar.gz \
     && mv etc/environment /etc/environment \
     && mkdir /opt/hadoop/logs
 
+
+# -- Hadoop streaming in Python ---------------------------------------------------------
+RUN pip3 install --upgrade pip
+
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    mrjob==0.7.4 \
+    snakebite-py3==3.0.5 \
+    csvkit
+
 # -- Parte generica ---------------------------------------------------------------------
 EXPOSE  8888  50070  8088
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
-ENTRYPOINT /etc/init.d/ssh start && bash hadoop-start.sh && /bin/bash && bash hadoop-stop.sh
+ENTRYPOINT /etc/init.d/ssh start \
+    && bash hadoop-start.sh \
+    && /bin/bash \
+    && bash hadoop-stop.sh
