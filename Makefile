@@ -35,7 +35,7 @@ hadoop:
 
 hive:
 	docker build \
-		--tag=jdvelasq/hive:2.3.5 \
+		--tag=jdvelasq/hive:2.3.9 \
 		07--hive/
 	docker image prune --force
 
@@ -47,6 +47,6 @@ pig:
 
 pyspark:
 	docker build \
-		--tag=jdvelasq/pyspark:3.1.3 \
+		--tag=jdvelasq/pyspark:3.2.1 \
 		09--pyspark/
 	docker image prune --force
