@@ -5,22 +5,16 @@
 # docker run --rm -it -v datalake:/datalake --name pig  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 -p 8090:8090 jdvelasq/pig:0.17.0
 # docker exec -it pig bash
 #
-FROM jdvelasq/hadoop:2.8.5
-
-ENV PIG_VERSION 0.17.0
+FROM jdvelasq/hadoop:2.10.1
 
 WORKDIR /app
 COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Jupyter extension
-RUN pip3 install --upgrade pip
-RUN pip3 install bigdata
 
-
-
-# Pig
+# --< Apache Pig >-----------------------------------------------------------------------
+ENV PIG_VERSION 0.17.0
 ENV PIG_HOME  /opt/pig
 ENV PATH $PATH:/opt/pig/bin
 
@@ -32,7 +26,11 @@ RUN tar -xzf pig-$PIG_VERSION.tar.gz \
     && rm pig-$PIG_VERSION.tar.gz \
     && rm -rf /var/lib/apt/lists/* 
 
-# Parte generica
+RUN pip3 install --upgrade pip
+RUN pip3 install bigdata
+
+
+# --< Parte generica >-------------------------------------------------------------------
 EXPOSE 50070 8088 8888 5000
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 

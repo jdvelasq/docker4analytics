@@ -33,24 +33,25 @@ hadoop:
 		06--hadoop/
 	docker image prune --force
 
-
-hadoop-jupyterlab:
-	docker build \
-		--tag=jdvelasq/hadoop-jupyterlab:2.10.1 \
-		07--hadoop-jupyterlab/
-	docker image prune --force
-
-
 pig:
 	docker build \
 		--tag=jdvelasq/pig:0.17.0 \
-		08--pig/
+		07--pig/
 	docker image prune --force
+
+zeppelin:
+	docker build \
+		--tag=jdvelasq/zeppelin:0.10.1 \
+		08--zeppelin/
+	docker image prune --force
+
+
+
 
 hive:
 	docker build \
 		--tag=jdvelasq/hive:2.3.9 \
-		09--hive/
+		08--hive/
 	docker image prune --force
 
 
@@ -59,3 +60,10 @@ pyspark:
 		--tag=jdvelasq/pyspark:3.2.1 \
 		10--pyspark/
 	docker image prune --force
+
+python:
+	docker build \
+		--tag=jdvelasq/python:3.8-ubuntu \
+		11--python/
+	docker image prune --force
+
