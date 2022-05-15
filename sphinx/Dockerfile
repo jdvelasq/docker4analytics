@@ -3,8 +3,6 @@
 #  docker run --rm -v "$PWD":/app jdvelasq/sphinx:3.0.4
 #  docker push jdvelasq/sphinx:3.0.4
 #
-# REPOSITORY        TAG       IMAGE ID       CREATED              SIZE
-# jdvelasq/sphinx   3.0.4     4fd741635121   About a minute ago   402MB
 #
 FROM python:3.7-slim
 
