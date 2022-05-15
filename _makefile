@@ -1,7 +1,8 @@
-sphinx:
-	docker build \
-		--tag=jdvelasq/sphinx:3.0.4 \
-		01-sphinx/
+
+
+
+
+
 
 jupyterlab:
 	docker build \
@@ -27,11 +28,6 @@ techminer2:
 		05--techminer2/	
 	docker image prune --force
 
-hadoop:
-	docker build \
-		--tag=jdvelasq/hadoop:2.10.1 \
-		06--hadoop/
-	docker image prune --force
 
 pig:
 	docker build \
