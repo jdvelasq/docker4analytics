@@ -10,8 +10,8 @@ ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 
 #########################################################################################
-RUN apt-get update
-RUN apt update
+RUN apt-get update \
+    && apt update
 
 #########################################################################################
 RUN apt-get install -yq --no-install-recommends \
@@ -22,6 +22,7 @@ RUN apt-get install -yq --no-install-recommends \
     make \
     nano \
     python3-pip \
+    tree \
     unzip \
     vim \
     wget \
