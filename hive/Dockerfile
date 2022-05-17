@@ -1,8 +1,8 @@
 #
-# docker build --tag=jdvelasq/hive:3.1.3 .
-# docker push jdvelasq/hive:3.1.3
-# docker run --rm -it -v "$PWD":/datalake  --name hive -p 50070:50070 -p 8088:8088 -p 8888:8888 jdvelasq/hive:3.1.3
-# docker run --rm -it -v datalake:/datalake --name hive  -p 50070:50070 -p 8088:8088 -p 8888:8888 jdvelasq/hive:3.1.3
+# docker build --tag=jdvelasq/hive:2.3.9 .
+# docker push jdvelasq/hive:2.3.9
+# docker run --rm -it -v "$PWD":/datalake  --name hive -p 50070:50070 -p 8088:8088 -p 8888:8888 jdvelasq/hive:2.3.9
+# docker run --rm -it -v datalake:/datalake --name hive  -p 50070:50070 -p 8088:8088 -p 8888:8888 jdvelasq/hive:2.3.9
 # docker exec -it hive bash
 #
 FROM jdvelasq/hadoop:2.10.1
@@ -27,9 +27,9 @@ RUN apt-get install -yq --no-install-recommends \
 
 #########################################################################################
 #
-# curl -O https://dlcdn.apache.org/hive/hive-3.1.3/apache-hive-3.1.3-bin.tar.gz
+# curl -O https://dlcdn.apache.org/hive/hive-2.3.9/apache-hive-2.3.9-bin.tar.gz
 #
-ENV HIVE_VERSION 3.1.3
+ENV HIVE_VERSION 2.3.9
 ENV HIVE_HOME /opt/hive
 ENV HIVE_CONF_DIR /opt/hive/conf
 ENV PATH $PATH:/opt/hive/bin   
