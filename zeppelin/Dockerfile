@@ -1,33 +1,32 @@
 #
-# docker build --tag=jdvelasq/pig-zeppelin:0.17.0 .
-# docker push jdvelasq/pig:0.17.0
-# docker run --rm -it -v "$PWD":/datalake  --name pig -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 -p 8090:8090 jdvelasq/pig:0.17.0
-# docker run --rm -it -v datalake:/datalake --name pig  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 -p 8090:8090 jdvelasq/pig:0.17.0
-# docker exec -it pig bash
+# docker build --tag=jdvelasq/zeppelin:0.10.1 .
+# docker push jdvelasq/zeppelin:0.10.1
+# docker run --rm -it -v "$PWD":/workspace --name zeppelin -p 8080:8080 jdvelasq/zeppelin:0.10.1
+# docker run --rm -it -v datalake:/workspace --name zeppelin  -p 8080:8080 jdvelasq/zeppelin:0.10.1
+# docker exec -it zeppelin bash
 #
-FROM ubuntu:20.04
+FROM jdvelasq/ubuntu:20.04
 
+#########################################################################################
+ENV DEBIAN_FRONTEND noninteractive
+
+#########################################################################################
 WORKDIR /app
 COPY . /app
 
-ENV DEBIAN_FRONTEND noninteractive
+#########################################################################################
+RUN apt-get update \
+    && apt update
 
-# --< Java >-----------------------------------------------------------------------------
+#########################################################################################
+RUN apt-get install -yq --no-install-recommends \
+    openjdk-8-jdk
+
+#########################################################################################
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $PATH:$JAVA_HOME/bin
-RUN apt-get update \
-    && apt-get install -yq --no-install-recommends openjdk-8-jdk \
-    && rm -rf /var/lib/apt/lists/*
 
-# -- python3  ---------------------------------------------------------------------------
-RUN apt-get update \
-    && apt-get install -yq --no-install-recommends \
-    python3-pip \
-    && apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
-
-# --< Apache Zeppelin >------------------------------------------------------------------
+#########################################################################################
 ENV ZEPPELIN_VERSION 0.10.1
 ENV PATH $PATH:/opt/zeppelin/bin
 
@@ -36,15 +35,23 @@ RUN tar -xzf zeppelin-$ZEPPELIN_VERSION-bin-netinst.tgz \
     && cp conf/* /opt/zeppelin/conf/ \
     && /opt/zeppelin/bin/install-interpreter.sh --name md,shell,python \
     && mkdir /opt/zeppelin/run \
-    && rm zeppelin-$ZEPPELIN_VERSION-bin-netinst.tgz \
-    && rm -rf /var/lib/apt/lists/* 
+    && rm zeppelin-$ZEPPELIN_VERSION-bin-netinst.tgz
 
 
+#########################################################################################
+RUN apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
-# --< Parte generica >-------------------------------------------------------------------
+RUN apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
+#########################################################################################
 EXPOSE 8080
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
 WORKDIR /workspace
-ENTRYPOINT echo "Run at localhost:8080" && zeppelin.sh 
+ENTRYPOINT echo "\n\nRun at localhost:8080\n\n" \
+    && zeppelin.sh 
 
