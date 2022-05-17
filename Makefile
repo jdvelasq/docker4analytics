@@ -12,7 +12,7 @@ hadoop:
 	docker image prune --force
 
 hive:
-	docker build --tag=jdvelasq/hive:3.1.3 hive/ 
+	docker build --tag=jdvelasq/hive:2.3.9 hive/ 
 	docker image prune --force
 
 jupyterlab:
