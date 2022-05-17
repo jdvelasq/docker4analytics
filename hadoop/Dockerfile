@@ -6,33 +6,26 @@
 #
 FROM jdvelasq/jupyterlab:3.2.9
 
+#########################################################################################
+ENV DEBIAN_FRONTEND noninteractive
+
+#########################################################################################
 WORKDIR /app
 COPY . /app
 
-ENV DEBIAN_FRONTEND noninteractive
-
-
-# -- bash -------------------------------------------------------------------------------
+#########################################################################################
 RUN apt-get update \
-    && apt-get install -yq --no-install-recommends \
-    tree \
-    nano \
-    ssh \
-    && apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/* 
+    && apt update
 
-
-# -- ssh --------------------------------------------------------------------------------
-RUN apt-get update \
-    && apt-get install -yq --no-install-recommends \
+#########################################################################################
+RUN apt-get install -yq --no-install-recommends \
+    openjdk-8-jdk \
     pdsh \
     rsync \
-    ssh \
-    && apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/* \
-    && mv ssh/ssh_config /etc/ssh/ssh_config \
+    ssh
+
+#########################################################################################
+RUN mv ssh/ssh_config /etc/ssh/ssh_config \
     && rm -f /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key /root/.ssh/id_rsa \
     && ssh-keygen  -t rsa -P '' -f /root/.ssh/id_rsa \
     && cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys \
@@ -40,16 +33,14 @@ RUN apt-get update \
 
 ENV PDSH_RCMD_TYPE=ssh
 
-
-# --< Java >-----------------------------------------------------------------------------
+#########################################################################################
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $PATH:$JAVA_HOME/bin
-RUN apt-get update \
-    && apt-get install -yq --no-install-recommends openjdk-8-jdk \
-    && rm -rf /var/lib/apt/lists/*
 
-
-# --< Apache Hadoop >--------------------------------------------------------------------
+#########################################################################################
+#
+# curl -O https://downloads.apache.org/hadoop/common/hadoop-${HDP_VERSION}/hadoop-${HDP_VERSION}.tar.gz
+#
 ENV HDP_VERSION 2.10.1
 ENV HADOOP_HOME /opt/hadoop
 ENV PATH $PATH:/opt/hadoop/bin:/opt/hadoop/sbin
@@ -64,34 +55,34 @@ ENV HDFS_SECONDARYNAMENODE_USER="root"
 ENV YARN_RESOURCEMANAGER_USER="root"
 ENV YARN_NODEMANAGER_USER="root"
 
-
-# RUN curl -O https://downloads.apache.org/hadoop/common/hadoop-${HDP_VERSION}/hadoop-${HDP_VERSION}.tar.gz
-
 RUN tar -xzf hadoop-${HDP_VERSION}.tar.gz \
     && mv hadoop-${HDP_VERSION} /opt/hadoop \
     && rm hadoop-${HDP_VERSION}.tar.gz \
     && chmod 0777 /opt/hadoop \ 
-    && rm -rf /var/lib/apt/lists/* \
     && mv conf/* /opt/hadoop/etc/hadoop/ \
     && mv bin/* /usr/local/bin/ \
     && mkdir /opt/hadoop/logs
 
-##    && mv etc/environment /etc/environment \
-
-# -- Hadoop streaming in Python ---------------------------------------------------------
-RUN pip3 install --upgrade pip
-
+#########################################################################################
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     mrjob==0.7.4 \
-    snakebite-py3==3.0.5 \
-    csvkit
+    snakebite-py3==3.0.5
 
-# --< Parte generica >-------------------------------------------------------------------
+#########################################################################################
+RUN apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
+#########################################################################################
 EXPOSE  8888  50070  8088
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
 ENTRYPOINT /etc/init.d/ssh start \
     && bash hadoop-start.sh \
-    && /bin/bash \
-    && bash hadoop-stop.sh
+    && /bin/bash
+
