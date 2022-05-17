@@ -3,6 +3,7 @@
 .PHONY: pig
 .PHONY: sphinx
 .PHONY: ubuntu
+.PHONY: zeppelin
 
 hadoop:
 	docker build --tag=jdvelasq/hadoop:2.10.1 hadoop/ 
@@ -22,4 +23,8 @@ sphinx:
 
 ubuntu:
 	docker build --tag=jdvelasq/ubuntu:20.04 ubuntu/
+	docker image prune --force
+
+zeppelin:
+	docker build --tag=jdvelasq/zeppelin:0.10.1 ubuntu/
 	docker image prune --force
