@@ -1,5 +1,0 @@
-Host *
-    StrictHostKeyChecking no
-    SendEnv LANG LC_*
-    HashKnownHosts yes
-    GSSAPIAuthentication yes
