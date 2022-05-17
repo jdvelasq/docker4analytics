@@ -1,5 +1,6 @@
 .PHONY: hadoop
 .PHONY: jupyterlab
+.PHONY: pig
 .PHONY: sphinx
 .PHONY: ubuntu
 
@@ -9,6 +10,10 @@ hadoop:
 
 jupyterlab:
 	docker build --tag=jdvelasq/jupyterlab:3.2.9 jupyterlab/	
+	docker image prune --force
+
+pig:
+	docker build --tag=jdvelasq/pig:0.17.0 pig/	
 	docker image prune --force
 
 sphinx:
