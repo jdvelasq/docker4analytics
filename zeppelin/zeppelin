@@ -1,1 +1,5 @@
-docker run --rm -it -v "$PWD":/workspace  --name zeppelin -p 8080:8080  jdvelasq/zeppelin:0.10.1
+docker run --rm -it \
+    -v "$PWD":/workspace  \
+    --name zeppelin \
+    -p 8080:8080 \
+    jdvelasq/zeppelin:0.10.1
