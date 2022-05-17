@@ -1,12 +1,18 @@
 .PHONY: hadoop
+.PHONY: hive
 .PHONY: jupyterlab
 .PHONY: pig
 .PHONY: sphinx
 .PHONY: ubuntu
 .PHONY: zeppelin
 
+
 hadoop:
 	docker build --tag=jdvelasq/hadoop:2.10.1 hadoop/ 
+	docker image prune --force
+
+hive:
+	docker build --tag=jdvelasq/hive:3.1.3 hive/ 
 	docker image prune --force
 
 jupyterlab:
