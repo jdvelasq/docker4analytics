@@ -17,8 +17,8 @@ COPY . /app
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# -- Package development ----------------------------------------------------------------
-RUN pip3 install --upgrade pip
+RUN apt-get update
+RUN apt-get install -yq --no-install-recommends python3.8-dev 
 
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     "cdlib==0.2.5" \
@@ -32,7 +32,7 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     PyYAML \
     seaborn \
     textblob \
-    wordcloud 
+    wordcloud
 
 
 RUN python3 -c "import nltk; nltk.download('punkt'); nltk.download('brown'); nltk.download('averaged_perceptron_tagger'); nltk.download('stopwords'); "

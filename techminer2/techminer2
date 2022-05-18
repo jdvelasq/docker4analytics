@@ -1,0 +1,5 @@
+docker run --rm -it \
+    -v "$PWD":/workspace \
+    --name techminer2 \
+    -p 8888:8888 \
+    jdvelasq/techminer2:0.0.0
