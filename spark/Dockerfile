@@ -1,62 +1,68 @@
 #
-# docker build --tag=jdvelasq/pyspark:3.2.1 .
-# docker push jdvelasq/pyspark:3.2.1
-# docker run --rm -it -v "$PWD":/workspace --name pyspark -p 8888:8888 -p 50070:50070 -p 8088:8088 -p 4040:4040 -p 5001:5000  jdvelasq/pyspark:3.2.1
+# docker build --tag=jdvelasq/pyspark:3.1.3 .
+# docker push jdvelasq/pyspark:3.1.3
+# docker run --rm -it -v "$PWD":/workspace --name pyspark -p 8888:8888 -p 50070:50070 -p 8088:8088 -p 4040:4040 -p 5001:5000  jdvelasq/pyspark:3.1.3
 #
-FROM jdvelasq/hadoop:2.8.5
+FROM jdvelasq/hadoop:2.10.1
 
+#########################################################################################
+ENV DEBIAN_FRONTEND noninteractive
+
+#########################################################################################
 WORKDIR /app
 COPY . /app
 
-ENV DEBIAN_FRONTEND noninteractive
-
-# -- Spark ------------------------------------------------------------------------------
-ENV SPARK_VERSION 3.2.1
-ENV SPARK_HOME /opt/spark
-ENV SPARK_DIST_CLASSPATH /opt/hadoop/etc/hadoop:/opt/hadoop/share/hadoop/common/lib/*:/opt/hadoop/share/hadoop/common/*:/opt/hadoop/share/hadoop/hdfs:/opt/hadoop/share/hadoop/hdfs/lib/*:/opt/hadoop/share/hadoop/hdfs/*:/opt/hadoop/share/hadoop/yarn/lib/*:/opt/hadoop/share/hadoop/yarn/*:/opt/hadoop/share/hadoop/mapreduce/lib/*:/opt/hadoop/share/hadoop/mapreduce/*:/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/opt/hadoop/contrib/capacity-scheduler/*.jar
-ENV PATH $PATH:/opt/spark/bin
-
+#########################################################################################
 RUN apt-get update \
-    && apt-get install -yq --no-install-recommends \
+    && apt update
+
+#########################################################################################
+RUN apt-get install -yq --no-install-recommends \    
     netcat \
     net-tools
 
-
+#########################################################################################
+#
+# curl -O https://downloads.apache.org/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-without-hadoop.tgz
+#
+ENV SPARK_VERSION 3.1.3
+ENV SPARK_HOME /opt/spark
+ENV PATH $PATH:/opt/spark/bin
 
 RUN tar -xzf spark-$SPARK_VERSION-bin-without-hadoop.tgz \
     && mv spark-$SPARK_VERSION-bin-without-hadoop /opt/spark \
     && rm spark-$SPARK_VERSION-bin-without-hadoop.tgz \
-    && rm -rf /var/lib/apt/lists/*
+    && mv conf/spark-env.sh /opt/spark/conf/
 
-# && curl -O https://downloads.apache.org/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-without-hadoop.tgz \
-
-# -- PySpark ----------------------------------------------------------------------------
-
-ENV PYSPARK_VERSION 3.2.1
+#########################################################################################
+ENV PYSPARK_VERSION 3.1.3
 ENV PYSPARK_DRIVER_PYTHON ipython
 ENV PYSPARK_PYTHON python3
 
-RUN pip3 install  --trusted-host pypi.python.org \
+RUN pip3 install  --trusted-host pypi.python.org  \
     findspark  \
-    pyspark==$PYSPARK_VERSION
-
-
-# -- Machine learning  ------------------------------------------------------------------
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     matplotlib \
+    mlflow[extras] \    
     pandas \
+    pyspark==$PYSPARK_VERSION \
     scikit-learn==1.0.2 \
-    seaborn
-
-
-# -- MLflow  ----------------------------------------------------------------------------
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     shap \
-    SQLAlchemy \
-    mlflow[extras]
+    SQLAlchemy 
 
-# Parte generica
-EXPOSE  50070  8088  8888  5000 4040
+#########################################################################################
+RUN apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt autoremove -y \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
+#########################################################################################
+EXPOSE 4040
+EXPOSE 50070
+EXPOSE 8088
+EXPOSE 8888
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND=dialog
 WORKDIR /workspace
