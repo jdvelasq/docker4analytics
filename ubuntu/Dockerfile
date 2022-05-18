@@ -47,8 +47,8 @@ RUN apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get autoremove -y \
-    && apt-get clean -y \
+RUN apt autoremove -y \
+    && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
 
 #########################################################################################
