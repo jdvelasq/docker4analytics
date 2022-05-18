@@ -52,5 +52,5 @@ ubuntu:
 	docker image prune --force
 
 zeppelin:
-	docker build --tag=jdvelasq/zeppelin:0.10.1 ubuntu/
+	docker build --tag=jdvelasq/zeppelin:0.10.1 zeppelin/
 	docker image prune --force
