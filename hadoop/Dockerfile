@@ -73,12 +73,14 @@ RUN apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get autoremove -y \
-    && apt-get clean -y \
+RUN apt autoremove -y \
+    && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
 
 #########################################################################################
-EXPOSE  8888  50070  8088
+EXPOSE 50070
+EXPOSE 8088
+EXPOSE 8888  
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
