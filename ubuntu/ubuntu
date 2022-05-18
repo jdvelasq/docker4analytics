@@ -1,0 +1,4 @@
+docker run --rm -it \
+    -v "$PWD":/workspace 
+    --name ubuntu \
+    jdvelasq/ubuntu:1.0.2
