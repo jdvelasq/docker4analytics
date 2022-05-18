@@ -43,15 +43,16 @@ RUN apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get autoremove -y \
-    && apt-get clean -y \
+RUN apt autoremove -y \
+    && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
+
 
 #########################################################################################
 EXPOSE 8080
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
 WORKDIR /workspace
-ENTRYPOINT echo "\n\nRun at localhost:8080\n\n" \
+ENTRYPOINT echo "\n\n\nRun at localhost:8080\n\n\n" \
     && zeppelin.sh 
 
