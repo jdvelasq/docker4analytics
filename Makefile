@@ -7,6 +7,7 @@
 .PHONY: pig
 .PHONY: spark
 .PHONY: sphinx
+.PHONY: techminer2
 .PHONY: ubuntu
 .PHONY: zeppelin
 
@@ -46,6 +47,11 @@ spark:
 sphinx:
 	docker build --tag=jdvelasq/sphinx:3.0.4 sphinx/
 	docker image prune --force
+
+techminer2:
+	docker build --tag=jdvelasq/techminer2:0.0.0 techminer2/
+	docker image prune --force
+
 
 ubuntu:
 	docker build --tag=jdvelasq/ubuntu:20.04 ubuntu/
