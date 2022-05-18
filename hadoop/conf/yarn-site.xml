@@ -9,4 +9,8 @@
         <name>yarn.nodemanager.resource.detect-hardware-capabilities</name>
         <value>true</value>
     </property>
+    <property>
+        <name>yarn.nodemanager.resource.pcores-vcores-multiplier</name>
+        <value>5</value>
+    </property>
 </configuration>
