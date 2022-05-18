@@ -3,6 +3,10 @@
 *.tgz
 *.gz
 
+**/pypi/
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
