@@ -1,5 +1,6 @@
 .PHONY: hadoop
 .PHONY: hive
+.PHONY: hive-on-spark
 .PHONY: jupyterlab
 .PHONY: pig
 .PHONY: sphinx
@@ -13,6 +14,10 @@ hadoop:
 
 hive:
 	docker build --tag=jdvelasq/hive:2.3.9 hive/ 
+	docker image prune --force
+
+hive-on-spark:
+	docker build --tag=jdvelasq/hive-on-spark:2.3.9-3.1.3 hive-on-spark/ 
 	docker image prune --force
 
 jupyterlab:
