@@ -5,6 +5,7 @@
 .PHONY: hive-on-tez
 .PHONY: jupyterlab
 .PHONY: pig
+.PHONY: spark
 .PHONY: sphinx
 .PHONY: ubuntu
 .PHONY: zeppelin
@@ -36,6 +37,10 @@ jupyterlab:
 
 pig:
 	docker build --tag=jdvelasq/pig:0.17.0 pig/	
+	docker image prune --force
+
+spark:
+	docker build --tag=jdvelasq/spark:3.1.3 spark/	
 	docker image prune --force
 
 sphinx:
