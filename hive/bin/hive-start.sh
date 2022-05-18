@@ -1,5 +1,4 @@
 hdfs dfs -mkdir       /tmp/hive
-hdfs dfs -mkdir       /user/
 hdfs dfs -mkdir       /user/hive
 hdfs dfs -mkdir       /user/hive/warehouse
 
