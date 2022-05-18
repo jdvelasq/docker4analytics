@@ -54,6 +54,7 @@ RUN apt-get --purge remove -y \
 #########################################################################################
 ENV SPARK_VERSION 3.1.3
 ENV SPARK_HOME /opt/spark
+ENV PATH $PATH:/opt/spark/bin
 
 RUN tar -xzf spark-$SPARK_VERSION-bin-without-hadoop.tgz \
     && mv spark-$SPARK_VERSION-bin-without-hadoop /opt/spark \
@@ -75,7 +76,6 @@ RUN pip3 install  --trusted-host pypi.python.org  \
     shap \
     SQLAlchemy 
 
-
 #########################################################################################
 RUN apt-get autoremove -y \
     && apt-get clean -y \
@@ -86,7 +86,10 @@ RUN apt autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
 #########################################################################################
-EXPOSE 50070 8088 8888 4040
+EXPOSE 4040
+EXPOSE 50070
+EXPOSE 8088
+EXPOSE 8888
 ENV DEBIAN_FRONTEND= 
 RUN rm -rf /app/*
 WORKDIR /workspace
