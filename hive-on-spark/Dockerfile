@@ -65,7 +65,7 @@ ENV PYSPARK_VERSION 3.1.3
 ENV PYSPARK_DRIVER_PYTHON ipython
 ENV PYSPARK_PYTHON python3
 
-RUN pip3 install  --trusted-host pypi.python.org \
+RUN pip3 install  --trusted-host pypi.python.org  \
     findspark  \
     matplotlib \
     mlflow[extras] \    
