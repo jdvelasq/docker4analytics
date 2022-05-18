@@ -68,5 +68,4 @@ ENV DEBIAN_FRONTEND=dialog
 WORKDIR /workspace
 ENTRYPOINT /etc/init.d/ssh start \
     && bash hadoop-start.sh \
-    && bash \
-    && bash hadoop-stop.sh
+    && bash 
