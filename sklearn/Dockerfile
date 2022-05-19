@@ -21,7 +21,10 @@ RUN apt-get update \
 
 #########################################################################################
 RUN apt-get install -yq --no-install-recommends \
-    sqlite3 
+    sqlite3 \
+    build-essential \
+    gcc \
+    python3-dev
 
 #########################################################################################
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
@@ -41,6 +44,12 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     shap \
     SQLAlchemy \
     tdqm
+
+#########################################################################################
+RUN apt-get --purge remove -y \
+    build-essential \
+    gcc \
+    python3-dev
 
 #########################################################################################
 RUN apt-get autoremove -y \
