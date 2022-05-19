@@ -1,0 +1,7 @@
+docker run --rm -it \
+    -v "$PWD":/workspace \
+    --name tensorflow \
+    -p 5001:5000 \
+    -p 6006:6006 \
+    -p 8888:8888 \
+    jdvelasq/tensorflow:2.8
