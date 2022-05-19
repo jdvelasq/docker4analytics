@@ -9,6 +9,7 @@
 .PHONY: spark
 .PHONY: sphinx
 .PHONY: techminer2
+.PHONY: tensorflow
 .PHONY: ubuntu
 .PHONY: zeppelin
 
@@ -57,6 +58,9 @@ techminer2:
 	docker build --tag=jdvelasq/techminer2:0.0.0 techminer2/
 	docker image prune --force
 
+tensorflow:
+	docker build --tag=jdvelasq/tensorflow:2.8 tensorflow/
+	docker image prune --force
 
 ubuntu:
 	docker build --tag=jdvelasq/ubuntu:20.04 ubuntu/
