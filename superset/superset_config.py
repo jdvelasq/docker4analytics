@@ -16,7 +16,7 @@ SECRET_KEY = 'YOUR_OWN_RANDOM_GENERATED_SECRET_KEY'
 # Note that the connection information to connect to the datasources
 # you want to explore are managed directly in the web UI
 
-SQLALCHEMY_DATABASE_URI = 'sqlite://superset.db'
+SQLALCHEMY_DATABASE_URI = 'sqlite:////root/superset.db'
 
 # Flask-WTF flag for CSRF
 WTF_CSRF_ENABLED = True
