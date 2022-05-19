@@ -27,10 +27,6 @@ RUN apt-get install -yq --no-install-recommends \
 #########################################################################################
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     git+https://github.com/tensorflow/docs \
-    h5py \
-    keras-tuner \
-    pydot \
-    pyyaml \
     tensorboard \
     tensorflow \
     tensorflow_decision_forests \
@@ -43,6 +39,12 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     tensorflow-probability \
     tensorflow-recommenders \
     tensorflow-text
+
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    h5py \
+    keras-tuner \
+    pydot \
+    pyyaml
 
 #########################################################################################
 RUN apt-get autoremove -y \
