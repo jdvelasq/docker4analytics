@@ -33,8 +33,10 @@ RUN apt-get install -yq --no-install-recommends \
 ENV SUPERSET_CONFIG_PATH /root/superset_config.py
 ENV FLASK_APP=superset
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    flask \
     apache-superset \
+    flask \
+    jinja2 \
+    Werkzeug==2.0.0 \
     && mv superset_config.py /root/superset_config.py
 
 #########################################################################################
@@ -54,4 +56,5 @@ WORKDIR /workspace
 ENTRYPOINT superset db upgrade \
     && superset fab create-admin \
     && superset load_examples \
-    && superset init
+    && superset init \
+    && superset run -p 8088 --with-threads --reload --debugger
