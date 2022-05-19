@@ -5,6 +5,7 @@
 .PHONY: hive-on-tez
 .PHONY: jupyterlab
 .PHONY: pig
+.PHONY: sklearn
 .PHONY: spark
 .PHONY: sphinx
 .PHONY: techminer2
@@ -38,6 +39,10 @@ jupyterlab:
 
 pig:
 	docker build --tag=jdvelasq/pig:0.17.0 pig/	
+	docker image prune --force
+
+sklearn:
+	docker build --tag=jdvelasq/sklearn:1.0.2 sklearn/	
 	docker image prune --force
 
 spark:
