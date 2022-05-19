@@ -2,6 +2,7 @@
 .vscode
 *.tgz
 *.gz
+*.jar
 
 **/pypi/
 
