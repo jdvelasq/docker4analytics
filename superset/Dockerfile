@@ -33,6 +33,7 @@ RUN apt-get install -yq --no-install-recommends \
 ENV SUPERSET_CONFIG_PATH /root/superset_config.py
 ENV FLASK_APP=superset
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    flask \
     apache-superset \
     && mv superset_config.py /root/superset_config.py
 
@@ -50,4 +51,7 @@ EXPOSE 8088
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
-ENTRYPOINT superset db upgrade && superset
+ENTRYPOINT superset db upgrade \
+    && superset fab create-admin \
+    && superset load_examples \
+    && superset init
