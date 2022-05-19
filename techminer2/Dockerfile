@@ -41,7 +41,8 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     textblob \
     wordcloud
 
-RUN python3 -c "import nltk; nltk.download('punkt'); " \
+RUN python3 -c "import nltk;" \
+    "nltk.download('punkt'); " \
     "nltk.download('brown');" \
     "nltk.download('averaged_perceptron_tagger');" \
     "nltk.download('stopwords');"
