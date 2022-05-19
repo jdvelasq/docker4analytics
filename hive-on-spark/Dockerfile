@@ -19,7 +19,7 @@ RUN apt-get update \
     && apt update
 
 #########################################################################################
-RUN apt-get install -yq --no-install-recommends \    
+RUN apt-get install -yq --no-install-recommends \
     build-essential \
     gcc \
     libsasl2-dev \ 
