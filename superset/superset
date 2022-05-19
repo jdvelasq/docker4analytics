@@ -1,5 +1,5 @@
 #! /bin/sh
-docker run --rm \
+docker run --rm -it \
     -v "$PWD":/workspace \
     -p 8088:8088 \
     jdvelasq/superset:1.5.0
