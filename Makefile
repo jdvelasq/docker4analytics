@@ -8,6 +8,7 @@
 .PHONY: sklearn
 .PHONY: spark
 .PHONY: sphinx
+.PHONY: squoop
 .PHONY: superset
 .PHONY: techminer2
 .PHONY: tensorflow
@@ -54,6 +55,10 @@ spark:
 sphinx:
 	docker build --tag=jdvelasq/sphinx:3.0.4 sphinx/
 	docker image prune --force
+
+sqoop:
+	docker build --tag=jdvelasq/sqoop:1.4.7 sqoop/
+	docker image prune --force	
 
 superset:
 	docker build --tag=jdvelasq/superset:1.5.0 superset/
