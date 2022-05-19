@@ -55,7 +55,10 @@ EXPOSE 8088
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
-ENTRYPOINT superset run -p 8088 --host 0.0.0.0 --with-threads --reload --debugger
+ENTRYPOINT echo "\n=========================\n\n\nRunning on http://127.0.0.1:8088/\n\n=========================\n" \
+    && superset run -p 8088 --host 0.0.0.0 
+
+# --with-threads --reload --debugger
 
 # ENTRYPOINT superset db upgrade \
 #     && /bin/bash 
