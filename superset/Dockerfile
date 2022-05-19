@@ -36,8 +36,10 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     apache-superset \
     flask \
     jinja2 \
+    pillow \
     Werkzeug==2.0.0 \
-    && mv superset_config.py /root/superset_config.py
+    && mv superset_config.py /root/superset_config.py \
+    && mv superset.db /root/superset.db 
 
 #########################################################################################
 RUN apt-get autoremove -y \
@@ -53,8 +55,12 @@ EXPOSE 8088
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
-ENTRYPOINT superset db upgrade \
-    && superset fab create-admin \
-    && superset load_examples \
-    && superset init \
-    && superset run -p 8088 --with-threads --reload --debugger
+ENTRYPOINT superset run -p 8088 --host 0.0.0.0 --with-threads --reload --debugger
+
+# ENTRYPOINT superset db upgrade \
+#     && /bin/bash 
+#     && superset load_examples \ 
+#     && superset fab create-admin \
+#     && 
+#     && superset init \
+#     && superset run -p 8088 --host 0.0.0.0 --with-threads --reload --debugger
