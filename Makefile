@@ -8,7 +8,7 @@
 .PHONY: sklearn
 .PHONY: spark
 .PHONY: sphinx
-.PHONY: squoop
+.PHONY: sqoop
 .PHONY: superset
 .PHONY: techminer2
 .PHONY: tensorflow
