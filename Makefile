@@ -3,6 +3,7 @@
 .PHONY: hive
 .PHONY: hive-on-spark
 .PHONY: hive-on-tez
+.PHONY: impala
 .PHONY: jupyterlab
 .PHONY: pig
 .PHONY: sklearn
@@ -34,6 +35,10 @@ hive-on-spark:
 
 hive-on-tez:
 	docker build --tag=jdvelasq/hive:2.3.9 hive-on-tez/ 
+	docker image prune --force
+
+impala:
+	docker build --tag=jdvelasq/impala:3.4.1 impala/	
 	docker image prune --force
 
 jupyterlab:
