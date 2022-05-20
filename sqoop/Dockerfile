@@ -15,25 +15,9 @@ WORKDIR /app
 COPY . /app
 
 #########################################################################################
-RUN apt-get update \
-    && apt update
-
-#########################################################################################
-# RUN apt-get install -yq --no-install-recommends \
-#    sqlite3
-
-
-#########################################################################################
-# RUN apt install -yq gnupg \
-#     && wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb \
-#     && dpkg -i mysql-apt-config* \
-#     && apt update \
-#     && apt install -yq mysql-server
-
-
-RUN apt install -yq mariadb-server
-RUN pip3 install mysql-connector-python
-
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    mysql-connector-python \
+    pandas
 
 #########################################################################################
 #
@@ -53,21 +37,9 @@ RUN tar -xzf sqoop-$SQOOP_VERSION.bin__hadoop-2.6.0.tar.gz \
     && rm sqoop-$SQOOP_VERSION.bin__hadoop-2.6.0.tar.gz \
     && mv conf/sqoop-env.sh /opt/sqoop/conf/
 
-# RUN mv sqlite-jdbc-3.36.0.3.jar /opt/sqoop/lib
-
+#########################################################################################
 RUN tar -xzf mysql-connector-java-5.1.49.tar.gz \
     && mv mysql-connector-java-5.1.49/mysql-connector-java-5.1.49-bin.jar /opt/sqoop/lib 
-
-RUN mv mariadb-java-client-3.0.4.jar /opt/sqoop/lib
-
-#########################################################################################
-RUN apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
 
 #########################################################################################
 EXPOSE 50070
@@ -76,11 +48,19 @@ EXPOSE 8888
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
-ENTRYPOINT service mysql start \
-    && /etc/init.d/ssh start \
+ENTRYPOINT /etc/init.d/ssh start \
     && bash hadoop-start.sh \
     && /bin/bash
 
 # service mysql start
+# apt-get update --quiet
+# apt-get install -yq libmariadb-dev
+# apt-get install -yq build-essential gcc python3-dev
+# pip3 install --quiet mariadb
+# RUN apt install -yq mariadb-server
+#
+# RUN mv sqlite-jdbc-3.36.0.3.jar /opt/sqoop/lib
+# RUN mv mariadb-java-client-3.0.4.jar /opt/sqoop/lib
+#
 
 
