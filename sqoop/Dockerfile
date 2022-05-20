@@ -19,8 +19,21 @@ RUN apt-get update \
     && apt update
 
 #########################################################################################
-RUN apt-get install -yq --no-install-recommends \
-    sqlite3
+# RUN apt-get install -yq --no-install-recommends \
+#    sqlite3
+
+
+#########################################################################################
+# RUN apt install -yq gnupg \
+#     && wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb \
+#     && dpkg -i mysql-apt-config* \
+#     && apt update \
+#     && apt install -yq mysql-server
+
+
+RUN apt install -yq mariadb-server
+RUN pip3 install mysql-connector-python
+
 
 #########################################################################################
 #
@@ -40,10 +53,12 @@ RUN tar -xzf sqoop-$SQOOP_VERSION.bin__hadoop-2.6.0.tar.gz \
     && rm sqoop-$SQOOP_VERSION.bin__hadoop-2.6.0.tar.gz \
     && mv conf/sqoop-env.sh /opt/sqoop/conf/
 
-RUN tar -xzf mysql-connector-java-5.1.49.tar.gz \
-    && mv mysql-connector-java-5.1.49/mysql-connector-java-5.1.49-bin.jar /opt/sqoop/lib \
-    && mv sqlite-jdbc-3.36.0.3.jar /opt/sqoop/lib
+# RUN mv sqlite-jdbc-3.36.0.3.jar /opt/sqoop/lib
 
+RUN tar -xzf mysql-connector-java-5.1.49.tar.gz \
+    && mv mysql-connector-java-5.1.49/mysql-connector-java-5.1.49-bin.jar /opt/sqoop/lib 
+
+RUN mv mariadb-java-client-3.0.4.jar /opt/sqoop/lib
 
 #########################################################################################
 RUN apt-get autoremove -y \
@@ -61,9 +76,11 @@ EXPOSE 8888
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
-ENTRYPOINT /etc/init.d/ssh start \
+ENTRYPOINT service mysql start \
+    && /etc/init.d/ssh start \
     && bash hadoop-start.sh \
     && /bin/bash
 
+# service mysql start
 
 
