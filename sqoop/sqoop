@@ -1,7 +1,25 @@
-#! /bin/sh
+
+docker network create mysql-network
+
+docker run --name mysql-instance \
+    -e MYSQL_ROOT_PASSWORD=secret \
+    --network mysql-network \
+    -p 3306:3306 \
+    -d mysql:5.7
+
+
+docker exec mysql-instance mysql -uroot -psecret -e "CREATE DATABASE demo_db; "
+docker exec mysql-instance mysql -uroot -psecret -e "CREATE USER 'sqoop'@'%' IDENTIFIED BY 'secret'; "
+docker exec mysql-instance mysql -uroot -psecret -e "GRANT ALL ON demo_db.* TO 'sqoop'@'%';"
+
 docker run --rm -it \
+    --network mysql-network \
     -v "$PWD":/workspace \
     -p 50070:50070 \
     -p 8088:8088 \
     -p 8888:8888 \
     jdvelasq/sqoop:1.4.7
+
+docker container kill mysql-instance 
+docker container rm mysql-instance 
+docker network rm mysql-network    
