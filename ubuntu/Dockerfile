@@ -22,11 +22,13 @@ RUN apt-get install -yq --no-install-recommends \
     make \
     nano \
     python3-pip \
+    sqlite3 \
     tree \
     unzip \
     vim \
     wget \
     zip
+
 
 #########################################################################################
 RUN pip3 install --upgrade pip \
