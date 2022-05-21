@@ -37,6 +37,9 @@ echo
 hdfs dfs -mkdir /apps
 hdfs dfs -mkdir /apps/tez
 hdfs dfs -copyFromLocal /tmp/tez.tar.gz /apps/tez/tez.tar.gz
+hdfs dfs -chmod -R 755 /apps/tez
+hdfs dfs -chmod -R 555 /apps/tez
+hdfs dfs -chmod -R 444 /apps/tez/tez.tar.gz
 echo
 echo
 echo
