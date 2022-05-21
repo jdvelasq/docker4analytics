@@ -1,5 +1,6 @@
 .PHONY: hadoop
 .PHONY: hadoop-on-tez
+.PHONY: hbase
 .PHONY: hive
 .PHONY: hive-on-spark
 .PHONY: hive-on-tez
@@ -23,6 +24,10 @@ hadoop:
 
 hadoop-on-tez:
 	docker build --tag=jdvelasq/hadoop:2.10.1 hadoop-on-tez/ 
+	docker image prune --force
+
+hbase:
+	docker build --tag=jdvelasq/hbase:2.4.12 hbase/ 
 	docker image prune --force
 
 hive:
