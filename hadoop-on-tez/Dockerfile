@@ -39,15 +39,15 @@ ENV PATH $PATH:$JAVA_HOME/bin
 
 #########################################################################################
 ENV TEZ_VERSION 0.9.2
-ENV TEZ_JARS /opt/tez/
-ENV TEZ_CONF_DIR /opt/tez/conf
+ENV TEZ_JARS /opt/tez
+ENV TEZ_CONF_DIR /opt/hadoop/etc/hadoop/
 
 RUN cp apache-tez-${TEZ_VERSION}-bin.tar.gz /tmp/tez.tar.gz
 
 RUN tar -xzf apache-tez-${TEZ_VERSION}-bin.tar.gz \
     && mv apache-tez-${TEZ_VERSION}-bin /opt/tez/ \
-    && rm apache-tez-${TEZ_VERSION}-bin.tar.gz \
-    && mv tez-conf/* /opt/tez/conf/ 
+    && rm apache-tez-${TEZ_VERSION}-bin.tar.gz 
+# && mv tez-conf/* /opt/tez/conf/ 
 
 
 
@@ -73,7 +73,7 @@ RUN tar -xzf hadoop-${HADOOP_VERSION}.tar.gz \
     && mv hadoop-${HADOOP_VERSION} /opt/hadoop/ \
     && rm hadoop-${HADOOP_VERSION}.tar.gz \
     && chmod 0777 /opt/hadoop/ \ 
-    && mv hadoop-conf/* /opt/hadoop/etc/hadoop/ \
+    && mv conf/* /opt/hadoop/etc/hadoop/ \
     && mv bin/* /usr/local/bin/ \
     && mkdir /opt/hadoop/logs/
 
