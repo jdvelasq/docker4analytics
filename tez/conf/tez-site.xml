@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+
+    <property>
+        <name>tez.lib.uris</name>
+        <value>${fs.defaultFS}/apps/tez/tez-0.7.1.tar.gz</value>
+    </property>
+
+    <property>
+        <name>tez.use.cluster.hadoop-libs</name>
+        <value>false</value>
+    </property>
+
+
+    <property>
+        <name>tez.container.max.java.heap.fraction</name>
+        <value>0.2</value>
+    </property>
+
+</configuration>
