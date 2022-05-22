@@ -14,6 +14,7 @@
 .PHONY: superset
 .PHONY: techminer2
 .PHONY: tensorflow
+.PHONY: tez
 .PHONY: ubuntu
 .PHONY: zeppelin
 
@@ -79,7 +80,7 @@ tensorflow:
 	docker image prune --force
 
 tez:
-	docker build --tag=jdvelasq/tez:0.9.2 tez/ 
+	docker build --tag=jdvelasq/tez:0.7.1 tez/ 
 	docker image prune --force
 
 
