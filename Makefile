@@ -22,10 +22,6 @@ hadoop:
 	docker build --tag=jdvelasq/hadoop:2.10.1 hadoop/ 
 	docker image prune --force
 
-hadoop-on-tez:
-	docker build --tag=jdvelasq/hadoop:2.10.1 hadoop-on-tez/ 
-	docker image prune --force
-
 hbase:
 	docker build --tag=jdvelasq/hbase:2.4.12 hbase/ 
 	docker image prune --force
@@ -81,6 +77,11 @@ techminer2:
 tensorflow:
 	docker build --tag=jdvelasq/tensorflow:2.8 tensorflow/
 	docker image prune --force
+
+tez:
+	docker build --tag=jdvelasq/tez:0.9.2 tez/ 
+	docker image prune --force
+
 
 ubuntu:
 	docker build --tag=jdvelasq/ubuntu:20.04 ubuntu/
