@@ -43,7 +43,7 @@ ENV PATH $PATH:$JAVA_HOME/bin
 #
 ENV HDP_VERSION 2.10.1
 ENV HADOOP_HOME /opt/hadoop
-ENV PATH $PATH:/opt/hadoop/bin:/opt/hadoop/sbin
+ENV PATH $PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
 ENV HADOOP_CLASSPATH /opt/jdk-18/lib/tools.jar
 ENV HADOOP_CONF_DIR /opt/hadoop/etc/hadoop
 ENV HADOOP_COMMON_LIB_NATIVE_DIR /opt/hadoop/lib/native
@@ -85,6 +85,36 @@ ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
 ENTRYPOINT /etc/init.d/ssh start \
-    && bash hadoop-start.sh \
+    && rm -rf /tmp/hadoop-root/dfs/name \
+    && hdfs namenode -format \
+    && bash /opt/hadoop/sbin/start-dfs.sh \
+    && bash start-yarn.sh \
+    && hdfs dfs -mkdir /tmp \
+    && hdfs dfs -chmod 777 /tmp \
+    && hdfs dfs -mkdir /user \
+    && hdfs dfs -mkdir /user/root \
+    && echo \
+    && echo ======================================\
+    && echo \
+    && echo Hadoop NameNode at: \
+    && echo \
+    && echo "    http://127.0.0.1:50070/" \
+    && echo \
+    && echo Yarn ResourceManager at: \
+    && echo \
+    && echo "     http://127.0.0.1:8088/" \
+    && echo \
+    && echo ======================================\
+    && echo \
     && /bin/bash
 
+#
+# Test:
+#
+# cd /opt/hadoop/
+# hdfs dfs -mkdir input
+# hdfs dfs -copyFromLocal etc/hadoop/*.xml input
+# hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.1.jar grep input output 'dfs[a-z.]+'
+# hdfs dfs -ls output
+# hdfs dfs -cat output/part-r-00000
+#
