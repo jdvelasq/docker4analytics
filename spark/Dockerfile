@@ -1,10 +1,10 @@
 #
-# docker build --tag=jdvelasq/pyspark:3.1.3 .
-# docker push jdvelasq/pyspark:3.1.3
-# docker run --rm -it -v "$PWD":/workspace --name pyspark -p 8888:8888 -p 50070:50070 -p 8088:8088 -p 4040:4040 -p 5001:5000  jdvelasq/pyspark:3.1.3
+# docker build --tag=jdvelasq/spark:3.1.3 .
+# docker push jdvelasq/spark:3.1.3
+# docker run --rm -it -v "$PWD":/workspace --name spark -p 8888:8888 -p 50070:50070 -p 8088:8088 -p 4040:4040 -p 5001:5000  jdvelasq/spark:3.1.3
 #
 # FROM jdvelasq/hadoop:2.10.1
-FROM jdvelasq/sqoop:1.4.7
+FROM jdvelasq/mariadb:10.3.34
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -28,12 +28,12 @@ RUN apt-get install -yq --no-install-recommends \
 #
 ENV SPARK_VERSION 3.1.3
 ENV SPARK_HOME /opt/spark
-ENV PATH $PATH:/opt/spark/bin
+ENV PATH $PATH:${SPARK_HOME}/bin
 
-RUN tar -xzf spark-$SPARK_VERSION-bin-without-hadoop.tgz \
-    && mv spark-$SPARK_VERSION-bin-without-hadoop /opt/spark \
-    && rm spark-$SPARK_VERSION-bin-without-hadoop.tgz \
-    && mv conf/spark-env.sh /opt/spark/conf/
+RUN tar -xzf spark-${SPARK_VERSION}-bin-without-hadoop.tgz \
+    && mv spark-${SPARK_VERSION}-bin-without-hadoop ${SPARK_HOME} \
+    && rm spark-${SPARK_VERSION}-bin-without-hadoop.tgz \
+    && mv conf/spark-env.sh ${SPARK_HOME}/conf/
 
 #########################################################################################
 ENV PYSPARK_VERSION 3.1.3
@@ -45,8 +45,8 @@ RUN pip3 install  --trusted-host pypi.python.org  \
     matplotlib \
     mlflow[extras] \    
     pandas \
-    pyspark==$PYSPARK_VERSION \
-    scikit-learn==1.0.2 \
+    pyspark==${PYSPARK_VERSION} \
+    scikit-learn \
     shap \
     SQLAlchemy 
 
@@ -68,5 +68,35 @@ RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND=dialog
 WORKDIR /workspace
 ENTRYPOINT /etc/init.d/ssh start \
-    && bash hadoop-start.sh \
-    && bash 
+    && service mysql start \
+    && rm -rf /tmp/hadoop-root/dfs/name \
+    && hdfs namenode -format \
+    && bash start-dfs.sh \
+    && hdfs dfs -mkdir /tmp \
+    && hdfs dfs -chmod 777 /tmp \
+    && hdfs dfs -mkdir /user \
+    && hdfs dfs -mkdir /user/root \
+    && hdfs dfs -mkdir -p /apps/tez \
+    && hdfs dfs -copyFromLocal ${TEZ_HOME}/share/tez-0.7.1.tar.gz /apps/tez/ \
+    && bash start-yarn.sh \
+    && echo \
+    && echo ===================================== \
+    && echo " apache/ubuntu:20.04" \
+    && echo "    jupyterlab:3.2.9" \
+    && echo "        hadoop:2.10.1" \
+    && echo "           tez:0.7.1" \
+    && echo "       mariadb:10.3.34" \
+    && echo "         spark:3.1.3" \
+    && echo \
+    && echo Hadoop NameNode at: \
+    && echo \
+    && echo "    http://127.0.0.1:50070/" \
+    && echo \
+    && echo Yarn ResourceManager at: \
+    && echo \
+    && echo "     http://127.0.0.1:8088/" \
+    && echo \
+    && echo ===================================== \
+    && echo \
+    && /bin/bash
+
