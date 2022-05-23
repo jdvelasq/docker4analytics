@@ -87,7 +87,7 @@ WORKDIR /workspace
 ENTRYPOINT /etc/init.d/ssh start \
     && rm -rf /tmp/hadoop-root/dfs/name \
     && hdfs namenode -format \
-    && bash /opt/hadoop/sbin/start-dfs.sh \
+    && bash start-dfs.sh \
     && bash start-yarn.sh \
     && hdfs dfs -mkdir /tmp \
     && hdfs dfs -chmod 777 /tmp \
