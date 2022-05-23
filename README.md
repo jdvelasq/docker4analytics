@@ -1,43 +1,48 @@
 # Package releases
 
-- 
-- 
 
 ```
-Name       Distribution
+.
+|___ apache/ubuntu:20.04        715MB
+     |___ jupyterlab:3.2.9     1.18GB
+          |___ hadoop:2.10.1   2.88GB
+               |___ tez:0.7.1     
+
+
+Name         Distribution
 ----------------------------------------------------------------------------------------
 
-Accumulo    HDP 3.1.6         1.7.0
-Ambari      HDInsight_4.0     2.7.0
-Atlas       HDP 3.1.6         1.1.0
-Calcite     HDP 3.1.6         1.16.0
-DataFu      HDP 2.6.5         1.3.0
-Druid       HDP 3.1.6         1.12.1
-Falcon      HDP 2.6.5         0.10.0
-Flink       Amazon EMR-6.6.0  1.14.2
-Flume       HDP 2.6.5         1.5.2
-Hadoop      HDInsight_4.0     3.1.1
-HBase       HDInsight_4.0     2.1.6
-Hive        HDInsight_4.0     3.1.0
-Hudi        Amazon EMR-6.6.0  0.10.1
-Hue         Amazon EMR-6.6.0  4.10.0
-Kafka       HDInsight_4.0     2.1.1, 2.4.1
-Knox        HDP 3.1.6         1.0.0
-Livy        HDInsight_4.0     0.5
-Mahout      DInsight_3.6     0.9.0
-MXNet       Amazon EMR-6.6.0  1.8.0
-Oozie       DInsight_4.0     4.1.3
-Phoenix     HDInsight_4.0     5
-Pig         HDInsight_4.0     0.16.1
-Ranger      HDInsight_4.0     1.1.0 
-Spark       HDInsight_4.0     2.4.4, 3.1
-Sqoop       HDInsight_4.0     1.4.7
-Storm       HDInsight_3.6     1.1
-TensorFlow  Amazon EMR-6.6.0  2.4.1
-Tez         HDInsight_4.0     0.9.1
-Trino       Amazon EMR-6.6.0  367
-Zeppelin    HDInsight_4.0     0.8.0
-Zookeeper   HDInsight_4.0     3.4.6
+Accumulo    1.7.0   HDP 3.1.6
+Ambari      2.7.0   HDInsight_4.0
+Atlas       1.1.0   HDP 3.1.6
+Calcite     1.16.0  HDP 3.1.6        
+DataFu      1.3.0   HDP 2.6.5
+Druid       1.12.1  HDP 3.1.6         
+Falcon      0.10.0  HDP 2.6.5         
+Flink       1.14.2  Amazon EMR-6.6.0  
+Flume       1.5.2   HDP 2.6.5         
+Hadoop      3.1.1   HDInsight_4.0     
+HBase       2.1.6   HDInsight_4.0     
+Hive        3.1.0   HDInsight_4.0     
+Hudi        0.10.1  Amazon EMR-6.6.0  
+Hue         4.10.0  Amazon EMR-6.6.0  
+Kafka       2.4.1   HDInsight_4.0     
+Knox        1.0.0   HDP 3.1.6         
+Livy        0.5     HDInsight_4.0     
+Mahout      0.9.0   DInsight_3.6      
+MXNet       1.8.0   Amazon EMR-6.6.0  
+Oozie       4.1.3   DInsight_4.0      
+Phoenix     5       HDInsight_4.0     
+Pig         0.16.1  HDInsight_4.0     
+Ranger      1.1.0   HDInsight_4.0     
+Spark       3.1     HDInsight_4.0  
+Sqoop       1.4.7   HDInsight_4.0     
+Storm       1.1     HDInsight_3.6     
+TensorFlow  2.4.1   Amazon EMR-6.6.0  
+Tez         0.9.1   HDInsight_4.0     
+Trino       367     Amazon EMR-6.6.0  
+Zeppelin    0.8.0   HDInsight_4.0     
+Zookeeper   3.4.6   HDInsight_4.0     
 
 
 ```
