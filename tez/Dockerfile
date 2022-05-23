@@ -16,17 +16,19 @@ COPY . /app
 #########################################################################################
 ENV TEZ_VERSION 0.7.1
 ENV TEZ_HOME /opt/tez
-ENV TEZ_CONF_DIR /opt/tez/conf
-ENV TEZ_JARS /opt/tez
+ENV TEZ_CONF_DIR ${TEZ_HOME}/conf
+ENV TEZ_JARS ${TEZ_HOME}
 ENV HADOOP_CLASSPATH ${TEZ_CONF_DIR}:${TEZ_JARS}/*:${TEZ_JARS}/lib/*
 
 RUN tar -xzf apache-tez-${TEZ_VERSION}-bin.tar.gz \
-    && mv apache-tez-${TEZ_VERSION}-bin /opt/tez/ \
-    && mkdir -p /opt/tez/conf \
+    && mv apache-tez-${TEZ_VERSION}-bin ${TEZ_HOME} \
+    && mkdir -p ${TEZ_HOME}/conf \
     && mv conf/* /opt/tez/conf/  \
     && mv hadoop/etc/hadoop/* /opt/hadoop/etc/hadoop/ \
-    && mv bin/* /usr/local/bin/ \
-    && rm apache-tez-${TEZ_VERSION}-bin.tar.gz
+    && rm apache-tez-${TEZ_VERSION}-bin.tar.gz \
+    && rm /opt/tez/lib/slf4j-log4j12-1.7.5.jar
+
+# && mv bin/* /usr/local/bin/ \
 
 #########################################################################################
 EXPOSE 50070
@@ -36,6 +38,37 @@ ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
 ENTRYPOINT /etc/init.d/ssh start \
-    && bash hadoop-start.sh \
+    && rm -rf /tmp/hadoop-root/dfs/name \
+    && hdfs namenode -format \
+    && bash /opt/hadoop/sbin/start-dfs.sh \
+    && hdfs dfs -mkdir /tmp \
+    && hdfs dfs -chmod 777 /tmp \
+    && hdfs dfs -mkdir /user \
+    && hdfs dfs -mkdir /user/root \
+    && hdfs dfs -mkdir -p /apps/tez \
+    && hdfs dfs -copyFromLocal /opt/tez/share/tez-0.7.1.tar.gz /apps/tez/ \
+    && bash start-yarn.sh \
+    && echo \
+    && echo =========== Hadoop on Tez =========== \
+    && echo \
+    && echo Hadoop NameNode at: \
+    && echo \
+    && echo "    http://127.0.0.1:50070/" \
+    && echo \
+    && echo Yarn ResourceManager at: \
+    && echo \
+    && echo "     http://127.0.0.1:8088/" \
+    && echo \
+    && echo ===================================== \
+    && echo \
     && /bin/bash
 
+#
+# Test:
+#
+# hdfs dfs -mkdir input
+# hdfs dfs -copyFromLocal /opt/hadoop/etc/hadoop/*.xml input
+# hadoop jar /opt/tez/tez-examples-0.7.1.jar orderedwordcount input output
+# hdfs dfs -ls output/
+# hdfs dfs -cat output/part-v002-o000-r-00000
+#
