@@ -61,7 +61,7 @@ RUN tar -xzf hadoop-${HDP_VERSION}.tar.gz \
     && chmod 0777 ${HADOOP_HOME} \
     && mv conf/* ${HADOOP_HOME}/etc/hadoop/ \
     && mv bin/* /usr/local/bin/ \
-    && mkdir /opt/hadoop/logs
+    && mkdir ${HADOOP_HOME}/logs
 
 #########################################################################################
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
