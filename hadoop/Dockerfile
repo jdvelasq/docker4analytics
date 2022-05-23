@@ -45,8 +45,8 @@ ENV HDP_VERSION 2.10.1
 ENV HADOOP_HOME /opt/hadoop
 ENV PATH $PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
 ENV HADOOP_CLASSPATH /opt/jdk-18/lib/tools.jar
-ENV HADOOP_CONF_DIR /opt/hadoop/etc/hadoop
-ENV HADOOP_COMMON_LIB_NATIVE_DIR /opt/hadoop/lib/native
+ENV HADOOP_CONF_DIR ${HADOOP_HOME}/etc/hadoop
+ENV HADOOP_COMMON_LIB_NATIVE_DIR ${HADOOP_HOME}/lib/native
 ENV HADOOP_OPTS "-Djava.library.path=/opt/hadoop/lib/native"
 ENV HADOOP_ROOT_LOGGER "ERROR,console"
 ENV HDFS_NAMENODE_USER="root"
@@ -56,10 +56,10 @@ ENV YARN_RESOURCEMANAGER_USER="root"
 ENV YARN_NODEMANAGER_USER="root"
 
 RUN tar -xzf hadoop-${HDP_VERSION}.tar.gz \
-    && mv hadoop-${HDP_VERSION} /opt/hadoop \
+    && mv hadoop-${HDP_VERSION} ${HADOOP_HOME} \
     && rm hadoop-${HDP_VERSION}.tar.gz \
-    && chmod 0777 /opt/hadoop \ 
-    && mv conf/* /opt/hadoop/etc/hadoop/ \
+    && chmod 0777 ${HADOOP_HOME} \
+    && mv conf/* ${HADOOP_HOME}/etc/hadoop/ \
     && mv bin/* /usr/local/bin/ \
     && mkdir /opt/hadoop/logs
 
@@ -112,9 +112,9 @@ ENTRYPOINT /etc/init.d/ssh start \
 # Test:
 #
 # cd /opt/hadoop/
+#
 # hdfs dfs -mkdir input
-# hdfs dfs -copyFromLocal etc/hadoop/*.xml input
-# hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.1.jar grep input output 'dfs[a-z.]+'
-# hdfs dfs -ls output
+# hdfs dfs -copyFromLocal /opt/hadoop/etc/hadoop/*.xml input
+# hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.1.jar grep input output 'dfs[a-z.]+'
 # hdfs dfs -cat output/part-r-00000
 #
