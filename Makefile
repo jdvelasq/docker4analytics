@@ -6,6 +6,7 @@
 .PHONY: hive-on-tez
 .PHONY: impala
 .PHONY: jupyterlab
+.PHONY: mariadb
 .PHONY: pig
 .PHONY: sklearn
 .PHONY: spark
@@ -46,6 +47,10 @@ impala:
 jupyterlab:
 	docker build --tag=jdvelasq/jupyterlab:3.2.9 jupyterlab/	
 	docker image prune --force
+
+mariadb:
+	docker build --tag=jdvelasq/mariadb:10.3.34 mariadb/	
+	docker image prune --force	
 
 pig:
 	docker build --tag=jdvelasq/pig:0.17.0 pig/	
