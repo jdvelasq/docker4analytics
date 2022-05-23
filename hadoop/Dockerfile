@@ -111,8 +111,6 @@ ENTRYPOINT /etc/init.d/ssh start \
 #
 # Test:
 #
-# cd /opt/hadoop/
-#
 # hdfs dfs -mkdir input
 # hdfs dfs -copyFromLocal /opt/hadoop/etc/hadoop/*.xml input
 # hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.1.jar grep input output 'dfs[a-z.]+'
