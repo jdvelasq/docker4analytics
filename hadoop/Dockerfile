@@ -47,7 +47,7 @@ ENV PATH $PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
 ENV HADOOP_CLASSPATH /opt/jdk-18/lib/tools.jar
 ENV HADOOP_CONF_DIR ${HADOOP_HOME}/etc/hadoop
 ENV HADOOP_COMMON_LIB_NATIVE_DIR ${HADOOP_HOME}/lib/native
-ENV HADOOP_OPTS "-Djava.library.path=/opt/hadoop/lib/native"
+ENV HADOOP_OPTS "-Djava.library.path="${HADOOP_HOME}"/lib/native"
 ENV HADOOP_ROOT_LOGGER "ERROR,console"
 ENV HDFS_NAMENODE_USER="root"
 ENV HDFS_DATANODE_USER="root"
