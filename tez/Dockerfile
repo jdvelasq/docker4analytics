@@ -14,6 +14,7 @@ WORKDIR /app
 COPY . /app
 
 #########################################################################################
+ENV HADOOP_HOME /opt/hadoop
 ENV TEZ_VERSION 0.7.1
 ENV TEZ_HOME /opt/tez
 ENV TEZ_CONF_DIR ${TEZ_HOME}/conf
@@ -23,10 +24,10 @@ ENV HADOOP_CLASSPATH ${TEZ_CONF_DIR}:${TEZ_JARS}/*:${TEZ_JARS}/lib/*
 RUN tar -xzf apache-tez-${TEZ_VERSION}-bin.tar.gz \
     && mv apache-tez-${TEZ_VERSION}-bin ${TEZ_HOME} \
     && mkdir -p ${TEZ_HOME}/conf \
-    && mv conf/* /opt/tez/conf/  \
-    && mv hadoop/etc/hadoop/* /opt/hadoop/etc/hadoop/ \
+    && mv conf/* ${TEZ_HOME}/conf/  \
+    && mv hadoop/etc/hadoop/* ${HADOOP_HOME}/etc/hadoop/ \
     && rm apache-tez-${TEZ_VERSION}-bin.tar.gz \
-    && rm /opt/tez/lib/slf4j-log4j12-1.7.5.jar
+    && rm ${TEZ_HOME}/lib/slf4j-log4j12-1.7.5.jar
 
 # && mv bin/* /usr/local/bin/ \
 
@@ -40,13 +41,13 @@ WORKDIR /workspace
 ENTRYPOINT /etc/init.d/ssh start \
     && rm -rf /tmp/hadoop-root/dfs/name \
     && hdfs namenode -format \
-    && bash /opt/hadoop/sbin/start-dfs.sh \
+    && bash start-dfs.sh \
     && hdfs dfs -mkdir /tmp \
     && hdfs dfs -chmod 777 /tmp \
     && hdfs dfs -mkdir /user \
     && hdfs dfs -mkdir /user/root \
     && hdfs dfs -mkdir -p /apps/tez \
-    && hdfs dfs -copyFromLocal /opt/tez/share/tez-0.7.1.tar.gz /apps/tez/ \
+    && hdfs dfs -copyFromLocal ${TEZ_HOME}/share/tez-0.7.1.tar.gz /apps/tez/ \
     && bash start-yarn.sh \
     && echo \
     && echo =========== Hadoop on Tez =========== \
