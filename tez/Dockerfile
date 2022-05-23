@@ -29,7 +29,9 @@ RUN tar -xzf apache-tez-${TEZ_VERSION}-bin.tar.gz \
     && rm apache-tez-${TEZ_VERSION}-bin.tar.gz
 
 #########################################################################################
-EXPOSE  8888  50070  8088
+EXPOSE 50070
+EXPOSE 8088
+EXPOSE 8888
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace

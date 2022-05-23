@@ -5,7 +5,7 @@
 # docker run --rm -it -v datalake:/datalake --name hive  -p 50070:50070 -p 8088:8088 -p 8888:8888 jdvelasq/sqoop:1.4.7
 # docker exec -it hive bash
 #
-FROM jdvelasq/hadoop:2.10.1
+FROM jdvelasq/hive:2.3.9
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive

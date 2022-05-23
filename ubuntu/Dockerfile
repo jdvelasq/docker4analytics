@@ -15,7 +15,6 @@ RUN apt-get update \
 
 #########################################################################################
 RUN apt-get install -yq --no-install-recommends \
-    bsdmainutils \
     curl \
     git-all \
     less \
@@ -29,20 +28,21 @@ RUN apt-get install -yq --no-install-recommends \
     wget \
     zip
 
+#    bsdmainutils \ #  delete?
 
 #########################################################################################
-RUN pip3 install --upgrade pip \
-    && pip3 install csvkit
+## RUN pip3 install --upgrade pip \
+##    && pip3 install csvkit
 
 #########################################################################################
 RUN apt install -yq --no-install-recommends \
     python3.8-venv 
 
 #########################################################################################
-RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-    && apt update \
-    && apt install gh
+## RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+##    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+##    && apt update \
+##    && apt install gh
 
 #########################################################################################
 RUN apt-get autoremove -y \

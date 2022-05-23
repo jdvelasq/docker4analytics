@@ -3,7 +3,8 @@
 # docker push jdvelasq/pyspark:3.1.3
 # docker run --rm -it -v "$PWD":/workspace --name pyspark -p 8888:8888 -p 50070:50070 -p 8088:8088 -p 4040:4040 -p 5001:5000  jdvelasq/pyspark:3.1.3
 #
-FROM jdvelasq/hadoop:2.10.1
+# FROM jdvelasq/hadoop:2.10.1
+FROM jdvelasq/sqoop:1.4.7
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive

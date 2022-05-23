@@ -5,7 +5,7 @@
 # docker run --rm -it -v datalake:/datalake --name pig  -p 50070:50070 -p 8088:8088 -p 8888:8888 -p 5000:5000 -p 8090:8090 jdvelasq/pig:0.17.0
 # docker exec -it pig bash
 #
-FROM jdvelasq/hadoop:2.10.1
+FROM jdvelasq/tez:0.7.1
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -27,7 +27,6 @@ RUN tar -xzf pig-$PIG_VERSION.tar.gz \
     && mv conf/* /opt/pig/conf/ \
     && rm pig-$PIG_VERSION.tar.gz \
     && rm -rf /var/lib/apt/lists/* 
-
 
 #########################################################################################
 EXPOSE 50070
