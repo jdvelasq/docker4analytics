@@ -18,13 +18,6 @@ RUN apt-get update \
     && apt update
 
 #########################################################################################
-RUN apt-get install -yq --no-install-recommends \
-    openjdk-8-jdk \
-    pdsh \
-    rsync \
-    ssh
-
-#########################################################################################
 RUN mv ssh/ssh_config /etc/ssh/ssh_config \
     && rm -f /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key /root/.ssh/id_rsa \
     && ssh-keygen  -t rsa -P '' -f /root/.ssh/id_rsa \
@@ -70,10 +63,8 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
 
 #########################################################################################
 RUN apt-get autoremove -y \
+    && apt autoremove -y \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt autoremove -y \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
 
