@@ -90,17 +90,21 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -mkdir /user \
     && hdfs dfs -mkdir /user/root \
     && echo \
-    && echo ======================================\
+    && echo =============================================== \
+    && echo " apache/ubuntu  20.04" \
+    && echo "    jupyterlab  3.2.9" \
+    && echo "        hadoop  2.10.1" \
+    && echo ".............................................." \    
     && echo \
-    && echo Hadoop NameNode at: \
+    && echo " Hadoop NameNode at: " \
     && echo \
     && echo "    http://127.0.0.1:50070/" \
     && echo \
-    && echo Yarn ResourceManager at: \
+    && echo " Yarn ResourceManager at: "\
     && echo \
     && echo "     http://127.0.0.1:8088/" \
     && echo \
-    && echo ======================================\
+    && echo =============================================== \
     && echo \
     && /bin/bash
 
