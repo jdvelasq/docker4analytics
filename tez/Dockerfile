@@ -50,17 +50,22 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -copyFromLocal ${TEZ_HOME}/share/tez-0.7.1.tar.gz /apps/tez/ \
     && bash start-yarn.sh \
     && echo \
-    && echo =========== Hadoop on Tez =========== \
+    && echo =============================================== \
+    && echo " apache/ubuntu  20.04" \
+    && echo "    jupyterlab  3.2.9" \
+    && echo "        hadoop  2.10.1" \
+    && echo "           tez  0.7.1" \
+    && echo ".............................................." \    
     && echo \
-    && echo Hadoop NameNode at: \
+    && echo " Hadoop NameNode at: " \
     && echo \
     && echo "    http://127.0.0.1:50070/" \
     && echo \
-    && echo Yarn ResourceManager at: \
+    && echo " Yarn ResourceManager at: "\
     && echo \
     && echo "     http://127.0.0.1:8088/" \
     && echo \
-    && echo ===================================== \
+    && echo =============================================== \
     && echo \
     && /bin/bash
 
