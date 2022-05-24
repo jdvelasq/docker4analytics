@@ -1,3 +1,4 @@
+,PHONY: druid
 .PHONY: hadoop
 .PHONY: hadoop-on-tez
 .PHONY: hbase
@@ -19,6 +20,9 @@
 .PHONY: ubuntu
 .PHONY: zeppelin
 
+druid:
+	docker build --tag=jdvelasq/druid:0.22.1 druid/ 
+	docker image prune --force
 
 hadoop:
 	docker build --tag=jdvelasq/hadoop:2.10.1 hadoop/ 
