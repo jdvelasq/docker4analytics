@@ -1,4 +1,4 @@
-,PHONY: druid
+.PHONY: druid
 .PHONY: hadoop
 .PHONY: hadoop-on-tez
 .PHONY: hbase
