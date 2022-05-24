@@ -39,7 +39,7 @@ RUN tar -xzf apache-hive-$HIVE_VERSION-bin.tar.gz \
     && rm apache-hive-$HIVE_VERSION-bin.tar.gz \
     && mv conf/hive-site.xml /opt/hive/conf/ \
     && cp bin/*.sh /usr/local/bin/ \
-    && rm /opt/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar
+    && rm /opt/hive/lib/log4j-slf4j-impl-2.6.2.jar
 
 RUN pip install 'pyhive[hive]'
 
@@ -81,24 +81,25 @@ ENTRYPOINT /etc/init.d/ssh start \
     && bash hive-start.sh \
     && mr-jobhistory-daemon.sh start historyserver \
     && echo \
-    && echo ===================================== \
-    && echo " apache/ubuntu:20.04" \
-    && echo "    jupyterlab:3.2.9" \
-    && echo "        hadoop:2.10.1" \
-    && echo "           tez:0.7.1" \
-    && echo "       mariadb:10.3.34" \
-    && echo "         spark:3.1.3" \
-    && echo "         hive:2.3.4" \    
+    && echo =============================================== \
+    && echo " apache/ubuntu  20.04" \
+    && echo "    jupyterlab  3.2.9" \
+    && echo "        hadoop  2.10.1" \
+    && echo "           tez  0.7.1" \
+    && echo "       mariadb  10.3.34" \
+    && echo "         spark  3.1.3" \
+    && echo "          hive  2.3.4" \
+    && echo ".............................................." \    
     && echo \
-    && echo Hadoop NameNode at: \
+    && echo " Hadoop NameNode at: " \
     && echo \
     && echo "    http://127.0.0.1:50070/" \
     && echo \
-    && echo Yarn ResourceManager at: \
+    && echo " Yarn ResourceManager at: "\
     && echo \
     && echo "     http://127.0.0.1:8088/" \
     && echo \
-    && echo ===================================== \
+    && echo =============================================== \
     && echo \
     && /bin/bash
 
