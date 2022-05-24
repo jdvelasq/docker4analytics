@@ -3,10 +3,16 @@
 
 ```
 .
-|___ apache/ubuntu:20.04        715MB
-     |___ jupyterlab:3.2.9     1.18GB
-          |___ hadoop:2.10.1   2.88GB
-               |___ tez:0.7.1     
+|___ apache/ubuntu 20.04                              715MB
+     |___ jupyterlab 3.2.9                           1.18GB
+          |___ hadoop 2.10.1                         2.88GB
+               |___ tez 0.7.1                        2.98GB
+                    |___ mariadb 10.3.34             3.66GB
+                         |___ spark 3.1.3            5.98GB   
+                              |___ hive 2.3.9        6.83GB
+                                   |___ sqoop 1.4.7  6.89GB
+
+
 
 
 Name         Distribution
