@@ -18,6 +18,11 @@ RUN apt-get update \
     && apt update
 
 #########################################################################################
+RUN apt-get install -yq --no-install-recommends \
+    openjdk-8-jdk \
+    ssh  
+
+#########################################################################################
 RUN mv ssh/ssh_config /etc/ssh/ssh_config \
     && rm -f /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key /root/.ssh/id_rsa \
     && ssh-keygen  -t rsa -P '' -f /root/.ssh/id_rsa \
