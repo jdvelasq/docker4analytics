@@ -42,7 +42,8 @@ ENV PATH $PATH:${PHOENIX_HOME}/bin
 RUN tar -xzf phoenix-hbase-2.3-${PHOENIX_VERSION}-bin.tar.gz \
     && mv phoenix-hbase-2.3-${PHOENIX_VERSION}-bin ${PHOENIX_HOME} \
     && rm phoenix-hbase-2.3-${PHOENIX_VERSION}-bin.tar.gz \
-    && cp ${PHOENIX_HOME}/phoenix-server-hbase-2.3-${PHOENIX_VERSION}.jar ${HBASE_HOME}/lib/
+    && cp ${PHOENIX_HOME}/phoenix-server-hbase-2.3-${PHOENIX_VERSION}.jar ${HBASE_HOME}/lib/ \
+    && rm /opt/phoenix/phoenix-client-hbase-2.3-5.1.2.jar
 
 #########################################################################################
 EXPOSE 16010
