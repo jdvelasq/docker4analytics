@@ -3,25 +3,24 @@
 
 ```
 .
-|___ apache/ubuntu 20.04                                  715MB
+|___ apache/ubuntu 20.04                                   715MB
      |___ jupyterlab 3.2.9                                1.18GB
           |___ hadoop 2.10.1                              2.88GB
                |___ tez 0.7.1                             2.98GB
                     |___ zeppelin               
-                    |___ druid 0.22.1                          3.67GB
+                    |___ druid 0.22.1                     3.67GB
                     |___ tensorflow
                     |___ mxnet
-
                     |___ mariadb 10.3.34                  3.66GB
                          |___ spark 3.1.3                 5.98GB   
                               |___ pig 0.17.0             6.25GB
                               |___ hbase 
-                              |    |___ phoenix
-                              |    |___ hive 2.3.9        
-                              |         |___ sqoop 1.4.7  
-                              |         |___ hue          
-                              |         |___ trino 381
-                              |         |___ drill
+                                   |___ phoenix
+                                   |___ hive 2.3.9        
+                                        |___ sqoop 1.4.7  
+                                        |___ hue          
+                                        |___ trino 381
+                                        |___ drill
                               
 
 
