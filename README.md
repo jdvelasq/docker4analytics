@@ -14,14 +14,18 @@
                |              |    |___ hive 2.3.9        
                |              |         |___ sqoop 1.4.7  
                |              |         |___ hue          
+               |              |         |___ trino 381
+               |              |         |___ drill
                |              |___ pig 0.17.0             6.25GB
-               |              |___ zeppelin               
+               |___ zeppelin               
                |___ druid 0.22.1                          3.67GB
                |___ tensorflow
                \___ mxnet
-                     
-PySpark + MySQL
 
+
+cassandra 3.0.0                     
+PySpark + MySQL
+casandra
 hbase + zookeeper
 
 Name         Distribution
