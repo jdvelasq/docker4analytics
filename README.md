@@ -4,6 +4,9 @@
 ```
 .
 |___ apache/ubuntu 20.04                                   715MB
+     |
+     |
+     | 
      |___ jupyterlab 3.2.9                                1.18GB
           |___ hadoop 2.10.1                              2.88GB
                |___ tez 0.7.1                             2.98GB
