@@ -15,6 +15,23 @@ WORKDIR /app
 COPY . /app
 
 #########################################################################################
+RUN apt-get update \
+    && apt update
+
+#########################################################################################
+RUN apt-get install -yq \
+    python2 \
+    && ln -s /usr/bin/python2 /usr/bin/python
+
+
+#########################################################################################
+RUN apt-get autoremove -y \
+    && apt autoremove -y \
+    && apt-get clean -y \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
+#########################################################################################
 #
 # curl -O 
 #
@@ -25,8 +42,7 @@ ENV PATH $PATH:${PHOENIX_HOME}/bin
 RUN tar -xzf phoenix-hbase-2.3-${PHOENIX_VERSION}-bin.tar.gz \
     && mv phoenix-hbase-2.3-${PHOENIX_VERSION}-bin ${PHOENIX_HOME} \
     && rm phoenix-hbase-2.3-${PHOENIX_VERSION}-bin.tar.gz \
-    && cp phoenix-server-hbase-2.3-${PHOENIX_VERSION}.jar ${HBASE_HOME}/lib/
-
+    && cp ${PHOENIX_HOME}/phoenix-server-hbase-2.3-${PHOENIX_VERSION}.jar ${HBASE_HOME}/lib/
 
 #########################################################################################
 EXPOSE 16010
