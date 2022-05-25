@@ -7,7 +7,7 @@
      |___ jupyterlab 3.2.9                                1.18GB
           |___ hadoop 2.10.1                              2.88GB
                |___ tez 0.7.1                             2.98GB
-                    |___ zeppelin               
+                    |___ zeppelin 0.10.1                                  
                     |___ druid 0.22.1                     3.67GB
                     |___ tensorflow
                     |___ mxnet
