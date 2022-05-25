@@ -22,7 +22,7 @@ ENV PATH $PATH:${ZOOKEEPER_HOME}/bin
 RUN tar -xzf apache-zookeeper-${ZOOKEEPER_VERSION}-bin.tar.gz \
     && mv apache-zookeeper-${ZOOKEEPER_VERSION}-bin ${ZOOKEEPER_HOME} \
     && rm apache-zookeeper-${ZOOKEEPER_VERSION}-bin.tar.gz \
-    && mv conf/ ${ZOOKEEPER_HOME}/conf/
+    && mv conf/zoo.cfg ${ZOOKEEPER_HOME}/conf/zoo.cfg
 
 #########################################################################################
 EXPOSE 50070 8088 8888
