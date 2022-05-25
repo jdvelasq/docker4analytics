@@ -1,7 +1,8 @@
 docker run --rm -it \
-    -v "$PWD":/workspace \
     --name hbase \
+    -p 16010:16010 \
     -p 50070:50070 \
     -p 8088:8088 \
     -p 8888:8888 \
-    jdvelasq/hbase:2.4.12
+    -v "$PWD":/workspace \
+    jdvelasq/hbase:2.3.0
