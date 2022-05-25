@@ -5,7 +5,7 @@
 # docker run --rm -it -v datalake:/datalake --name hive  -p 50070:50070 -p 8088:8088 -p 8888:8888 jdvelasq/hive:2.3.9
 # docker exec -it hive bash
 #
-FROM jdvelasq/spark:3.1.3
+FROM jdvelasq/hbase:2.3.0
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
