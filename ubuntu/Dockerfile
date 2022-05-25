@@ -17,6 +17,7 @@ RUN apt-get update \
 RUN apt-get install -yq --no-install-recommends \
     bsdmainutils \
     curl \
+    gawk \
     git-all \
     less \
     make \
