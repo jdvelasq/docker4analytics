@@ -59,12 +59,17 @@ RUN apt autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
 #########################################################################################
-EXPOSE   8888
+EXPOSE 8888
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
 SHELL ["/bin/bash", "-c"]
-ENTRYPOINT jupyter lab
+ENTRYPOINT echo "---------------------< stack >---------------------" \
+    && echo " apache/ubuntu  20.04" \
+    && echo "    jupyterlab  3.2.9" \
+    && echo "---------------------------------------------------" \    
+    && echo \
+    && jupyter lab
 
 
 
