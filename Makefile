@@ -98,7 +98,6 @@ tez:
 	docker build --tag=jdvelasq/tez:0.7.1 tez/ 
 	docker image prune --force
 
-
 ubuntu:
 	docker build --tag=jdvelasq/ubuntu:20.04 ubuntu/
 	docker image prune --force
