@@ -19,6 +19,7 @@
 .PHONY: tez
 .PHONY: ubuntu
 .PHONY: zeppelin
+.PHONY: zookeeper
 
 druid:
 	docker build --tag=jdvelasq/druid:0.22.1 druid/ 
@@ -99,4 +100,8 @@ ubuntu:
 
 zeppelin:
 	docker build --tag=jdvelasq/zeppelin:0.10.1 zeppelin/
+	docker image prune --force
+
+zookeeper:
+	docker build --tag=jdvelasq/zookeeper:3.7.1 zookeeper/
 	docker image prune --force
