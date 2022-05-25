@@ -30,7 +30,7 @@ hadoop:
 	docker image prune --force
 
 hbase:
-	docker build --tag=jdvelasq/hbase:2.4.12 hbase/ 
+	docker build --tag=jdvelasq/hbase:2.3.0 hbase/ 
 	docker image prune --force
 
 hive:
