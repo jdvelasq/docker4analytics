@@ -9,6 +9,7 @@
 .PHONY: jupyterlab
 .PHONY: mariadb
 .PHONY: pig
+.PHONY: phoenix
 .PHONY: sklearn
 .PHONY: spark
 .PHONY: sphinx
@@ -59,6 +60,10 @@ mariadb:
 
 pig:
 	docker build --tag=jdvelasq/pig:0.17.0 pig/	
+	docker image prune --force
+
+phoenix:
+	docker build --tag=jdvelasq/phoenix:5.1.2 phoenix/	
 	docker image prune --force
 
 sklearn:
