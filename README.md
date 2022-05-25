@@ -17,14 +17,15 @@
                     |___ mariadb 10.3.34                  3.66GB
                          |___ spark 3.1.3                 5.98GB   
                               |___ pig 0.17.0             6.25GB
-                              |___ hbase 
-                                   |___ phoenix
-                                   |___ hive 2.3.9        
-                                        |___ sqoop 1.4.7  
-                                        |___ hue          
-                                        |___ trino 381
-                                        |___ drill
-                              
+                              |___ zookeeper 3.7.1 
+                                   |___ hbase 
+                                        |___ phoenix
+                                        |___ hive 2.3.9        
+                                             |___ sqoop 1.4.7  
+                                             |___ hue          
+                                             |___ trino 381
+                                             |___ drill
+                                  
 
 
 cassandra 3.0.0                     
