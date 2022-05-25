@@ -41,14 +41,15 @@
   -->
   <property>
     <name>hbase.rootdir</name>
-    <value>hdfs://localhost:8020hbase</value>
+    <value>hdfs://0.0.0.0:9000/hbase</value>
   </property>
 
   <property>
     <name>hbase.cluster.distributed</name>
-    <value>false</value>
+    <value>true</value>
   </property>
 
+  <!--
   <property>
     <name>hbase.tmp.dir</name>
     <value>./tmp</value>
@@ -58,5 +59,6 @@
     <name>hbase.unsafe.stream.capability.enforce</name>
     <value>false</value>
   </property>
+  -->
 
 </configuration>
