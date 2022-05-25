@@ -56,4 +56,9 @@ RUN apt autoremove -y \
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
-ENTRYPOINT /bin/bash 
+ENTRYPOINT echo "---------------------< stack >---------------------" \
+    && echo " apache/ubuntu  20.04" \
+    && echo "---------------------------------------------------" \    
+    && echo \
+    /bin/bash 
+
