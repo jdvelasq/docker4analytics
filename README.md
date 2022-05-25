@@ -14,6 +14,7 @@
 
                     |___ mariadb 10.3.34                  3.66GB
                          |___ spark 3.1.3                 5.98GB   
+                              |___ pig 0.17.0             6.25GB
                               |___ hbase 
                               |    |___ phoenix
                               |    |___ hive 2.3.9        
@@ -21,7 +22,7 @@
                               |         |___ hue          
                               |         |___ trino 381
                               |         |___ drill
-                              |___ pig 0.17.0             6.25GB
+                              
 
 
 cassandra 3.0.0                     
