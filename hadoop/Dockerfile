@@ -116,3 +116,8 @@ ENTRYPOINT /etc/init.d/ssh start \
 # hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.1.jar grep input output 'dfs[a-z.]+'
 # hdfs dfs -cat output/part-r-00000
 #
+
+#
+# Tez
+#
+# hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.1.jar -Dmapreduce.framework.name=yarn-tez grep input output 'dfs[a-z.]+'
