@@ -46,6 +46,10 @@ RUN tar -xzf phoenix-hbase-2.3-${PHOENIX_VERSION}-bin.tar.gz \
     && rm /opt/phoenix/phoenix-client-hbase-2.3-5.1.2.jar
 
 #########################################################################################
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    phoenixdb
+
+#########################################################################################
 EXPOSE 16010
 EXPOSE 50070
 EXPOSE 8088
