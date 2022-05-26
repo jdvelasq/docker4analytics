@@ -91,7 +91,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo "     zookeeper  3.7.1" \
     && echo "         hbase  2.4.12" \
     && echo "          hive  2.3.4" \
-    && echo "---------------------------------------------------" \    
+    && echo "---------------------------------------------------" \
     && echo \
     && echo " Hadoop NameNode at: " \
     && echo \
