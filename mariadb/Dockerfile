@@ -63,13 +63,14 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -copyFromLocal ${TEZ_HOME}/share/tez-0.7.1.tar.gz /apps/tez/ \
     && bash start-yarn.sh \
     && echo \
-    && echo =============================================== \
+
+    && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  2.10.1" \
     && echo "           tez  0.7.1" \
     && echo "       mariadb  10.3.34" \
-    && echo ".............................................." \    
+    && echo "---------------------------------------------------" \    
     && echo \
     && echo " Hadoop NameNode at: " \
     && echo \
@@ -79,7 +80,11 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo \
     && echo "     http://127.0.0.1:8088/" \
     && echo \
-    && echo =============================================== \
+    && echo " Druid is available at:" \
+    && echo \
+    && echo "     http://127.0.0.1:9999/" \
+    && echo \
+    && echo "---------------------------------------------------" \
     && echo \
     && /bin/bash
 
