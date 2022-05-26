@@ -3,7 +3,6 @@
 # docker push jdvelasq/spark:3.1.3
 # docker run --rm -it -v "$PWD":/workspace --name spark -p 8888:8888 -p 50070:50070 -p 8088:8088 -p 4040:4040 -p 5001:5000  jdvelasq/spark:3.1.3
 #
-# FROM jdvelasq/hadoop:2.10.1
 FROM jdvelasq/mariadb:10.3.34
 
 #########################################################################################
@@ -80,14 +79,14 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -copyFromLocal ${TEZ_HOME}/share/tez-0.7.1.tar.gz /apps/tez/ \
     && bash start-yarn.sh \
     && echo \
-    && echo =============================================== \
+    && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  2.10.1" \
     && echo "           tez  0.7.1" \
     && echo "       mariadb  10.3.34" \
     && echo "         spark  3.1.3" \
-    && echo ".............................................." \    
+    && echo "---------------------------------------------------" \    
     && echo \
     && echo " Hadoop NameNode at: " \
     && echo \
@@ -97,7 +96,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo \
     && echo "     http://127.0.0.1:8088/" \
     && echo \
-    && echo =============================================== \
+    && echo "---------------------------------------------------" \
     && echo \
     && /bin/bash
 
