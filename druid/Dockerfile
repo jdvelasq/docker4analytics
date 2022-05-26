@@ -4,7 +4,7 @@
 # docker run --rm -it -v "$PWD":/workspace --name hadoop -p 8888:8888 -p 50070:50070 -p 8088:8088 jdvelasq/hadoop:2.10.1
 # docker exec -it hadoop bash
 #
-FROM jdvelasq/hadoop:2.10.1
+FROM jdvelasq/tez:0.7.1
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -61,12 +61,13 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -mkdir /druid \
     && hdfs dfs -mkdir /druid/segments \
     && echo \
-    && echo =============================================== \
+    && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  2.10.1" \
+    && echo "           tez  0.7.1" \
     && echo "         druid  0.22.1" \
-    && echo ".............................................." \
+    && echo "---------------------------------------------------" \    
     && echo \
     && echo " Hadoop NameNode at: " \
     && echo \
@@ -80,7 +81,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo \
     && echo "     http://127.0.0.1:9999/" \
     && echo \
-    && echo =============================================== \
+    && echo "---------------------------------------------------" \
     && echo \
     && start-nano-quickstart
 
