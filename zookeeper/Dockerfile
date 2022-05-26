@@ -43,7 +43,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && bash start-yarn.sh \
     && zkServer.sh start \
     && echo \
-    && echo =============================================== \
+    && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  2.10.1" \
@@ -51,7 +51,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo "       mariadb  10.3.34" \
     && echo "         spark  3.1.3" \
     && echo "     zookeeper  3.7.1" \
-    && echo ".............................................." \    
+    && echo "---------------------------------------------------" \    
     && echo \
     && echo " Hadoop NameNode at: " \
     && echo \
@@ -61,7 +61,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo \
     && echo "     http://127.0.0.1:8088/" \
     && echo \
-    && echo =============================================== \
+    && echo "---------------------------------------------------" \
     && echo \
     && /bin/bash
 
