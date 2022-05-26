@@ -79,10 +79,6 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo \
     && echo "     http://127.0.0.1:8088/" \
     && echo \
-    && echo " Druid is available at:" \
-    && echo \
-    && echo "     http://127.0.0.1:9999/" \
-    && echo \
     && echo "---------------------------------------------------" \
     && echo \
     && /bin/bash
