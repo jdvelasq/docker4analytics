@@ -29,8 +29,6 @@ RUN tar -xzf apache-tez-${TEZ_VERSION}-bin.tar.gz \
     && rm apache-tez-${TEZ_VERSION}-bin.tar.gz \
     && rm ${TEZ_HOME}/lib/slf4j-log4j12-1.7.5.jar
 
-# && mv bin/* /usr/local/bin/ \
-
 #########################################################################################
 EXPOSE 50070
 EXPOSE 8088
@@ -48,6 +46,8 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -mkdir /user/root \
     && hdfs dfs -mkdir -p /apps/tez \
     && hdfs dfs -copyFromLocal ${TEZ_HOME}/share/tez-0.7.1.tar.gz /apps/tez/ \
+    && hdfs dfs -chmod -R 555 /apps/tez/ \
+    && hdfs dfs -chmod -R 444 /apps/tez/tez-0.7.1.tar.gz \
     && bash start-yarn.sh \
     && echo \
     && echo "---------------------< stack >---------------------" \
@@ -69,8 +69,9 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo \
     && /bin/bash
 
-#
-# Test:
+# -----------------------------------------------------------------------------
+# Test Apache Tez:
+# -----------------------------------------------------------------------------
 #
 # hdfs dfs -mkdir input
 # hdfs dfs -copyFromLocal /opt/hadoop/etc/hadoop/*.xml input
@@ -78,3 +79,15 @@ ENTRYPOINT /etc/init.d/ssh start \
 # hdfs dfs -ls output/
 # hdfs dfs -cat output/part-v002-o000-r-00000
 #
+
+# -----------------------------------------------------------------------------
+# Test Apache Hadoop (jar):
+# -----------------------------------------------------------------------------
+#
+# hdfs dfs -mkdir input
+# hdfs dfs -copyFromLocal /opt/hadoop/etc/hadoop/*.xml input
+# hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.1.jar grep input output 'dfs[a-z.]+'
+# hdfs dfs -cat output/part-r-00000
+#
+
+
