@@ -81,15 +81,17 @@ ENTRYPOINT /etc/init.d/ssh start \
     && bash hive-start.sh \
     && mr-jobhistory-daemon.sh start historyserver \
     && echo \
-    && echo =============================================== \
+    && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  2.10.1" \
     && echo "           tez  0.7.1" \
     && echo "       mariadb  10.3.34" \
     && echo "         spark  3.1.3" \
+    && echo "     zookeeper  3.7.1" \
+    && echo "         hbase  2.4.12" \
     && echo "          hive  2.3.4" \
-    && echo ".............................................." \    
+    && echo "---------------------------------------------------" \    
     && echo \
     && echo " Hadoop NameNode at: " \
     && echo \
