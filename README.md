@@ -10,7 +10,7 @@
      |___ jupyterlab 3.2.9                                     1.18GB
           |___ hadoop 2.10.1                                   2.88GB
                |___ tez 0.7.1                                  2.98GB
-                    |___ zeppelin 0.10.1                                  
+                    |___ zeppelin 0.10.1                       4.8GB
                     |___ druid 0.22.1                          3.67GB
                     |___ tensorflow
                     |___ mxnet
@@ -18,20 +18,18 @@
                          |___ spark 3.1.3                      5.98GB   
                               |___ pig 0.17.0                  6.25GB
                               |___ zookeeper 3.7.1             6.03GB
-                                   |___ hbase                  7.06GB
-                                        |___ phoenix
+                                   |___ hbase 2.3.0            7.06GB
+                                        |___ phoenix 5.1.2     7.62GB
                                         |___ hive 2.3.9        
                                              |___ sqoop 1.4.7  
                                              |___ hue          
                                              |___ trino 381
                                              |___ drill
                                   
-
-
-cassandra 3.0.0                     
+                   
 PySpark + MySQL
 casandra
-hbase + zookeeper
+
 
 Name         Distribution
 ----------------------------------------------------------------------------------------
