@@ -29,12 +29,11 @@ RUN apt-get install -yq --no-install-recommends \
     libmariadb-dev \
     mariadb-server
 
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    mariadb
-
 #########################################################################################
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    mysql-connector-python 
+    mariadb \
+    mysql-connector-python \
+    pandas
 
 #########################################################################################
 RUN apt-get --purge remove -y \
