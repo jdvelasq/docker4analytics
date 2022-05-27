@@ -15,9 +15,9 @@
                |___ druid 0.22.1                          3.73GB
                |___ tensorflow-hdfs
                |___ mxnet-hdfs
-               |___ mariadb 10.3.34                       
-                    |___ spark 3.1.3                      
-                         |___ pig 0.17.0                  
+               |___ mariadb 10.3.34                       3.7GB
+                    |___ spark 3.1.3                      5.87GB
+                         |___ pig 0.17.0                  6.45GB              
                          |___ zookeeper 3.7.1             
                               |___ hbase 2.3.0            
                                    |___ phoenix 5.1.2     
