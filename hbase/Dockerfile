@@ -32,7 +32,6 @@ ENV DEBIAN_FRONTEND=
 RUN rm -rf /app/*
 WORKDIR /workspace
 ENTRYPOINT /etc/init.d/ssh start \
-    && service mysql start \
     && rm -rf /tmp/hadoop-root/dfs/name \
     && hdfs namenode -format \
     && bash start-dfs.sh \
@@ -40,18 +39,13 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -chmod 777 /tmp \
     && hdfs dfs -mkdir /user \
     && hdfs dfs -mkdir /user/root \
-    # && hdfs dfs -mkdir -p /apps/tez \
-    # && hdfs dfs -copyFromLocal /opt/tez/share/tez-0.7.1.tar.gz /apps/tez/ \
     && bash start-yarn.sh \
     && start-hbase.sh \
     && echo \
     && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
-    && echo "        hadoop  3.2.1" \
-    # && echo "           tez  0.7.1" \
-    && echo "       mariadb  10.3.34" \
-    && echo "         spark  3.1.3" \
+    && echo "        hadoop  2.10.1" \
     && echo "     zookeeper  3.7.1" \
     && echo "         hbase  2.4.12" \
     && echo "---------------------------------------------------" \
