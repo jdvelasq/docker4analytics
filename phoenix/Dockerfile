@@ -23,13 +23,22 @@ RUN apt-get install -yq \
     python2 \
     && ln -s /usr/bin/python2 /usr/bin/python
 
+#########################################################################################
+RUN apt-get install -yq --no-install-recommends \    
+    build-essential \
+    gcc \
+    krb5-config \
+    libkrb5-dev \
+    libsasl2-dev \
+    libsasl2-dev \
+    libsasl2-modules-gssapi-mit \
+    libssl-dev \
+    python3-dev
 
 #########################################################################################
-RUN apt-get autoremove -y \
-    && apt autoremove -y \
-    && apt-get clean -y \
-    && apt clean -y \
-    && rm -rf /var/lib/apt/lists/*
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    phoenixdb 
+
 
 #########################################################################################
 #
@@ -45,14 +54,34 @@ RUN tar -xzf phoenix-hbase-2.3-${PHOENIX_VERSION}-bin.tar.gz \
     && cp ${PHOENIX_HOME}/phoenix-server-hbase-2.3-${PHOENIX_VERSION}.jar ${HBASE_HOME}/lib/ \
     && rm /opt/phoenix/phoenix-client-hbase-2.3-5.1.2.jar
 
+
 #########################################################################################
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    phoenixdb
+ENV PATH $PATH:/opt/query-server/bin   
+
+RUN tar -xzf phoenix-queryserver-6.0.0-bin.tar.gz \
+    && mv phoenix-queryserver-6.0.0 /opt/query-server \
+    && rm phoenix-queryserver-6.0.0-bin.tar.gz
+
+
+#########################################################################################
+RUN apt-get --purge remove -y \
+    build-essential \
+    gcc \
+    libsasl2-dev \
+    python3-dev
+
+#########################################################################################
+RUN apt-get autoremove -y \
+    && apt autoremove -y \
+    && apt-get clean -y \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
 #########################################################################################
 EXPOSE 16010
 EXPOSE 50070
 EXPOSE 8088
+EXPOSE 8765
 EXPOSE 8888
 ENV DEBIAN_FRONTEND= 
 RUN rm -rf /app/*
