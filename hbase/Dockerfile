@@ -1,10 +1,4 @@
-#
-# docker build --tag=jdvelasq/hive:2.3.9 .
-# docker push jdvelasq/hive:2.3.9
-# docker run --rm -it -v "$PWD":/datalake  --name hive -p 50070:50070 -p 8088:8088 -p 8888:8888 jdvelasq/hive:2.3.9
-# docker run --rm -it -v datalake:/datalake --name hive  -p 50070:50070 -p 8088:8088 -p 8888:8888 jdvelasq/hive:2.3.9
-# docker exec -it hive bash
-#
+#########################################################################################
 FROM jdvelasq/zookeeper:3.7.1
 
 #########################################################################################
@@ -33,7 +27,7 @@ RUN tar -xzf hbase-${HBASE_VERSION}-bin.tar.gz \
 EXPOSE 16010
 EXPOSE 8088
 EXPOSE 8888
-EXPOSE 9870
+EXPOSE 50070
 ENV DEBIAN_FRONTEND= 
 RUN rm -rf /app/*
 WORKDIR /workspace

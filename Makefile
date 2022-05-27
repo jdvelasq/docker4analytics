@@ -8,8 +8,9 @@
 .PHONY: impala
 .PHONY: jupyterlab
 .PHONY: mariadb
-.PHONY: pig
 .PHONY: phoenix
+.PHONY: pig
+.PHONY: pydruid
 .PHONY: sklearn
 .PHONY: spark
 .PHONY: sphinx
@@ -17,6 +18,7 @@
 .PHONY: superset
 .PHONY: techminer2
 .PHONY: tensorflow
+.PHONY: tensorflow-hdfs
 .PHONY: tez
 .PHONY: ubuntu
 .PHONY: zeppelin
@@ -29,7 +31,7 @@ druid:
 	docker image ls
 
 hadoop:
-	docker build --tag=jdvelasq/hadoop:3.2.1 hadoop/ 
+	docker build --tag=jdvelasq/hadoop:2.10.1 hadoop/ 
 	docker image prune --force
 	echo
 	docker image ls	
@@ -82,6 +84,12 @@ pig:
 	echo
 	docker image ls	
 
+pydruid:
+	docker build --tag=jdvelasq/pydruid:0.22.1 pydruid/	
+	docker image prune --force
+	echo
+	docker image ls	
+
 phoenix:
 	docker build --tag=jdvelasq/phoenix:5.1.2 phoenix/	
 	docker image prune --force
@@ -129,6 +137,12 @@ tensorflow:
 	docker image prune --force
 	echo
 	docker image ls	
+
+tensorflow-hdfs:
+	docker build --tag=jdvelasq/tensorflow-hdfs:2.9.1 tensorflow-hdfs/
+	docker image prune --force
+	echo
+	docker image ls		
 
 tez:
 	docker build --tag=jdvelasq/tez:0.7.1 tez/ 

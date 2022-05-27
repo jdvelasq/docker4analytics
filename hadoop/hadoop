@@ -3,5 +3,5 @@ docker run --rm -it \
     --name hadoop \
     -p 8088:8088 \
     -p 8888:8888 \
-    -p 9870:9870 \
-    jdvelasq/hadoop:3.2.1
+    -p 50070:50070 \
+    jdvelasq/hadoop:2.10.1

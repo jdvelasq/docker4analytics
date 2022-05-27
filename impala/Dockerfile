@@ -56,7 +56,9 @@ RUN tar -xzf apache-impala-$IMPALA_VERSION.tar.gz \
 #     && rm -rf /var/lib/apt/lists/*
 
 #########################################################################################
-EXPOSE 9870 8088 8888
+EXPOSE 8088
+EXPOSE 8888
+EXPOSE 50070
 ENV DEBIAN_FRONTEND= 
 RUN rm -rf /app/*
 WORKDIR /workspace

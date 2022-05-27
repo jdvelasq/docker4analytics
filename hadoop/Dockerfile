@@ -37,9 +37,9 @@ ENV PATH $PATH:$JAVA_HOME/bin
 
 #########################################################################################
 #
-# curl -O https://downloads.apache.org/hadoop/common/hadoop-${HDP_VERSION}/hadoop-${HDP_VERSION}.tar.gz
+# curl -O https://downloads.apache.org/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz
 #
-ENV HDP_VERSION 3.2.1
+ENV HADOOP_VERSION 2.10.1
 ENV HADOOP_HOME /opt/hadoop
 ENV PATH $PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
 ENV HADOOP_CLASSPATH /opt/jdk-18/lib/tools.jar
@@ -53,9 +53,9 @@ ENV HDFS_SECONDARYNAMENODE_USER="root"
 ENV YARN_RESOURCEMANAGER_USER="root"
 ENV YARN_NODEMANAGER_USER="root"
 
-RUN tar -xzf hadoop-${HDP_VERSION}.tar.gz \
-    && mv hadoop-${HDP_VERSION} ${HADOOP_HOME} \
-    && rm hadoop-${HDP_VERSION}.tar.gz \
+RUN tar -xzf hadoop-${HADOOP_VERSION}.tar.gz \
+    && mv hadoop-${HADOOP_VERSION} ${HADOOP_HOME} \
+    && rm hadoop-${HADOOP_VERSION}.tar.gz \
     && chmod 0777 ${HADOOP_HOME} \
     && mv conf/* ${HADOOP_HOME}/etc/hadoop/ \
     && mv bin/* /usr/local/bin/ \
@@ -76,7 +76,7 @@ RUN apt-get autoremove -y \
 #########################################################################################
 EXPOSE 8088
 EXPOSE 8888  
-EXPOSE 9870
+EXPOSE 50070
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
@@ -98,7 +98,6 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo \
     && echo " Hadoop NameNode at: " \
     && echo \
-    # && echo "    http://127.0.0.1:50070/" \
     && echo "    http://127.0.0.1:9870/" \
     && echo \
     && echo " Yarn ResourceManager at: "\

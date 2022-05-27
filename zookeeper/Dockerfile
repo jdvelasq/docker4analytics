@@ -27,7 +27,7 @@ RUN tar -xzf apache-zookeeper-${ZOOKEEPER_VERSION}-bin.tar.gz \
 #########################################################################################
 EXPOSE 8088
 EXPOSE 8888
-EXPOSE 9870
+EXPOSE 50070
 ENV DEBIAN_FRONTEND= 
 RUN rm -rf /app/*
 WORKDIR /workspace

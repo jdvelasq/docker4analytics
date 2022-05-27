@@ -1,11 +1,5 @@
-#
-# docker build --tag=jdvelasq/hive:2.3.9 .
-# docker push jdvelasq/hive:2.3.9
-# docker run --rm -it -v "$PWD":/datalake  --name hive -p 50070:50070 -p 8088:8088 -p 8888:8888 jdvelasq/hive:2.3.9
-# docker run --rm -it -v datalake:/datalake --name hive  -p 50070:50070 -p 8088:8088 -p 8888:8888 jdvelasq/hive:2.3.9
-# docker exec -it hive bash
-#
-FROM jdvelasq/hbase:2.3.0
+#########################################################################################
+FROM jdvelasq/hadoop:2.10.1
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -58,14 +52,13 @@ RUN apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
 #########################################################################################
+EXPOSE 50070
 EXPOSE 8088
 EXPOSE 8888
-EXPOSE 9870
 ENV DEBIAN_FRONTEND= 
 RUN rm -rf /app/*
 WORKDIR /workspace
 ENTRYPOINT /etc/init.d/ssh start \
-    && service mysql start \
     && rm -rf /tmp/hadoop-root/dfs/name \
     && hdfs namenode -format \
     && bash start-dfs.sh \
@@ -73,8 +66,6 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -chmod 777 /tmp \
     && hdfs dfs -mkdir /user \
     && hdfs dfs -mkdir /user/root \
-    # && hdfs dfs -mkdir -p /apps/tez \
-    # && hdfs dfs -copyFromLocal ${TEZ_HOME}/share/tez-0.7.1.tar.gz /apps/tez/ \
     && bash start-yarn.sh \
     && bash hive-start.sh \
     && mr-jobhistory-daemon.sh start historyserver \
@@ -82,13 +73,8 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
-    && echo "        hadoop  3.2.1" \
-    # && echo "           tez  0.7.1" \
-    && echo "       mariadb  10.3.34" \
-    && echo "         spark  3.1.3" \
-    && echo "     zookeeper  3.7.1" \
-    && echo "         hbase  2.4.12" \
-    && echo "          hive  2.3.4" \
+    && echo "        hadoop  2.10.1" \
+    && echo "          hive  2.3.9" \
     && echo "---------------------------------------------------" \
     && echo \
     && echo " Hadoop NameNode at: " \

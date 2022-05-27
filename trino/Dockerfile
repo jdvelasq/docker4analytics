@@ -32,7 +32,7 @@ RUN tar -xzf trino-server-381.tar.gz \
 #########################################################################################
 EXPOSE 8088
 EXPOSE 8888
-EXPOSE 9870
+EXPOSE 50070
 EXPOSE 9999
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*

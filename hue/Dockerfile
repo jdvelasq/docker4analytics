@@ -74,9 +74,9 @@ RUN apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
 #########################################################################################
-EXPOSE 9870
 EXPOSE 8088
 EXPOSE 8888  
+EXPOSE 50070
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace

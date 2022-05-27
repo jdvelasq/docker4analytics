@@ -1,10 +1,5 @@
-#
-# docker build --tag=jdvelasq/pig:0.17.0 .
-# docker push jdvelasq/pig:0.17.0
-# docker run --rm -it -v "$PWD":/workspace  --name pig -p 50070:50070 -p 8088:8088 -p 8888:8888  -p 8090:8090 jdvelasq/pig:0.17.0
-# docker exec -it pig bash
-#
-FROM jdvelasq/spark:3.1.3
+#########################################################################################
+FROM jdvelasq/hadoop:2.10.1
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -29,12 +24,11 @@ RUN tar -xzf pig-$PIG_VERSION.tar.gz \
 #########################################################################################
 EXPOSE 8088
 EXPOSE 8888 
-EXPOSE 9870
+EXPOSE 50070
 ENV DEBIAN_FRONTEND= 
 RUN rm -rf /app/*
 WORKDIR /workspace
 ENTRYPOINT /etc/init.d/ssh start \
-    && service mysql start \
     && rm -rf /tmp/hadoop-root/dfs/name \
     && hdfs namenode -format \
     && bash start-dfs.sh \
@@ -42,8 +36,6 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -chmod 777 /tmp \
     && hdfs dfs -mkdir /user \
     && hdfs dfs -mkdir /user/root \
-    # && hdfs dfs -mkdir -p /apps/tez \
-    # && hdfs dfs -copyFromLocal ${TEZ_HOME}/share/tez-0.7.1.tar.gz /apps/tez/ \
     && bash start-yarn.sh \
     && mr-jobhistory-daemon.sh start historyserver \
     && echo \
@@ -51,8 +43,6 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  3.2.1" \
-    && echo "       mariadb  10.3.34" \
-    && echo "         spark  3.1.3" \
     && echo "           pig  0.17.0" \
     && echo "---------------------------------------------------" \    
     && echo \
