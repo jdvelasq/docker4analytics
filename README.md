@@ -12,7 +12,7 @@
           |
           \___ hadoop 2.10.1                              2.88GB
                |___ zeppelin 0.10.1                       4.69GB
-               |___ druid 0.22.1                          
+               |___ druid 0.22.1                          3.73GB
                |___ tensorflow-hdfs
                |___ mxnet-hdfs
                |___ mariadb 10.3.34                       
@@ -29,7 +29,7 @@
                  
                  
 tez 0.7.1 2.98GB
-
+** pydruid
                    
 PySpark + MySQL
 casandra
