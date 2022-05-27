@@ -1,7 +1,7 @@
 docker run --rm -it \
-    -v "$PWD":/workspace 
     --name sklearn \
-    -p 8888:8888 \
     -p 5001:5000 \
     -p 8082:8082 \
+    -p 8888:8888 \
+    -v "$PWD":/workspace \
     jdvelasq/sklearn:1.0.2
