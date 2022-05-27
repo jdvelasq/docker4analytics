@@ -11,7 +11,7 @@
           |    \___ techminer
           |
           \___ hadoop 2.10.1                              2.88GB
-               |___ zeppelin 0.10.1                       
+               |___ zeppelin 0.10.1                       4.69GB
                |___ druid 0.22.1                          
                |___ tensorflow-hdfs
                |___ mxnet-hdfs
