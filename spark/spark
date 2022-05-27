@@ -3,7 +3,7 @@
 docker run --rm -it \
     --name spark \
     -p 4040:4040 \
-    -p 50070:50070 \
+    -p 9870:9870 \
     -p 8088:8088 \
     -p 8888:8888 \
     -v "$PWD":/workspace \
