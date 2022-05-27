@@ -30,9 +30,9 @@ RUN tar -xzf trino-server-381.tar.gz \
     && mv runtime.properties ${DRUID_HOME}/conf/druid/single-server/nano-quickstart/router/
 
 #########################################################################################
-EXPOSE 9870
 EXPOSE 8088
 EXPOSE 8888
+EXPOSE 9870
 EXPOSE 9999
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
@@ -53,7 +53,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo =============================================== \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
-    && echo "        hadoop  2.10.1" \
+    && echo "        hadoop  3.2.1" \
     && echo "         druid  0.22.1" \
     && echo ".............................................." \
     && echo \

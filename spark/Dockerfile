@@ -80,7 +80,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
-    && echo "        hadoop  2.10.1" \
+    && echo "        hadoop  3.2.1" \
     && echo "       mariadb  10.3.34" \
     && echo "         spark  3.1.3" \
     && echo "---------------------------------------------------" \    

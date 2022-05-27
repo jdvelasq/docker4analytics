@@ -45,10 +45,10 @@ RUN tar -xzf zeppelin-$ZEPPELIN_VERSION-bin-netinst.tgz \
     && rm zeppelin-$ZEPPELIN_VERSION-bin-netinst.tgz
 
 #########################################################################################
-EXPOSE 9870
+EXPOSE 8080
 EXPOSE 8088
 EXPOSE 8888
-EXPOSE 8080
+EXPOSE 9870
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
 WORKDIR /workspace
@@ -67,7 +67,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
-    && echo "        hadoop  2.10.1" \
+    && echo "        hadoop  3.2.1" \
     # && echo "           tez  0.7.1" \
     && echo "      zeppelin  0.10.1" \
     && echo "---------------------------------------------------" \    

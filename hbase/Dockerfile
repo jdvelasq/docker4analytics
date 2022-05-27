@@ -31,9 +31,9 @@ RUN tar -xzf hbase-${HBASE_VERSION}-bin.tar.gz \
 
 #########################################################################################
 EXPOSE 16010
-EXPOSE 9870
 EXPOSE 8088
 EXPOSE 8888
+EXPOSE 9870
 ENV DEBIAN_FRONTEND= 
 RUN rm -rf /app/*
 WORKDIR /workspace
@@ -54,7 +54,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
-    && echo "        hadoop  2.10.1" \
+    && echo "        hadoop  3.2.1" \
     # && echo "           tez  0.7.1" \
     && echo "       mariadb  10.3.34" \
     && echo "         spark  3.1.3" \
