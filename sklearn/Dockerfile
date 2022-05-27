@@ -54,9 +54,7 @@ RUN apt-get --purge remove -y \
 #########################################################################################
 RUN apt-get autoremove -y \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt autoremove -y \
+    && apt autoremove -y \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
 
