@@ -7,7 +7,7 @@
 #
 # docker run --rm -it  --name tensorflow -p 8888:8888 -p 5000:5000 jdvelasq/tensorflow:2.8
 #
-FROM jdvelasq/hadoop:3.2.1
+FROM jdvelasq/hadoop:2.10.1
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -72,7 +72,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
-    && echo "        hadoop  3.2.1" \
+    && echo "        hadoop  2.10.1" \
     && echo "    tensorflow  2.9.1" \
     && echo "---------------------------------------------------" \    
     && echo \
