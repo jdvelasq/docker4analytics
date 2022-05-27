@@ -59,7 +59,6 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  2.10.1" \
-    && echo "          hive  3.3.9" \
     && echo "       mariadb  10.3.34" \
     && echo "---------------------------------------------------" \    
     && echo \
