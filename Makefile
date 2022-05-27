@@ -29,7 +29,7 @@ druid:
 	docker image ls
 
 hadoop:
-	docker build --tag=jdvelasq/hadoop:2.10.1 hadoop/ 
+	docker build --tag=jdvelasq/hadoop:3.2.1 hadoop/ 
 	docker image prune --force
 	echo
 	docker image ls	
