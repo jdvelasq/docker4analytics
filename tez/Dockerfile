@@ -53,7 +53,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
-    && echo "        hadoop  3.2.1" \
+    && echo "        hadoop  2.10.1" \
     && echo "           tez  0.7.1" \
     && echo "---------------------------------------------------" \    
     && echo \
