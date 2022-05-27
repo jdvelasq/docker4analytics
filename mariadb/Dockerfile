@@ -4,7 +4,8 @@
 # docker run --rm -it -v "$PWD":/workspace  --name mariadb -p 50070:50070 -p 8088:8088 -p 8888:8888 jdvelasq/mariadb:10.3.34
 # docker exec -it sqoop bash
 #
-FROM jdvelasq/tez:0.7.1
+# FROM jdvelasq/tez:0.7.1
+FROM jdvelasq/hadoop:2.10.1
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -58,15 +59,14 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -chmod 777 /tmp \
     && hdfs dfs -mkdir /user \
     && hdfs dfs -mkdir /user/root \
-    && hdfs dfs -mkdir -p /apps/tez \
-    && hdfs dfs -copyFromLocal ${TEZ_HOME}/share/tez-0.7.1.tar.gz /apps/tez/ \
+    # && hdfs dfs -mkdir -p /apps/tez \
+    # && hdfs dfs -copyFromLocal ${TEZ_HOME}/share/tez-0.7.1.tar.gz /apps/tez/ \
     && bash start-yarn.sh \
     && echo \
     && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  2.10.1" \
-    && echo "           tez  0.7.1" \
     && echo "       mariadb  10.3.34" \
     && echo "---------------------------------------------------" \    
     && echo \
