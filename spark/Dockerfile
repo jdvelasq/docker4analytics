@@ -1,5 +1,5 @@
 #########################################################################################
-FROM jdvelasq/hadoop:3.2.1
+FROM jdvelasq/hadoop:2.10.1
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -73,7 +73,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
-    && echo "        hadoop  3.2.1" \
+    && echo "        hadoop  2.10.1" \
     && echo "         spark  3.1.3" \
     && echo "---------------------------------------------------" \    
     && echo \
