@@ -39,7 +39,7 @@ ENV PATH $PATH:$JAVA_HOME/bin
 #
 # curl -O https://downloads.apache.org/hadoop/common/hadoop-${HDP_VERSION}/hadoop-${HDP_VERSION}.tar.gz
 #
-ENV HDP_VERSION 2.10.1
+ENV HDP_VERSION 3.2.1
 ENV HADOOP_HOME /opt/hadoop
 ENV PATH $PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
 ENV HADOOP_CLASSPATH /opt/jdk-18/lib/tools.jar
@@ -74,9 +74,10 @@ RUN apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
 #########################################################################################
-EXPOSE 50070
+# EXPOSE 50070
 EXPOSE 8088
 EXPOSE 8888  
+EXPOSE 9870
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
@@ -93,12 +94,13 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
-    && echo "        hadoop  2.10.1" \
+    && echo "        hadoop  3.2.1" \
     && echo "---------------------------------------------------" \    
     && echo \
     && echo " Hadoop NameNode at: " \
     && echo \
-    && echo "    http://127.0.0.1:50070/" \
+    # && echo "    http://127.0.0.1:50070/" \
+    && echo "    http://127.0.0.1:9870/" \
     && echo \
     && echo " Yarn ResourceManager at: "\
     && echo \
@@ -113,7 +115,7 @@ ENTRYPOINT /etc/init.d/ssh start \
 #
 # hdfs dfs -mkdir input
 # hdfs dfs -copyFromLocal /opt/hadoop/etc/hadoop/*.xml input
-# hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.1.jar grep input output 'dfs[a-z.]+'
+# hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar grep input output 'dfs[a-z.]+'
 # hdfs dfs -cat output/part-r-00000
 #
 
