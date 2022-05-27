@@ -26,6 +26,9 @@ RUN apt-get install -yq --no-install-recommends \
 
 #########################################################################################
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    matplotlib \
+    pandas \
+    scikit-learn \
     tensorflow \
     tensorflow_decision_forests \
     tensorflow-datasets \
@@ -70,6 +73,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  3.2.1" \
+    && echo "    tensorflow  2.9.1" \
     && echo "---------------------------------------------------" \    
     && echo \
     && echo " Hadoop NameNode at: " \
