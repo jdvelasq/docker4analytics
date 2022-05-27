@@ -53,9 +53,7 @@ RUN apt-get --purge remove -y \
 #########################################################################################
 RUN apt-get autoremove -y \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get autoremove -y \
+    && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
@@ -75,8 +73,8 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -chmod 777 /tmp \
     && hdfs dfs -mkdir /user \
     && hdfs dfs -mkdir /user/root \
-    && hdfs dfs -mkdir -p /apps/tez \
-    && hdfs dfs -copyFromLocal ${TEZ_HOME}/share/tez-0.7.1.tar.gz /apps/tez/ \
+    # && hdfs dfs -mkdir -p /apps/tez \
+    # && hdfs dfs -copyFromLocal ${TEZ_HOME}/share/tez-0.7.1.tar.gz /apps/tez/ \
     && bash start-yarn.sh \
     && bash hive-start.sh \
     && mr-jobhistory-daemon.sh start historyserver \
@@ -85,7 +83,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  2.10.1" \
-    && echo "           tez  0.7.1" \
+    # && echo "           tez  0.7.1" \
     && echo "       mariadb  10.3.34" \
     && echo "         spark  3.1.3" \
     && echo "     zookeeper  3.7.1" \
