@@ -1,9 +1,4 @@
-#
-# docker build --tag=jdvelasq/hadoop:2.10.1 .
-# docker push jdvelasq/hadoop:2.10.1
-# docker run --rm -it -v "$PWD":/workspace --name hadoop -p 8888:8888 -p 50070:50070 -p 8088:8088 jdvelasq/hadoop:2.10.1
-# docker exec -it hadoop bash
-#
+#########################################################################################
 FROM jdvelasq/jupyterlab:3.2.9
 
 #########################################################################################
@@ -93,12 +88,12 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
-    && echo "        hadoop  3.2.1" \
+    && echo "        hadoop  2.10.1" \
     && echo "---------------------------------------------------" \    
     && echo \
     && echo " Hadoop NameNode at: " \
     && echo \
-    && echo "    http://127.0.0.1:9870/" \
+    && echo "    http://127.0.0.1:50070/" \
     && echo \
     && echo " Yarn ResourceManager at: "\
     && echo \
