@@ -5,7 +5,7 @@
 # docker run --rm -it -v datalake:/workspace --name zeppelin  -p 8080:8080 jdvelasq/zeppelin:0.10.1
 # docker exec -it zeppelin bash
 #
-FROM jdvelasq/hadoop:3.2.1
+FROM jdvelasq/hadoop:2.10.1
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -45,10 +45,10 @@ RUN tar -xzf zeppelin-$ZEPPELIN_VERSION-bin-netinst.tgz \
     && rm zeppelin-$ZEPPELIN_VERSION-bin-netinst.tgz
 
 #########################################################################################
+EXPOSE 50070
 EXPOSE 8080
 EXPOSE 8088
 EXPOSE 8888
-EXPOSE 50070
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
 WORKDIR /workspace
@@ -65,7 +65,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
-    && echo "        hadoop  3.2.1" \
+    && echo "        hadoop  2.10.1" \
     && echo "      zeppelin  0.10.1" \
     && echo "---------------------------------------------------" \    
     && echo \
