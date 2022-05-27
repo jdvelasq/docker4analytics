@@ -31,8 +31,8 @@
                                         |___ drill
                  
 
-
-docker push jdvelasq/jupyterlab:3.2.9 \
+docker push jdvelasq/ubuntu:20.03 \
+&& docker push jdvelasq/jupyterlab:3.2.9 \
 && docker push jdvelasq/hadoop:2.10.1 \
 && docker push jdvelasq/zeppelin:0.10.1 \
 && docker push jdvelasq/druid:0.22.1 \
@@ -50,6 +50,7 @@ update mariadb 10.3.34 to hadoop 2.10.1
 update sqoop 1.4.7 to hadoop 2.10.1
 update zookeeper 3.7.1 to hadoop 2.10.1
 update hbase 2.3.0 to hadoop 2.10.1
+update phoenix 5.1.2 to hadoop 2.10.1
 
 tez 0.7.1 2.98GB
 ** pydruid
