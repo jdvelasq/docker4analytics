@@ -1,5 +1,3 @@
-#! /bin/bash
-
 docker run --rm -it \
     --name mariadb \
     -p 50070:50070 \
