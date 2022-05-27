@@ -8,34 +8,34 @@
           |___ sklearn 1.0.2                             
           |    |___ tensorflow 2.9.1                      
           |    |___ mxnet
-          |    \___ techminer
+          |    \___ techminer2
           |
-          \___ hadoop 2.10.1                               
-               |___ zeppelin 0.10.1                       
-               |___ druid 0.22.1                          
+          \___ hadoop 2.10.1                              2.88GB
+               |___ zeppelin 0.10.1                       4.69GB
+               |___ druid 0.22.1                          3.73GB
                |    \___ pydruid                          
                |___ tensorflow-hdfs                       
                |___ mxnet-hdfs
-               |___ spark 3.1.3                           
-               |___ pig 0.17.0                            
-               |___ hive 2.3.9        
-               |___ mariadb 10.3.34                       
-               |    |___ sqoop 1.4.7  
-
-               
-
-                         
-                         |___ zookeeper 3.7.1             
-                              |___ hbase 2.3.0            
-                                   |___ phoenix 5.1.2     
+               |___ spark 3.1.3                           5.23GB
+               |___ pig 0.17.0                            3.46GB
+               |___ hive 2.3.9                            3.76GB
+               |___ mariadb 10.3.34                       3.7GB
+               |    |___ sqoop 1.4.7                      3.76GB
+               |___ zookeeper 3.7.1                       2.93GB                         
+                    |___ hbase 2.3.0            
+                         |___ phoenix 5.1.2     
                                    
                                         
                                         |___ hue          
                                         |___ trino 381
                                         |___ drill
                  
-update pig 0.17.0 to hadoo 3.2.1          
-       
+update pig 0.17.0 to hadoop 2.10.1
+update spark 3.1.3 to hadoop 2.10.1
+update hive 2.3.9 to hadoop 2.10.1
+update mariadb 10.3.34 to hadoop 2.10.1
+update zookeeper 3.7.1 to hadoop 2.10.1
+
 tez 0.7.1 2.98GB
 ** pydruid
                    
