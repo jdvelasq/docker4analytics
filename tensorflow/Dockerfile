@@ -49,17 +49,16 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
 #########################################################################################
 RUN apt-get autoremove -y \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt autoremove -y \
+    && apt autoremove -y \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
 
 #########################################################################################
-EXPOSE 8888
-EXPOSE 6006
 EXPOSE 5000
+EXPOSE 6006
+EXPOSE 8888
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
+SHELL ["/bin/bash", "-c"]
 ENTRYPOINT jupyter lab
