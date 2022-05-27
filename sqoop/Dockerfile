@@ -46,9 +46,9 @@ RUN tar -xzf mysql-connector-java-5.1.49.tar.gz \
     && mv mysql-connector-java-5.1.49/mysql-connector-java-5.1.49-bin.jar ${SQOOP_HOME}/lib 
 
 #########################################################################################
+EXPOSE 50070
 EXPOSE 8088
 EXPOSE 8888  
-EXPOSE 50070
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
@@ -70,7 +70,6 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  2.10.1" \
-    && echo "          hive  3.3.9" \
     && echo "       mariadb  10.3.34" \
     && echo "         sqoop  1.4.7" \
     && echo "---------------------------------------------------" \
