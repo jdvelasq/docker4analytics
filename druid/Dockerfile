@@ -4,7 +4,8 @@
 # docker run --rm -it -v "$PWD":/workspace --name hadoop -p 8888:8888 -p 50070:50070 -p 8088:8088 jdvelasq/hadoop:2.10.1
 # docker exec -it hadoop bash
 #
-FROM jdvelasq/tez:0.7.1
+# FROM jdvelasq/tez:0.7.1
+FROM jdvelasq/hadoop:2.10.1
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -27,6 +28,11 @@ RUN apt-get autoremove -y \
     && apt-get clean -y \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
+
+
+#########################################################################################
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    pydruid
 
 #########################################################################################
 ENV DRUID_VERSION 0.22.1
@@ -65,7 +71,6 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  2.10.1" \
-    && echo "           tez  0.7.1" \
     && echo "         druid  0.22.1" \
     && echo "---------------------------------------------------" \    
     && echo \
