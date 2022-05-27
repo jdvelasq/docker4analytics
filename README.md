@@ -22,7 +22,7 @@
                |___ mariadb 10.3.34                       3.7GB
                |    |___ sqoop 1.4.7                      3.76GB
                |___ zookeeper 3.7.1                       2.93GB                         
-                    |___ hbase 2.3.0            
+                    |___ hbase 2.3.0                      3.96GB
                          |___ phoenix 5.1.2     
                                    
                                         
@@ -30,11 +30,26 @@
                                         |___ trino 381
                                         |___ drill
                  
+
+
+docker push jdvelasq/jupyterlab:3.2.9 \
+&& docker push jdvelasq/hadoop:2.10.1 \
+&& docker push jdvelasq/zeppelin:0.10.1 \
+&& docker push jdvelasq/druid:0.22.1 \
+&& docker push jdvelasq/spark:3.1.3 \
+&& docker push jdvelasq/pig:0.17.0 \
+&& docker push jdvelasq/zookeper:3.7.1 \
+&& docker push jdvelasq/hbase:2.3.0 \
+&& docker push jdvelasq/phoenix:5.1.2
+
+
 update pig 0.17.0 to hadoop 2.10.1
 update spark 3.1.3 to hadoop 2.10.1
 update hive 2.3.9 to hadoop 2.10.1
 update mariadb 10.3.34 to hadoop 2.10.1
+update sqoop 1.4.7 to hadoop 2.10.1
 update zookeeper 3.7.1 to hadoop 2.10.1
+update hbase 2.3.0 to hadoop 2.10.1
 
 tez 0.7.1 2.98GB
 ** pydruid
