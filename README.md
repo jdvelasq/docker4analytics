@@ -5,12 +5,12 @@
 .
 |___ apache/ubuntu 20.04                                  718MB      
      |___ jupyterlab 3.2.9                                1.18GB
-          |___ sklearn 1.0.2
-          |    |___ tensorflow
+          |___ sklearn 1.0.2                              2.45GB
+          |    |___ tensorflow 2.9.1                      4.6GB
           |    |___ mxnet
           |    \___ techminer
           |
-          \___ hadoop 2.10.1                              
+          \___ hadoop 2.10.1                              2.88GB
                |___ zeppelin 0.10.1                       
                |___ druid 0.22.1                          
                |___ tensorflow-hdfs
