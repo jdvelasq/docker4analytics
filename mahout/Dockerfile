@@ -27,7 +27,10 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Parte generica
-EXPOSE 50070 8088 8888 5000
+EXPOSE 5000
+EXPOSE 8088
+EXPOSE 8888
+EXPOSE 9870
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND= 
 VOLUME /datalake
