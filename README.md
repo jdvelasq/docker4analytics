@@ -18,7 +18,7 @@
                |___ mariadb 10.3.34                       3.7GB
                     |___ spark 3.1.3                      5.87GB
                          |___ pig 0.17.0                  6.45GB              
-                         |___ zookeeper 3.7.1             
+                         |___ zookeeper 3.7.1             5.92GB   
                               |___ hbase 2.3.0            
                                    |___ phoenix 5.1.2     
                                    |___ hive 2.3.9        
