@@ -1,0 +1,9 @@
+docker run --rm -it \
+    -v "$PWD":/workspace \
+    --name tensorflow-hdfs \
+    -p 5001:5000 \
+    -p 6006:6006 \
+    -p 8088:8088 \
+    -p 8888:8888 \
+    -p 9870:9870 \
+    jdvelasq/tensorflow-hdfs:2.9.1
