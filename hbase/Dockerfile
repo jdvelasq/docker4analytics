@@ -20,6 +20,7 @@ COPY . /app
 #
 ENV HBASE_VERSION 2.3.0
 ENV HBASE_HOME /opt/hbase
+ENV HBASE_CONF_DIR ${HBASE_HOME}/conf
 ENV PATH $PATH:${HBASE_HOME}/bin   
 
 RUN tar -xzf hbase-${HBASE_VERSION}-bin.tar.gz \
