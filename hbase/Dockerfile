@@ -31,7 +31,7 @@ RUN tar -xzf hbase-${HBASE_VERSION}-bin.tar.gz \
 
 #########################################################################################
 EXPOSE 16010
-EXPOSE 50070
+EXPOSE 9870
 EXPOSE 8088
 EXPOSE 8888
 ENV DEBIAN_FRONTEND= 
