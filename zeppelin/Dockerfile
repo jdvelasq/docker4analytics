@@ -60,15 +60,12 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -chmod 777 /tmp \
     && hdfs dfs -mkdir /user \
     && hdfs dfs -mkdir /user/root \
-    # && hdfs dfs -mkdir -p /apps/tez \
-    # && hdfs dfs -copyFromLocal ${TEZ_HOME}/share/tez-0.7.1.tar.gz /apps/tez/ \
     && bash start-yarn.sh \
     && echo \
     && echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  3.2.1" \
-    # && echo "           tez  0.7.1" \
     && echo "      zeppelin  0.10.1" \
     && echo "---------------------------------------------------" \    
     && echo \
@@ -83,6 +80,8 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo " Zeppelin run at:" \
     && echo \
     && echo "     http://localhost:8080/" \
+    && echo \
+    && echo "     Press CTRL+C to exit" \
     && echo \
     && echo "---------------------------------------------------" \
     && echo \
