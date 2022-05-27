@@ -5,8 +5,7 @@
 # docker run --rm -it -v datalake:/workspace --name zeppelin  -p 8080:8080 jdvelasq/zeppelin:0.10.1
 # docker exec -it zeppelin bash
 #
-# FROM jdvelasq/tez:0.7.1
-FROM jdvelasq/hadoop:2.10.1
+FROM jdvelasq/hadoop:3.2.1
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -46,7 +45,7 @@ RUN tar -xzf zeppelin-$ZEPPELIN_VERSION-bin-netinst.tgz \
     && rm zeppelin-$ZEPPELIN_VERSION-bin-netinst.tgz
 
 #########################################################################################
-EXPOSE 50070
+EXPOSE 9870
 EXPOSE 8088
 EXPOSE 8888
 EXPOSE 8080

@@ -51,7 +51,7 @@ RUN tar -xzf mysql-connector-java-5.1.49.tar.gz \
     && mv mysql-connector-java-5.1.49/mysql-connector-java-5.1.49-bin.jar ${SQOOP_HOME}/lib 
 
 #########################################################################################
-EXPOSE 50070
+EXPOSE 9870
 EXPOSE 8088
 EXPOSE 8888  
 ENV DEBIAN_FRONTEND=dialog

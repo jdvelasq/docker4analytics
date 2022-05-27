@@ -27,7 +27,7 @@ RUN tar -xzf pig-$PIG_VERSION.tar.gz \
     && rm pig-${PIG_VERSION}.tar.gz 
 
 #########################################################################################
-EXPOSE 50070
+EXPOSE 9870
 EXPOSE 8088
 EXPOSE 8888 
 ENV DEBIAN_FRONTEND= 

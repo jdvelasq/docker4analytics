@@ -36,9 +36,8 @@ RUN apt-get install -yq --no-install-recommends \
     python3-dev
 
 #########################################################################################
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    phoenixdb 
-
+# RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+#     phoenixdb 
 
 #########################################################################################
 #
@@ -51,16 +50,16 @@ ENV PATH $PATH:${PHOENIX_HOME}/bin
 RUN tar -xzf phoenix-hbase-2.3-${PHOENIX_VERSION}-bin.tar.gz \
     && mv phoenix-hbase-2.3-${PHOENIX_VERSION}-bin ${PHOENIX_HOME} \
     && rm phoenix-hbase-2.3-${PHOENIX_VERSION}-bin.tar.gz \
-    && cp ${PHOENIX_HOME}/phoenix-server-hbase-2.3-${PHOENIX_VERSION}.jar ${HBASE_HOME}/lib/ \
+    # && cp ${PHOENIX_HOME}/phoenix-server-hbase-2.3-${PHOENIX_VERSION}.jar ${HBASE_HOME}/lib/ \
     && rm /opt/phoenix/phoenix-client-hbase-2.3-5.1.2.jar
 
 
 #########################################################################################
-ENV PATH $PATH:/opt/query-server/bin   
+# ENV PATH $PATH:/opt/query-server/bin   
 
-RUN tar -xzf phoenix-queryserver-6.0.0-bin.tar.gz \
-    && mv phoenix-queryserver-6.0.0 /opt/query-server \
-    && rm phoenix-queryserver-6.0.0-bin.tar.gz
+# RUN tar -xzf phoenix-queryserver-6.0.0-bin.tar.gz \
+#     && mv phoenix-queryserver-6.0.0 /opt/query-server \
+#     && rm phoenix-queryserver-6.0.0-bin.tar.gz
 
 
 #########################################################################################
@@ -79,10 +78,10 @@ RUN apt-get autoremove -y \
 
 #########################################################################################
 EXPOSE 16010
-EXPOSE 50070
 EXPOSE 8088
 EXPOSE 8765
 EXPOSE 8888
+EXPOSE 9870
 ENV DEBIAN_FRONTEND= 
 RUN rm -rf /app/*
 WORKDIR /workspace
@@ -95,8 +94,8 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -chmod 777 /tmp \
     && hdfs dfs -mkdir /user \
     && hdfs dfs -mkdir /user/root \
-    && hdfs dfs -mkdir -p /apps/tez \
-    && hdfs dfs -copyFromLocal /opt/tez/share/tez-0.7.1.tar.gz /apps/tez/ \
+    # && hdfs dfs -mkdir -p /apps/tez \
+    # && hdfs dfs -copyFromLocal /opt/tez/share/tez-0.7.1.tar.gz /apps/tez/ \
     && bash start-yarn.sh \
     && start-hbase.sh \
     && echo \
@@ -104,7 +103,7 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo " apache/ubuntu  20.04" \
     && echo "    jupyterlab  3.2.9" \
     && echo "        hadoop  2.10.1" \
-    && echo "           tez  0.7.1" \
+    # && echo "           tez  0.7.1" \
     && echo "       mariadb  10.3.34" \
     && echo "         spark  3.1.3" \
     && echo "     zookeeper  3.7.1" \

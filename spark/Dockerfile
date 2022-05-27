@@ -58,9 +58,9 @@ RUN apt-get autoremove -y \
 
 #########################################################################################
 EXPOSE 4040
-EXPOSE 50070
 EXPOSE 8088
 EXPOSE 8888
+EXPOSE 9870
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND=dialog
 WORKDIR /workspace
