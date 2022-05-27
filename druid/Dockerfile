@@ -1,11 +1,5 @@
-#
-# docker build --tag=jdvelasq/hadoop:2.10.1 .
-# docker push jdvelasq/hadoop:2.10.1
-# docker run --rm -it -v "$PWD":/workspace --name hadoop -p 8888:8888 -p 50070:50070 -p 8088:8088 jdvelasq/hadoop:2.10.1
-# docker exec -it hadoop bash
-#
-# FROM jdvelasq/tez:0.7.1
-FROM jdvelasq/hadoop:2.10.1
+#########################################################################################
+FROM jdvelasq/hadoop:3.2.1
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -28,11 +22,6 @@ RUN apt-get autoremove -y \
     && apt-get clean -y \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
-
-
-#########################################################################################
-RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    pydruid
 
 #########################################################################################
 ENV DRUID_VERSION 0.22.1
@@ -85,6 +74,8 @@ ENTRYPOINT /etc/init.d/ssh start \
     && echo " Druid is available at:" \
     && echo \
     && echo "     http://127.0.0.1:9999/" \
+    && echo \
+    && echo "     Press CTRL+C to finish" \
     && echo \
     && echo "---------------------------------------------------" \
     && echo \
