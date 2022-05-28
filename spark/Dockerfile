@@ -36,14 +36,24 @@ ENV PYSPARK_DRIVER_PYTHON ipython
 ENV PYSPARK_PYTHON python3
 
 RUN pip3 install  --trusted-host pypi.python.org  \
+    datatest \
+    dvc \
+    faker \
     findspark  \
+    great_expectations \ 
+    ipywidgets \
+    luigi \
     matplotlib \
     mlflow[extras] \    
     pandas \
+    pyaml \
     pyspark==${PYSPARK_VERSION} \
+    pytest \
     scikit-learn \
+    seaborn \
     shap \
-    SQLAlchemy 
+    SQLAlchemy \
+    tdqm    
 
 #########################################################################################
 RUN apt-get autoremove -y \
@@ -54,9 +64,10 @@ RUN apt-get autoremove -y \
 
 #########################################################################################
 EXPOSE 4040
+EXPOSE 5000
+EXPOSE 50070
 EXPOSE 8088
 EXPOSE 8888
-EXPOSE 50070
 RUN rm -rf /app/*
 ENV DEBIAN_FRONTEND=dialog
 WORKDIR /workspace
