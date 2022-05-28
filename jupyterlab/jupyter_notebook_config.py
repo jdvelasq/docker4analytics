@@ -284,7 +284,7 @@ c.NotebookApp.open_browser = False
 #c.NotebookApp.password_required = False
 
 ## The port the notebook server will listen on.
-#c.NotebookApp.port = 8888
+c.NotebookApp.port = 8888
 
 ## The number of additional ports to try if the specified port is not available.
 #c.NotebookApp.port_retries = 50
@@ -294,7 +294,7 @@ c.NotebookApp.open_browser = False
 
 ## If True, display a button in the dashboard to quit (shutdown the notebook
 #  server).
-#c.NotebookApp.quit_button = True
+c.NotebookApp.quit_button = True
 
 ## (sec) Time window used to  check the message and data rate limits.
 #c.NotebookApp.rate_limit_window = 3
@@ -329,7 +329,7 @@ c.NotebookApp.terminado_settings = {"shell_command": ["/bin/bash"]}
 #  
 #  Terminals may also be automatically disabled if the terminado package is not
 #  available.
-#c.NotebookApp.terminals_enabled = True
+c.NotebookApp.terminals_enabled = True
 
 ## Token used for authenticating first-time connections to the server.
 #  
