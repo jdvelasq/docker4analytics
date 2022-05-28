@@ -66,7 +66,7 @@ WORKDIR /workspace
 SHELL ["/bin/bash", "-c"]
 ENTRYPOINT echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
-    && echo "    jupyterlab  3.2.9" \
+    && echo "    jupyterlab  3.2.9,  available at port 8888" \
     && echo "---------------------------------------------------" \
     && echo \
     && jupyter lab
