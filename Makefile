@@ -1,3 +1,4 @@
+.PHONY: drill
 .PHONY: druid
 .PHONY: hadoop
 .PHONY: hadoop-on-tez
@@ -23,6 +24,14 @@
 .PHONY: ubuntu
 .PHONY: zeppelin
 .PHONY: zookeeper
+
+
+drill:
+	docker build --tag=jdvelasq/drill:1.19.0 drill/ 
+	docker image prune --force
+	echo
+	docker image ls
+
 
 druid:
 	docker build --tag=jdvelasq/druid:0.22.1 druid/ 
