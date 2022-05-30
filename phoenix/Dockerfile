@@ -30,8 +30,8 @@ RUN apt-get install -yq --no-install-recommends \
     python3-dev
 
 #########################################################################################
-# RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-#     phoenixdb 
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    phoenixdb 
 
 #########################################################################################
 #
@@ -49,11 +49,11 @@ RUN tar -xzf phoenix-hbase-2.3-${PHOENIX_VERSION}-bin.tar.gz \
 
 
 #########################################################################################
-# ENV PATH $PATH:/opt/query-server/bin   
+ENV PATH $PATH:/opt/query-server/bin   
 
-# RUN tar -xzf phoenix-queryserver-6.0.0-bin.tar.gz \
-#     && mv phoenix-queryserver-6.0.0 /opt/query-server \
-#     && rm phoenix-queryserver-6.0.0-bin.tar.gz
+RUN tar -xzf phoenix-queryserver-6.0.0-bin.tar.gz \
+    && mv phoenix-queryserver-6.0.0 /opt/query-server \
+    && rm phoenix-queryserver-6.0.0-bin.tar.gz
 
 
 #########################################################################################
