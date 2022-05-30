@@ -1,0 +1,4 @@
+{
+  "type" : "elastic",
+  "hosts" : [ "http://localhost:9200" ]
+}
