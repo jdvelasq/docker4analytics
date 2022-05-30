@@ -1,0 +1,5 @@
+{
+  "type" : "cassandra",
+  "host" : "localhost",
+  "port" : 9042
+}
