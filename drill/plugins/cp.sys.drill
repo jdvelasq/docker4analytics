@@ -1,0 +1,68 @@
+{
+  "type" : "file",
+  "connection" : "classpath:///",
+  "formats" : {
+    "parquet" : {
+      "type" : "parquet"
+    },
+    "avro" : {
+      "type" : "avro",
+      "extensions" : [ "avro" ]
+    },
+    "json" : {
+      "type" : "json",
+      "extensions" : [ "json" ]
+    },
+    "csvh" : {
+      "type" : "text",
+      "extensions" : [ "csvh" ],
+      "extractHeader" : true
+    },
+    "tsv" : {
+      "type" : "text",
+      "extensions" : [ "tsv" ],
+      "fieldDelimiter" : "\t"
+    },
+    "csv" : {
+      "type" : "text",
+      "extensions" : [ "csv" ]
+    },
+    "pcap" : {
+      "type" : "pcap",
+      "extensions" : [ "pcap", "pcapng" ]
+    },
+    "excel" : {
+      "type" : "excel",
+      "extensions" : [ "xlsx" ],
+      "lastRow" : 1048576
+    },
+    "hdf5" : {
+      "type" : "hdf5",
+      "extensions" : [ "h5" ],
+      "defaultPath" : null
+    },
+    "httpd" : {
+      "type" : "httpd",
+      "extensions" : [ "httpd" ],
+      "logFormat" : "common\ncombined"
+    },
+    "spss" : {
+      "type" : "spss",
+      "extensions" : [ "sav" ]
+    },
+    "image" : {
+      "type" : "image",
+      "extensions" : [ "jpg", "jpeg", "jpe", "tif", "tiff", "dng", "psd", "png", "bmp", "gif", "ico", "pcx", "wav", "wave", "avi", "webp", "mov", "mp4", "m4a", "m4p", "m4b", "m4r", "m4v", "3gp", "3g2", "eps", "epsf", "epsi", "ai", "arw", "crw", "cr2", "nef", "orf", "raf", "rw2", "rwl", "srw", "x3f" ],
+      "descriptive" : true
+    },
+    "ltsv" : {
+      "type" : "ltsv",
+      "extensions" : [ "ltsv" ]
+    },
+    "shp" : {
+      "type" : "shp",
+      "extensions" : [ "shp" ]
+    }
+  },
+  "enabled" : true
+}
