@@ -1,0 +1,10 @@
+{
+  "type" : "jdbc",
+  "driver" : "xxx.Driver",
+  "url" : "jdbc:xxx:xxx",
+  "username" : "xxx",
+  "password" : "xxx",
+  "sourceParameters" : {
+    "maximumPoolSize" : 10
+  }
+}
