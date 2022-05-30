@@ -1,0 +1,9 @@
+{
+  "type" : "splunk",
+  "username" : "admin",
+  "password" : "changeme",
+  "hostname" : "localhost",
+  "port" : 8089,
+  "earliestTime" : "-14d",
+  "latestTime" : "now"
+}
