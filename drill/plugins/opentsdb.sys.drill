@@ -1,0 +1,4 @@
+{
+  "type" : "openTSDB",
+  "connection" : "http://localhost:10000"
+}
