@@ -6,6 +6,7 @@
 .PHONY: hive
 .PHONY: hive-on-spark
 .PHONY: hive-on-tez
+.PHONY: hue
 .PHONY: impala
 .PHONY: jupyterlab
 .PHONY: mariadb
