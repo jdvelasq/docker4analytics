@@ -1,0 +1,6 @@
+{
+  "type" : "druid",
+  "brokerAddress" : "http://localhost:8082",
+  "coordinatorAddress" : "http://localhost:8081",
+  "averageRowSizeBytes" : 100
+}
