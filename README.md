@@ -11,6 +11,7 @@
           |    \___ techminer2
           |
           \___ hadoop 2.10.1                              2.88GB
+               |___ drill 1.19.0                          3.73GB
                |___ zeppelin 0.10.1                       4.69GB
                |___ druid 0.22.1                          3.73GB
                |    \___ pydruid                          
@@ -25,13 +26,13 @@
                     |___ hbase 2.3.0                      3.96GB
                     |    \___ phoenix 5.1.2     
                     |
-                    |___ drill 1.20.1
+                    
                                    
                                         
                                         |___ hue          
                                         |___ trino 381
 
-                 
+https://127.0.0.1:8047/storage.                 
 
 docker push jdvelasq/ubuntu:20.03 \
 && docker push jdvelasq/jupyterlab:3.2.9 \
