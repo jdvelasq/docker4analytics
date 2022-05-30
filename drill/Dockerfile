@@ -27,12 +27,7 @@ COPY . /app
 ENV DRILL_VERSION 1.19.0
 ENV DRILL_HOME /opt/drill
 ENV PATH $PATH:${DRILL_HOME}/bin
-#
-# ENV DRILL_USER=root
-# ENV DRILL_USER_HOME=/var/lib/drill
-# ENV DRILL_PID_DIR=$DRILL_USER_HOME
-# ENV DRILL_LOG_DIR=$DRILL_USER_HOME/log
-#
+
 RUN tar -xvzf apache-drill-${DRILL_VERSION}.tar.gz \
     && mv apache-drill-${DRILL_VERSION} ${DRILL_HOME} \
     && rm apache-drill-${DRILL_VERSION}.tar.gz \
