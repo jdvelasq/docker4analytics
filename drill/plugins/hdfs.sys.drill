@@ -1,0 +1,100 @@
+{
+  "type" : "file",
+  "connection" : "hdfs://0.0.0.0:9000/",
+  "workspaces" : {
+    "tmp" : {
+      "location" : "/tmp",
+      "writable" : true,
+      "defaultInputFormat" : null,
+      "allowAccessOutsideWorkspace" : false
+    },
+    "root" : {
+      "location" : "/user/root",
+      "writable" : false,
+      "defaultInputFormat" : null,
+      "allowAccessOutsideWorkspace" : false
+    }
+  },
+  "formats" : {
+    "parquet" : {
+      "type" : "parquet"
+    },
+    "json" : {
+      "type" : "json",
+      "extensions" : [ "json" ]
+    },
+    "sequencefile" : {
+      "type" : "sequencefile",
+      "extensions" : [ "seq" ]
+    },
+    "csvh" : {
+      "type" : "text",
+      "extensions" : [ "csvh" ],
+      "extractHeader" : true
+    },
+    "psv" : {
+      "type" : "text",
+      "extensions" : [ "tbl" ],
+      "fieldDelimiter" : "|"
+    },
+    "avro" : {
+      "type" : "avro",
+      "extensions" : [ "avro" ]
+    },
+    "tsv" : {
+      "type" : "text",
+      "extensions" : [ "tsv" ],
+      "fieldDelimiter" : "\t"
+    },
+    "csv" : {
+      "type" : "text",
+      "extensions" : [ "csv" ]
+    },
+    "xml" : {
+      "type" : "xml",
+      "extensions" : [ "xml" ],
+      "dataLevel" : 1
+    },
+    "pcap" : {
+      "type" : "pcap",
+      "extensions" : [ "pcap", "pcapng" ]
+    },
+    "syslog" : {
+      "type" : "syslog",
+      "extensions" : [ "syslog" ]
+    },
+    "excel" : {
+      "type" : "excel",
+      "extensions" : [ "xlsx" ],
+      "lastRow" : 1048576
+    },
+    "hdf5" : {
+      "type" : "hdf5",
+      "extensions" : [ "h5" ],
+      "defaultPath" : null
+    },
+    "httpd" : {
+      "type" : "httpd",
+      "extensions" : [ "httpd" ],
+      "logFormat" : "common\ncombined"
+    },
+    "spss" : {
+      "type" : "spss",
+      "extensions" : [ "sav" ]
+    },
+    "image" : {
+      "type" : "image",
+      "extensions" : [ "jpg", "jpeg", "jpe", "tif", "tiff", "dng", "psd", "png", "bmp", "gif", "ico", "pcx", "wav", "wave", "avi", "webp", "mov", "mp4", "m4a", "m4p", "m4b", "m4r", "m4v", "3gp", "3g2", "eps", "epsf", "epsi", "ai", "arw", "crw", "cr2", "nef", "orf", "raf", "rw2", "rwl", "srw", "x3f" ],
+      "descriptive" : true
+    },
+    "ltsv" : {
+      "type" : "ltsv",
+      "extensions" : [ "ltsv" ]
+    },
+    "shp" : {
+      "type" : "shp",
+      "extensions" : [ "shp" ]
+    }
+  },
+  "enabled" : true
+}
