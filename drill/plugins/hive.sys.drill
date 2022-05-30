@@ -1,0 +1,12 @@
+{
+  "type" : "hive",
+  "configProps" : {
+    "hive.metastore.sasl.enabled" : "false",
+    "fs.default.name" : "file:///",
+    "datanucleus.schema.autoCreateAll" : "true",
+    "javax.jdo.option.ConnectionURL" : "jdbc:derby:;databaseName=../sample-data/drill_hive_db;create=true",
+    "hive.metastore.uris" : "",
+    "hive.metastore.schema.verification" : "false",
+    "hive.metastore.warehouse.dir" : "/tmp/drill_hive_wh"
+  }
+}
