@@ -1,0 +1,12 @@
+{
+  "type" : "kafka",
+  "kafkaConsumerProps" : {
+    "key.deserializer" : "org.apache.kafka.common.serialization.ByteArrayDeserializer",
+    "auto.offset.reset" : "earliest",
+    "bootstrap.servers" : "localhost:9092",
+    "enable.auto.commit" : "true",
+    "group.id" : "drill-query-consumer",
+    "value.deserializer" : "org.apache.kafka.common.serialization.ByteArrayDeserializer",
+    "session.timeout.ms" : "30000"
+  }
+}
