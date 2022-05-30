@@ -69,6 +69,13 @@ hive-on-tez:
 	echo
 	docker image ls	
 
+hue:
+	docker build --tag=jdvelasq/hue:4.10.0 hue/ 
+	docker image prune --force
+	echo
+	docker image ls	
+
+
 impala:
 	docker build --tag=jdvelasq/impala:3.4.1 impala/	
 	docker image prune --force
