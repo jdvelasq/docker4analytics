@@ -1,11 +1,5 @@
-#
-# docker build --tag=jdvelasq/sqoop:1.4.7 .
-# docker push jdvelasq/sqoop:1.4.7
-# docker run --rm -it -v "$PWD":/datalake  --name hive -p 50070:50070 -p 8088:8088 -p 8888:8888 jdvelasq/sqoop:1.4.7
-# docker run --rm -it -v datalake:/datalake --name hive  -p 50070:50070 -p 8088:8088 -p 8888:8888 jdvelasq/sqoop:1.4.7
-# docker exec -it hive bash
-#
-FROM jdvelasq/hadoop:2.10.1
+#########################################################################################
+FROM jdvelasq/ubuntu:20.04
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -18,73 +12,118 @@ COPY . /app
 RUN apt-get update \
     && apt update
 
-#########################################################################################
-# RUN apt-get install -yq --no-install-recommends \
-#    sqlite3
-
-
-#########################################################################################
-# RUN apt install -yq gnupg \
-#     && wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb \
-#     && dpkg -i mysql-apt-config* \
-#     && apt update \
-#     && apt install -yq mysql-server
-
-
-RUN apt install -yq mariadb-server
-RUN pip3 install mysql-connector-python
-
-!apt-get update --quiet
-!apt-get install -yq libmariadb-dev
-!apt-get install -yq build-essential gcc python3-dev
-!pip3 install --quiet mariadb
 
 #########################################################################################
 #
-#  https://github.com/xerial/sqlite-jdbc
-#  http://archive.apache.org/dist/sqoop/1.4.7/sqoop-1.4.7.bin__hadoop-2.6.0.tar.gz
-#  http://ftp.ntu.edu.tw/MySQL/Downloads/Connector-J/mysql-connector-java-5.1.49.tar.gz
+# nodejs
 #
-ENV SQOOP_VERSION 1.4.7
-ENV SQOOP_HOME /opt/sqoop
-ENV PATH $PATH:/opt/sqoop/bin  
-ENV HADOOP_COMMON_HOME /opt/hadoop 
-ENV HADOOP_MAPRED_HOME /opt/hadoop
-ENV HADOOP_CLASSPATH $HADOOP_CLASSPATH:/opt/sqoop/lib/sqlite-jdbc-3.36.0.3.jar
+#########################################################################################
+RUN apt-get install -y ca-certificates xz-utils \
+    && curl -O https://nodejs.org/dist/v16.4.0/node-v16.4.0-linux-x64.tar.xz \
+    && tar -xf node-v16.4.0-linux-x64.tar.xz \
+    && cp -r node-v16.4.0-linux-x64/* /usr/ \
+    && ln -s "$(which node)" /usr/bin/nodejs
 
-RUN tar -xzf sqoop-$SQOOP_VERSION.bin__hadoop-2.6.0.tar.gz \
-    && mv sqoop-$SQOOP_VERSION.bin__hadoop-2.6.0 /opt/sqoop \
-    && rm sqoop-$SQOOP_VERSION.bin__hadoop-2.6.0.tar.gz \
-    && mv conf/sqoop-env.sh /opt/sqoop/conf/
 
-# RUN mv sqlite-jdbc-3.36.0.3.jar /opt/sqoop/lib
+RUN apt-get install -yq --no-install-recommends \    
+    sqlite
 
-RUN tar -xzf mysql-connector-java-5.1.49.tar.gz \
-    && mv mysql-connector-java-5.1.49/mysql-connector-java-5.1.49-bin.jar /opt/sqoop/lib 
+RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
+    pandas \
+    SQLAlchemy
 
-RUN mv mariadb-java-client-3.0.4.jar /opt/sqoop/lib
+
+#########################################################################################
+#
+# Hue
+#
+#########################################################################################
+RUN apt-get install -yq --no-install-recommends \
+    ant \
+    g++ \
+    gcc \
+    libgmp3-dev \
+    libkrb5-dev \
+    libldap2-dev \
+    libmysqlclient-dev \
+    libsasl2-dev \
+    libsasl2-modules-gssapi-mit \
+    libsqlite3-dev \
+    libssl-dev \
+    libtidy-dev \
+    libxml2-dev \
+    libxslt-dev \
+    python-dev \
+    python-setuptools \
+    rsync 
+
+#########################################################################################
+ENV HUE_VERSION 4.10.0
+ENV HUE_HOME /opt/hue
+ENV PATH $PATH:${HUE_HOME}/build/env/bin  
+
+RUN tar -xvzf hue-${HUE_VERSION}.tgz \
+    && rm hue-${HUE_VERSION}.tgz 
+
+WORKDIR /app/hue-${HUE_VERSION}
+RUN PREFIX=/opt make install
+
+RUN cp /app/conf/* ${HUE_HOME}/desktop/conf/
+
+RUN useradd -ms /bin/bash hue && chown -R hue /opt/hue
+
+
+# RUN apt-get --purge remove -y \
+#     ant \
+#     g++ \
+#     gcc \
+#     libgmp3-dev \
+#     libkrb5-dev \
+#     libldap2-dev \
+#     libmysqlclient-dev \
+#     libsasl2-dev \
+#     libsasl2-modules-gssapi-mit \
+#     libsqlite3-dev \ 
+#     libssl-dev \ 
+#     libtidy-dev \
+#     libxml2-dev \ 
+#     python-dev \
+#     python-setuptools
+
+
+# RUN pip3 install mysql-python
+
+#########################################################################################
+# RUN apt-get --purge remove -y \
+#     build-essential \
+#     gcc \
+#     libsasl2-dev \
+#     python3-dev
 
 #########################################################################################
 RUN apt-get autoremove -y \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get autoremove -y \
-    && apt-get clean -y \
+    && apt autoremove -y \
+    && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
 
 #########################################################################################
-EXPOSE 8088
 EXPOSE 8888  
-EXPOSE 50070
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
-ENTRYPOINT service mysql start \
-    && /etc/init.d/ssh start \
-    && bash hadoop-start.sh \
-    && /bin/bash
-
-# service mysql start
+ENTRYPOINT echo \
+    && echo "---------------------< stack >---------------------" \
+    && echo " apache/ubuntu  20.04" \
+    && echo "       mariadb  10.3.34" \
+    && echo "           hue  4.10.0" \
+    && echo "---------------------------------------------------" \    
+    && echo \
+    && echo \
+    && echo "---------------------------------------------------" \
+    && echo \
+    && hue syncdb --noinput \
+    && hue migrate \
+    && supervisor 
 
 
