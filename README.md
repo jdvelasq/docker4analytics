@@ -20,16 +20,17 @@
                |___ spark 3.1.3                           5.23GB
                |___ pig 0.17.0                            3.46GB
                |___ hive 2.3.9                            3.76GB
+               |    \___ hue
+               |
                |___ mariadb 10.3.34                       3.7GB
                |    |___ sqoop 1.4.7                      3.76GB
+               |
                |___ zookeeper 3.7.1                       2.93GB                         
                     |___ hbase 2.3.0                      3.96GB
-                    |    \___ phoenix 5.1.2     
-                    |
+                         \___ phoenix 5.1.2     
                     
                                    
-                                        
-                                        |___ hue          
+                                              
                                         |___ trino 381
 
 https://127.0.0.1:8047/storage.                 
