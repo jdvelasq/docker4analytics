@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/opt/hue/build/env/bin/supervisor", line 11, in <module>
+    load_entry_point('desktop', 'console_scripts', 'supervisor')()
+  File "/opt/hue/desktop/core/src/desktop/supervisor.py", line 315, in main
+    setup_user_info()
+  File "/opt/hue/desktop/core/src/desktop/supervisor.py", line 253, in setup_user_info
+    g_user_uid, g_user_gid = desktop.lib.daemon_utils.get_uid_gid(SETUID_USER, SETGID_GROUP)
+  File "/opt/hue/desktop/core/src/desktop/lib/daemon_utils.py", line 45, in get_uid_gid
+    raise KeyError("Couldn't get user id for user %s" % (username,))
+KeyError: "Couldn't get user id for user hue"
