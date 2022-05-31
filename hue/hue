@@ -1,0 +1,6 @@
+docker run --rm -it \
+    --name hue \
+    -p 8888:8888 \
+    -p 8000:8000 \
+    -v "$PWD":/workspace \
+    jdvelasq/hue:4.10.0
