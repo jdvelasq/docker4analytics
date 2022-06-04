@@ -63,7 +63,6 @@ ENTRYPOINT /etc/init.d/ssh start \
     && hdfs dfs -mkdir /user \
     && hdfs dfs -mkdir /user/root \
     && bash start-yarn.sh \
-    && bash hive-start.sh \
     && mr-jobhistory-daemon.sh start historyserver \
     && echo \
     && echo "---------------------< stack >---------------------" \
