@@ -49,9 +49,10 @@ RUN tar -xzf hadoop-${HADOOP_VERSION}.tar.gz \
     && mv hadoop-${HADOOP_VERSION} ${HADOOP_HOME} \
     && rm hadoop-${HADOOP_VERSION}.tar.gz \
     && chmod 0777 ${HADOOP_HOME} \
-    && mv conf/* ${HADOOP_HOME}/etc/hadoop/ \
-    && mv bin/* /usr/local/bin/ \
     && mkdir ${HADOOP_HOME}/logs
+
+# && mv bin/* /usr/local/bin/ \
+# && mv conf/* ${HADOOP_HOME}/etc/hadoop/ \
 
 #########################################################################################
 RUN apt-get autoremove -y \
@@ -61,9 +62,9 @@ RUN apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
 #########################################################################################
-EXPOSE 8088
-EXPOSE 8888  
-EXPOSE 50070
+# EXPOSE 8088
+# EXPOSE 8888  
+# EXPOSE 50070
 ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
