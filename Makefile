@@ -13,6 +13,7 @@
 .PHONY: mariadb
 .PHONY: phoenix
 .PHONY: pig
+.PHONY: pig-classroom
 .PHONY: pydruid
 .PHONY: sklearn
 .PHONY: spark
@@ -52,7 +53,6 @@ hadoop-classroom:
 	docker image prune --force
 	echo
 	docker image ls	
-
 
 hbase:
 	docker build --tag=jdvelasq/hbase:2.3.0 hbase/ 
@@ -105,6 +105,12 @@ mariadb:
 
 pig:
 	docker build --tag=jdvelasq/pig:0.17.0 pig/	
+	docker image prune --force
+	echo
+	docker image ls	
+
+pig-classroom:
+	docker build --tag=jdvelasq/pig:classroom pig-classroom/	
 	docker image prune --force
 	echo
 	docker image ls	
