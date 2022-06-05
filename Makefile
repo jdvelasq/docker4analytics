@@ -5,6 +5,7 @@
 .PHONY: hadoop-on-tez
 .PHONY: hbase
 .PHONY: hive
+.PHONY: hive-classroom
 .PHONY: hive-on-spark
 .PHONY: hive-on-tez
 .PHONY: hue
@@ -66,6 +67,12 @@ hive:
 	echo
 	docker image ls	
 
+hive-classroom:
+	docker build --tag=jdvelasq/hive:classroom hive-classroom/ 
+	docker image prune --force
+	echo
+	docker image ls	
+
 hive-on-spark:
 	docker build --tag=jdvelasq/hive-on-spark:2.3.9-3.1.3 hive-on-spark/ 
 	docker image prune --force
@@ -83,7 +90,6 @@ hue:
 	docker image prune --force
 	echo
 	docker image ls	
-
 
 impala:
 	docker build --tag=jdvelasq/impala:3.4.1 impala/	
