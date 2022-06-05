@@ -25,16 +25,3 @@ WORKDIR /workspace
 ENTRYPOINT cd /workspace \
     && pig -f pregunta.pig
 
-# ENTRYPOINT /etc/init.d/ssh start \
-#     && rm -rf /tmp/hadoop-root/dfs/name \
-#     && hdfs namenode -format \
-#     && bash start-dfs.sh \
-#     && hdfs dfs -mkdir /user \
-#     && hdfs dfs -mkdir /user/root \
-#     && hdfs dfs -mkdir /tmp \
-#     && hdfs dfs -chmod 777 /tmp \
-#     && bash start-yarn.sh \
-#     && mr-jobhistory-daemon.sh start historyserver \
-#     && cd /workspace \
-#     && pig -f pregunta.pig
-
