@@ -1,0 +1,7 @@
+docker run --rm -it \
+    --name hive \
+    -p 50070:50070 \
+    -p 8088:8088 \
+    -p 8888:8888 \
+    -v "$PWD":/workspace \
+    jdvelasq/hive:2.3.9
