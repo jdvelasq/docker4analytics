@@ -1,16 +1,5 @@
-#
-# docker build --tag=jdvelasq/sklearn:1.0.2 .
-# docker push jdvelasq/sklearn:1.0.2
-# docker run --rm -it -v "$PWD":/workspace --name sklearn -p 8888:8888 -p 5001:5000 jdvelasq/sklearn:1.0.2
-# docker run --rm -it -v datalake:/workspace -name sklear -p 8888:8888 -p 5001:5000 jdvelasq/sklearn:1.0.2
-# docker exec -it sklearn bash
-#
-# docker run --rm -it  --name sklearn -p 8888:8888 -p 5000:5000 jdvelasq/sklearn:1.0.2
-#
-# REPOSITORY         TAG          IMAGE ID       CREATED          SIZE
-#
-#
-FROM jdvelasq/jupyterlab:3.2.9
+#########################################################################################
+FROM jdvelasq/jupyterlab:3.4.2
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -39,7 +28,7 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     pandas \
     pyaml \
     pytest \
-    scikit-learn==1.0.2 \
+    scikit-learn==1.1.1 \
     seaborn \
     shap \
     SQLAlchemy \
