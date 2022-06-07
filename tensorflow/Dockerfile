@@ -1,13 +1,5 @@
-#
-# docker build --tag=jdvelasq/tensorflow:2.8 .
-# docker push jdvelasq/tensorflow:2.8
-# docker run --rm -it -v "$PWD":/workspace --name tensorflow -p 8888:8888 -p 5001:5000 jdvelasq/tensorflow:2.8
-# docker run --rm -it -v datalake:/workspace -name tensorflow -p 8888:8888 -p 5001:5000 jdvelasq/tensorflow:2.8
-# docker exec -it tensorflow bash
-#
-# docker run --rm -it  --name tensorflow -p 8888:8888 -p 5000:5000 jdvelasq/tensorflow:2.8
-#
-FROM jdvelasq/sklearn:1.0.2
+#########################################################################################
+FROM jdvelasq/sklearn:1.1.1
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -28,7 +20,7 @@ RUN apt-get install -yq --no-install-recommends \
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     git+https://github.com/tensorflow/docs \
     tensorboard \
-    tensorflow \
+    tensorflow==2.9.1 \
     tensorflow_decision_forests \
     tensorflow-addons \
     tensorflow-datasets \
