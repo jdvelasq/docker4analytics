@@ -4,8 +4,8 @@
 ```
 .
 |___ apache/ubuntu 20.04                                  718MB      
-     |___ jupyterlab 3.2.9                                1.18GB
-          |___ sklearn 1.0.2                             
+     |___ jupyterlab 3.4.2                                1.18GB
+          |___ sklearn 1.1.1                             
           |    |___ tensorflow 2.9.1                      
           |    |___ mxnet
           |    \___ techminer2
@@ -35,14 +35,20 @@
 
 https://127.0.0.1:8047/storage.                 
 
-docker push jdvelasq/ubuntu:20.03 \
-&& docker push jdvelasq/jupyterlab:3.2.9 \
+docker push jdvelasq/sphinx:3.0.4 \
+&& docker push jdvelasq/ubuntu:20.04 \
+&& docker push jdvelasq/jupyterlab:3.4.2 \
+&& docker push jdvelasq/sklearn:1.1.1 \
+&& docker push jdvelasq/tensorflow:2.9.1 \
 && docker push jdvelasq/hadoop:2.10.1 \
 && docker push jdvelasq/zeppelin:0.10.1 \
 && docker push jdvelasq/druid:0.22.1 \
 && docker push jdvelasq/spark:3.1.3 \
 && docker push jdvelasq/pig:0.17.0 \
-&& docker push jdvelasq/zookeper:3.7.1 \
+&& docker push jdvelasq/hive:2.3.9 \
+&& docker push jdvelasq/mariadb:10.3.34 \
+&& docker push jdvelasq/sqoop:1.4.7 \
+&& docker push jdvelasq/zookeeper:3.7.1 \
 && docker push jdvelasq/hbase:2.3.0 \
 && docker push jdvelasq/phoenix:5.1.2
 
