@@ -1,9 +1,4 @@
-#
-# docker build --tag=jdvelasq/jupyterlab:3.2.9 .
-# docker push jdvelasq/jupyterlab:3.2.9
-# docker run --rm -it -v "$PWD":/workspace --name jupyterlab -p 8888:8888 jdvelasq/jupyterlab:3.2.9
-# docker exec -it jupyterlab bash
-# 
+#########################################################################################
 FROM jdvelasq/ubuntu:20.04
 
 #########################################################################################
@@ -31,7 +26,7 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
 
 #########################################################################################
 RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
-    jupyterlab==3.2.9 \    
+    jupyterlab==3.4.2 \    
     && mkdir /root/.jupyter \
     && mv jupyter_notebook_config.py /root/.jupyter/ \
     && mkdir /root/.jupyter/lab \
