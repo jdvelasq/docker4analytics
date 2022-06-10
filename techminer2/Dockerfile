@@ -7,7 +7,7 @@
 #
 # docker run --rm -it  --name aws-emr -p 8888:8888 jdvelasq/techminer2:0.0.0
 #
-FROM jdvelasq/jupyterlab:3.2.9
+FROM jdvelasq/jupyterlab:3.4.2
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
