@@ -28,24 +28,25 @@ RUN apt-get install -yq --no-install-recommends \
 
 #########################################################################################
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    "cdlib==0.2.5" \
-    "python-Levenshtein==0.12.2" \
-    "squarify==0.4.3" \
-    circlify  \
-    matplotlib \
-    networkx==2.6.3 \
-    nltk==3.2.5 \
-    pandas \
-    PyYAML \
-    seaborn \
-    textblob \
-    wordcloud
+    "nltk==3.7" 
 
-RUN python3 -c "import nltk;" \
-    "nltk.download('punkt'); " \
-    "nltk.download('brown');" \
-    "nltk.download('averaged_perceptron_tagger');" \
-    "nltk.download('stopwords');"
+#     "cdlib==0.2.5" \
+#     "python-Levenshtein==0.12.2" \
+#     "squarify==0.4.3" \
+#     circlify  \
+#     matplotlib \
+#     nltk==3.2.5 \
+#     pandas \
+#     PyYAML \
+#     seaborn \
+#     textblob \
+#     wordcloud
+
+# RUN python3 -c "import nltk;" \
+#     "nltk.download('punkt'); " \
+#     "nltk.download('brown');" \
+#     "nltk.download('averaged_perceptron_tagger');" \
+#     "nltk.download('stopwords');"
 
 RUN pip3 install -q -U git+https://github.com/jdvelasq/techminer2
 
