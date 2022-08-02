@@ -57,3 +57,4 @@ RUN rm -rf /app/*
 WORKDIR /workspace
 SHELL ["/bin/bash", "-c"]
 ENTRYPOINT jupyter lab
+
