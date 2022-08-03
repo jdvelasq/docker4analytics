@@ -28,7 +28,11 @@ RUN apt-get install -yq --no-install-recommends \
 
 #########################################################################################
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
-    "nltk==3.7" 
+    "nltk==3.7" \
+    "cdlib[C]==0.2.6" \
+    "ASLPAw" 
+
+
 
 #     "cdlib==0.2.5" \
 #     "python-Levenshtein==0.12.2" \
