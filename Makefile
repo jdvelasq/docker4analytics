@@ -164,7 +164,7 @@ superset:
 	docker image ls	
 
 techminer2:
-	docker build --no-cache --tag=jdvelasq/techminer2:0.0.0 techminer2/
+	docker build --no-cache --tag=jdvelasq/techminer2:0.1.0 techminer2/
 	docker image prune --force
 	echo
 	docker image ls	
