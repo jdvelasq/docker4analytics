@@ -1,8 +1,8 @@
 #
-# docker build --tag=jdvelasq/techminer2:0.0.0 --no-cache .
-# docker push jdvelasq/jdvelasq/techminer2:0.0.0
-# docker run --rm -it -v "$PWD":/datalake --name aws-emr -p 8888:8888  jdvelasq/techminer2:0.0.0
-# docker run --rm -it -v datalake:/datalake -name aws-emr -p 8888:8888 jdvelasq/techminer2:0.0.0
+# docker build --tag=jdvelasq/techminer2:0.1.0 --no-cache .
+# docker push jdvelasq/jdvelasq/techminer2:0.1.0
+# docker run --rm -it -v "$PWD":/datalake --name aws-emr -p 8888:8888  jdvelasq/techminer2:0.1.0
+# docker run --rm -it -v datalake:/datalake -name aws-emr -p 8888:8888 jdvelasq/techminer2:0.1.0
 # docker exec -it techminer2 bash
 #
 # docker run --rm -it  --name aws-emr -p 8888:8888 jdvelasq/techminer2:0.0.0
