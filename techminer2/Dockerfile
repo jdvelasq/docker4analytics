@@ -26,6 +26,12 @@ RUN apt-get install -yq --no-install-recommends \
     gcc \
     python3-dev
 
+RUN apt install -yq --no-install-recommends --reinstall \    
+    python3-pip
+
+RUN pip3 install --upgrade pip
+
+
 #########################################################################################
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     "nltk==3.7" \
@@ -60,5 +66,5 @@ ENV DEBIAN_FRONTEND=dialog
 RUN rm -rf /app/*
 WORKDIR /workspace
 SHELL ["/bin/bash", "-c"]
-ENTRYPOINT jupyter lab
+ENTRYPOINT jupyter lab --allow-root --ip="0.0.0.0" --port=8888 --no-browser
 
