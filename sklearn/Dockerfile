@@ -1,5 +1,5 @@
 #########################################################################################
-FROM jdvelasq/jupyterlab:3.4.2
+FROM jdvelasq/jupyterlab:3.5.2
 
 #########################################################################################
 ENV DEBIAN_FRONTEND noninteractive
@@ -28,7 +28,7 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     pandas \
     pyaml \
     pytest \
-    scikit-learn==1.1.1 \
+    scikit-learn==1.2 \
     seaborn \
     shap \
     SQLAlchemy \
