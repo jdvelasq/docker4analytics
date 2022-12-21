@@ -26,7 +26,7 @@ RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
 
 #########################################################################################
 RUN pip install --trusted-host pypi.python.org --default-timeout=100 \
-    jupyterlab==3.4.2 \    
+    jupyterlab==3.5.2 \    
     && mkdir /root/.jupyter \
     && mv jupyter_notebook_config.py /root/.jupyter/ \
     && mkdir /root/.jupyter/lab \
@@ -61,7 +61,7 @@ WORKDIR /workspace
 SHELL ["/bin/bash", "-c"]
 ENTRYPOINT echo "---------------------< stack >---------------------" \
     && echo " apache/ubuntu  20.04" \
-    && echo "    jupyterlab  3.2.9,  available at port 8888" \
+    && echo "    jupyterlab  3.5.2,  available at port 8888" \
     && echo "---------------------------------------------------" \
     && echo \
     && jupyter lab
