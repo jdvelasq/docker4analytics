@@ -1,1 +1,1 @@
-docker run --rm -it -v "$PWD":/workspace --name jupyterlab -p 8888:8888 jdvelasq/jupyterlab:3.2.9
+docker run --rm -it -v "$PWD":/workspace --name jupyterlab -p 8888:8888 jdvelasq/jupyterlab:3.5.2
