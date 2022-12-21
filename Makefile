@@ -98,7 +98,7 @@ impala:
 	docker image ls	
 
 jupyterlab:
-	docker build --tag=jdvelasq/jupyterlab:3.4.2 jupyterlab/	
+	docker build --tag=jdvelasq/jupyterlab:3.5.2 jupyterlab/	
 	docker image prune --force
 	echo
 	docker image ls	
@@ -134,7 +134,7 @@ phoenix:
 	docker image ls	
 
 sklearn:
-	docker build --tag=jdvelasq/sklearn:1.1.1 sklearn/	
+	docker build --tag=jdvelasq/sklearn:1.2 sklearn/	
 	docker image prune --force
 	echo
 	docker image ls	
