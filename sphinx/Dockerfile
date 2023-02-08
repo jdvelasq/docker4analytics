@@ -1,7 +1,7 @@
 #
-#  docker build --tag=jdvelasq/sphinx:3.0.4  .
-#  docker run --rm -v "$PWD":/app jdvelasq/sphinx:3.0.4
-#  docker push jdvelasq/sphinx:3.0.4
+#  docker build --tag=jdvelasq/sphinx:5.3.0  .
+#  docker run --rm -v "$PWD":/app jdvelasq/sphinx:5.3.0
+#  docker push jdvelasq/sphinx:5.3.0
 #
 #
 FROM python:3.7-slim
@@ -16,16 +16,16 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* 
 
 RUN pip install --trusted-host pypi.python.org \
-    sphinx==3.0.4 \
+    sphinx==5.3.0 \
     sphinx_rtd_theme \
     sphinx_copybutton \
     sphinx-book-theme \
     sphinx-autodoc-typehints \
     sphinx-intl \
-    nbsphinx==0.8.5\
-    docutils==0.16 \
+    nbsphinx\
+    docutils \
     pygments \
     ipykernel \
-    MarkupSafe==2.0.0
+    MarkupSafe
 
 ENTRYPOINT cd /workspace && make html
