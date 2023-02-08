@@ -1,2 +1,2 @@
 #! /bin/sh
-docker run --rm -v "$PWD":/workspace jdvelasq/sphinx:5.3.0
+docker run --rm -v "$PWD":/workspace jdvelasq/sphinx:4.5.0
