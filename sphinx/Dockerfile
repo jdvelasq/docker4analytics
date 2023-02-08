@@ -16,7 +16,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* 
 
 RUN pip install --trusted-host pypi.python.org \
-    sphinx==5.3.0 \
+    sphinx==4.5.0 \
     sphinx_rtd_theme \
     sphinx_copybutton \
     sphinx-book-theme \
