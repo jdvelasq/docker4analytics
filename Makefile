@@ -146,7 +146,7 @@ spark:
 	docker image ls	
 
 sphinx:
-	docker build --tag=jdvelasq/sphinx:5.3.0 sphinx/
+	docker build --tag=jdvelasq/sphinx:4.5.0 sphinx/
 	docker image prune --force
 	echo
 	docker image ls	
