@@ -31,7 +31,6 @@ RUN apt install -yq --no-install-recommends --reinstall \
 
 RUN pip3 install --upgrade pip
 
-
 #########################################################################################
 RUN pip3 install --trusted-host pypi.python.org  --default-timeout=100 \
     "nltk==3.7" \
