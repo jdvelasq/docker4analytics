@@ -11,6 +11,7 @@
 .PHONY: hue
 .PHONY: impala
 .PHONY: jupyterlab
+.PHONY: kali
 .PHONY: mariadb
 .PHONY: phoenix
 .PHONY: pig
@@ -102,6 +103,12 @@ jupyterlab:
 	docker image prune --force
 	echo
 	docker image ls	
+
+kali:
+	docker build --tag=jdvelasq/kali-rolling kali/	
+	docker image prune --force
+	echo
+	docker image ls
 
 mariadb:
 	docker build --tag=jdvelasq/mariadb:10.3.34 mariadb/	
